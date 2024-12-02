@@ -31,15 +31,25 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
 }
 
 /* Current Date Highlight */
 .current-date {
     background-color: #FFFF33; /* Bright yellow for the current date */
     border-radius: 4px;
-    padding: 5px;
     font-weight: bold;
+}
+
+/* Flavor Text */
+.flavor-text {
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
 }
