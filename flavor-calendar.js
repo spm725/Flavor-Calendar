@@ -6,6 +6,10 @@ const flavorData = [
 
 const calendarContainer = document.getElementById('calendar-container');
 
+// Set the header and title dynamically
+document.querySelector('h1').textContent = 'Custard Calendar';
+document.title = 'Custard Calendar';
+
 // Helper function to format dates
 const formatDate = (date) => date.toISOString().split('T')[0];
 
