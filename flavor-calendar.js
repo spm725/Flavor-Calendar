@@ -6,7 +6,7 @@ const flavorData = [
 
 const calendarSection = document.getElementById('calendar-section');
 
-// Helper function to generate date range
+// Helper function to generate all dates in a range
 const generateDates = (start, end) => {
     const dates = [];
     let current = new Date(start);
@@ -32,10 +32,15 @@ const currentYear = today.getFullYear();
 const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
 const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
 
-// Generate calendar cells for the entire month
+// Generate calendar layout
 const allDates = generateDates(firstDayOfMonth, lastDayOfMonth);
 
-allDates.forEach((date) => {
+// Create a row for each week
+let currentRow = document.createElement('div');
+currentRow.className = 'calendar-row';
+
+// Add calendar cells for the entire month
+allDates.forEach((date, index) => {
     const calendarCell = document.createElement('div');
     calendarCell.className = 'calendar-cell';
 
@@ -46,8 +51,20 @@ allDates.forEach((date) => {
         calendarCell.textContent = date.getDate();
     }
 
-    calendarSection.appendChild(calendarCell);
+    currentRow.appendChild(calendarCell);
+
+    // Create a new row every 7 days
+    if ((index + 1) % 7 === 0) {
+        calendarSection.appendChild(currentRow);
+        currentRow = document.createElement('div');
+        currentRow.className = 'calendar-row';
+    }
 });
+
+// Append the final row
+if (currentRow.childElementCount > 0) {
+    calendarSection.appendChild(currentRow);
+}
 
 // Add flavor bars
 flavorData.forEach((flavor) => {
@@ -58,14 +75,17 @@ flavorData.forEach((flavor) => {
     if (endDate < firstDayOfMonth || startDate > lastDayOfMonth) return;
 
     // Calculate start and end positions
-    const startDay = Math.max((startDate - firstDayOfMonth) / (1000 * 60 * 60 * 24), 0) + 1;
-    const endDay = Math.min((endDate - firstDayOfMonth) / (1000 * 60 * 60 * 24) + 1, allDates.length);
+    const startDayIndex = Math.max(Math.floor((startDate - firstDayOfMonth) / (1000 * 60 * 60 * 24)), 0);
+    const endDayIndex = Math.min(Math.floor((endDate - firstDayOfMonth) / (1000 * 60 * 60 * 24)), allDates.length - 1);
 
     // Create flavor bar
     const flavorBar = document.createElement('div');
     flavorBar.className = 'flavor-bar';
-    flavorBar.style.gridColumn = `${startDay} / ${endDay + 1}`;
+    flavorBar.style.gridColumn = `${(startDayIndex % 7) + 1} / ${(endDayIndex % 7) + 2}`;
     flavorBar.textContent = flavor.text;
 
-    calendarSection.appendChild(flavorBar);
+    // Append bar to the correct week row
+    const weekRowIndex = Math.floor(startDayIndex / 7);
+    const targetRow = calendarSection.children[weekRowIndex];
+    targetRow.appendChild(flavorBar);
 });
