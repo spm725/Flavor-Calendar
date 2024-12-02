@@ -17,10 +17,10 @@ body {
     width: 100%;
 }
 
-/* Calendar Section */
-#calendar-section {
+/* Calendar Grid */
+#calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
     gap: 5px;
     margin-top: 20px;
 }
@@ -28,40 +28,27 @@ body {
 /* Calendar Cell */
 .calendar-cell {
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #ffffff;
-}
-
-/* Current Date Highlight */
-.current-date {
-    background-color: #FFFF33; /* Bright yellow for current date */
-    border-radius: 50%;
-    padding: 5px;
-    display: inline-block;
-    font-weight: bold;
-}
-
-/* Flavor Bars Section */
-#flavor-bars-section {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    position: relative;
 }
 
 /* Flavor Bar */
 .flavor-bar {
-    position: relative;
-    width: 100%;
-    height: 20px;
+    position: absolute;
+    top: 0;
+    height: 100%;
     background-color: #FFD700; /* Gold color */
     border-radius: 5px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #fff;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Highlight Current Date */
+.current-date {
+    border: 2px solid #FFFF33; /* Bright yellow for current date */
     font-weight: bold;
 }
