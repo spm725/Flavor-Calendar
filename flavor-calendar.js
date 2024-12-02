@@ -25,11 +25,12 @@ const endCalendar = new Date(lastDayOfMonth);
 endCalendar.setDate(endCalendar.getDate() + (6 - endCalendar.getDay()));
 
 // Generate calendar cells
+const calendarCells = [];
 for (let date = new Date(startCalendar); date <= endCalendar; date.setDate(date.getDate() + 1)) {
     const cell = document.createElement('div');
     cell.className = 'calendar-cell';
 
-    // If the date is within the current month, add the day number
+    // Add the day number only if it's within the current month
     if (date >= firstDayOfMonth && date <= lastDayOfMonth) {
         cell.textContent = date.getDate();
 
@@ -40,6 +41,7 @@ for (let date = new Date(startCalendar); date <= endCalendar; date.setDate(date.
     }
 
     calendarContainer.appendChild(cell);
+    calendarCells.push(cell);
 }
 
 // Add flavor bars
@@ -54,17 +56,23 @@ flavorData.forEach((flavor) => {
     const adjustedStart = new Date(Math.max(startDate, startCalendar));
     const adjustedEnd = new Date(Math.min(endDate, endCalendar));
 
-    // Calculate bar start and span
-    const startDay = Math.floor((adjustedStart - startCalendar) / (1000 * 60 * 60 * 24));
-    const endDay = Math.floor((adjustedEnd - startCalendar) / (1000 * 60 * 60 * 24));
+    // Calculate start and end index within the calendar
+    const startIndex = Math.floor((adjustedStart - startCalendar) / (1000 * 60 * 60 * 24));
+    const endIndex = Math.floor((adjustedEnd - startCalendar) / (1000 * 60 * 60 * 24));
 
+    // Create the flavor bar
     const bar = document.createElement('div');
     bar.className = 'flavor-bar';
     bar.textContent = flavor.text;
 
-    // Place the bar in the correct position
-    bar.style.gridColumn = `${(startDay % 7) + 1} / ${(endDay % 7) + 2}`;
-    bar.style.gridRow = `${Math.floor(startDay / 7) + 2}`;
+    // Place the bar using grid positioning
+    const startColumn = (startIndex % 7) + 1;
+    const endColumn = (endIndex % 7) + 2; // Adjust to include the last day
+    const startRow = Math.floor(startIndex / 7) + 1;
+    const endRow = Math.floor(endIndex / 7) + 1;
+
+    bar.style.gridColumn = `${startColumn} / span ${endColumn - startColumn}`;
+    bar.style.gridRow = `${startRow} / span ${endRow - startRow}`;
 
     calendarContainer.appendChild(bar);
 });
