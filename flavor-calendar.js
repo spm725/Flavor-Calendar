@@ -20,16 +20,12 @@ const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
 const startCalendar = new Date(firstDayOfMonth);
 startCalendar.setDate(startCalendar.getDate() - startCalendar.getDay());
 
-// Find the last day of the week for the calendar
-const endCalendar = new Date(lastDayOfMonth);
-endCalendar.setDate(endCalendar.getDate() + (6 - endCalendar.getDay()));
-
-// Generate calendar cells
-for (let date = new Date(startCalendar); date <= endCalendar; date.setDate(date.getDate() + 1)) {
+// Generate calendar cells up to the last day of the month
+for (let date = new Date(startCalendar); date <= lastDayOfMonth; date.setDate(date.getDate() + 1)) {
     const cell = document.createElement('div');
     cell.className = 'calendar-cell';
 
-    // Add the day number if it's within the current month
+    // Add the day number and flavor if it's within the current month
     if (date >= firstDayOfMonth && date <= lastDayOfMonth) {
         const day = document.createElement('div');
         day.textContent = date.getDate();
