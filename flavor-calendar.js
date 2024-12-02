@@ -29,7 +29,7 @@ for (let date = new Date(startCalendar); date <= endCalendar; date.setDate(date.
     const cell = document.createElement('div');
     cell.className = 'calendar-cell';
 
-    // If the date is within the current month, add the day number
+    // Add the day number if it's within the current month
     if (date >= firstDayOfMonth && date <= lastDayOfMonth) {
         const day = document.createElement('div');
         day.textContent = date.getDate();
