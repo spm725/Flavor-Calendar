@@ -31,14 +31,9 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    font-size: 16px; /* Larger text for the date */
+    font-size: 16px;
     text-align: center;
-    position: relative; /* For flavor text placement */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100px; /* Ensure enough space for both date and flavor */
+    position: relative;
 }
 
 /* Current Date Highlight */
@@ -47,25 +42,4 @@ body {
     border-radius: 4px;
     padding: 5px;
     font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Flavor Text */
-.flavor-text {
-    font-size: 14px;
-    color: #555;
-    font-weight: 500;
-    margin-top: 5px;
-    text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    #calendar-container {
-        grid-template-columns: repeat(4, 1fr); /* Reduce columns for smaller screens */
-    }
-
-    .calendar-cell {
-        font-size: 14px; /* Adjust size for smaller screens */
-    }
 }
