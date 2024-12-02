@@ -31,7 +31,24 @@ for (let date = new Date(startCalendar); date <= endCalendar; date.setDate(date.
 
     // If the date is within the current month, add the day number
     if (date >= firstDayOfMonth && date <= lastDayOfMonth) {
-        cell.textContent = date.getDate();
+        const day = document.createElement('div');
+        day.textContent = date.getDate();
+        cell.appendChild(day);
+
+        // Check if the date matches a flavor range
+        const flavor = flavorData.find((flavor) => {
+            const flavorStart = new Date(flavor.start);
+            const flavorEnd = new Date(flavor.end);
+            return date >= flavorStart && date <= flavorEnd;
+        });
+
+        // Add flavor text if applicable
+        if (flavor) {
+            const flavorText = document.createElement('div');
+            flavorText.textContent = flavor.text;
+            flavorText.className = 'flavor-text';
+            cell.appendChild(flavorText);
+        }
 
         // Highlight today's date
         if (formatDate(date) === formatDate(today)) {
