@@ -4,7 +4,7 @@ const flavorData = [
     { text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05' },
 ];
 
-const calendarGrid = document.getElementById('calendar-grid');
+const calendarContainer = document.getElementById('calendar-container');
 
 // Helper function to format dates
 const formatDate = (date) => date.toISOString().split('T')[0];
@@ -16,25 +16,31 @@ const currentYear = today.getFullYear();
 const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
 const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
 
-// Generate all dates for the current month
-const datesInMonth = [];
-for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
-    datesInMonth.push(new Date(d));
-}
+// Find the first day of the week for the calendar
+const startCalendar = new Date(firstDayOfMonth);
+startCalendar.setDate(startCalendar.getDate() - startCalendar.getDay());
 
-// Create calendar cells
-datesInMonth.forEach((date) => {
+// Find the last day of the week for the calendar
+const endCalendar = new Date(lastDayOfMonth);
+endCalendar.setDate(endCalendar.getDate() + (6 - endCalendar.getDay()));
+
+// Generate calendar cells
+for (let date = new Date(startCalendar); date <= endCalendar; date.setDate(date.getDate() + 1)) {
     const cell = document.createElement('div');
     cell.className = 'calendar-cell';
-    cell.textContent = date.getDate();
 
-    // Highlight the current date
-    if (formatDate(date) === formatDate(today)) {
-        cell.classList.add('current-date');
+    // If the date is within the current month, add the day number
+    if (date >= firstDayOfMonth && date <= lastDayOfMonth) {
+        cell.textContent = date.getDate();
+
+        // Highlight today's date
+        if (formatDate(date) === formatDate(today)) {
+            cell.classList.add('current-date');
+        }
     }
 
-    calendarGrid.appendChild(cell);
-});
+    calendarContainer.appendChild(cell);
+}
 
 // Add flavor bars
 flavorData.forEach((flavor) => {
@@ -44,16 +50,21 @@ flavorData.forEach((flavor) => {
     // Skip flavors that don't overlap with the current month
     if (endDate < firstDayOfMonth || startDate > lastDayOfMonth) return;
 
-    // Determine the start and end positions within the grid
-    const startIndex = Math.max((startDate - firstDayOfMonth) / (1000 * 60 * 60 * 24), 0);
-    const endIndex = Math.min((endDate - firstDayOfMonth) / (1000 * 60 * 60 * 24), datesInMonth.length - 1);
+    // Adjust start and end dates if they overlap the calendar range
+    const adjustedStart = new Date(Math.max(startDate, startCalendar));
+    const adjustedEnd = new Date(Math.min(endDate, endCalendar));
 
-    // Create the flavor bar
-    const flavorBar = document.createElement('div');
-    flavorBar.className = 'flavor-bar';
-    flavorBar.style.gridColumn = `${(startIndex % 7) + 1} / ${(endIndex % 7) + 2}`;
-    flavorBar.style.gridRow = `${Math.floor(startIndex / 7) + 1} / ${Math.floor(endIndex / 7) + 1}`;
-    flavorBar.textContent = flavor.text;
+    // Calculate bar start and span
+    const startDay = Math.floor((adjustedStart - startCalendar) / (1000 * 60 * 60 * 24));
+    const endDay = Math.floor((adjustedEnd - startCalendar) / (1000 * 60 * 60 * 24));
 
-    calendarGrid.appendChild(flavorBar);
+    const bar = document.createElement('div');
+    bar.className = 'flavor-bar';
+    bar.textContent = flavor.text;
+
+    // Place the bar in the correct position
+    bar.style.gridColumn = `${(startDay % 7) + 1} / ${(endDay % 7) + 2}`;
+    bar.style.gridRow = `${Math.floor(startDay / 7) + 2}`;
+
+    calendarContainer.appendChild(bar);
 });
