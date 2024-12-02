@@ -21,43 +21,51 @@ body {
 #calendar-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
-    gap: 1px; /* Minimal gap between cells to create a connected look */
-    background-color: #ddd; /* Border color for the grid */
-    padding: 5px;
+    gap: 5px;
+    margin-top: 20px;
 }
 
 /* Calendar Cell */
 .calendar-cell {
-    background-color: #fff;
-    border: 1px solid #ddd; /* Inner cell border */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px; /* Larger text for the date */
     text-align: center;
+    position: relative; /* For flavor text placement */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100px; /* Ensure enough space for both date and flavor */
 }
 
-/* Current Date */
+/* Current Date Highlight */
 .current-date {
     background-color: #FFFF33; /* Bright yellow for the current date */
-    font-weight: bold;
     border-radius: 4px;
+    padding: 5px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-/* Flavor Bar */
-.flavor-bar {
-    grid-column: span 7; /* Default span across all days */
-    background-color: #FFD700; /* Gold color for bars */
-    text-align: center;
-    height: 30px;
-    line-height: 30px;
-    color: #fff;
-    font-weight: bold;
+/* Flavor Text */
+.flavor-text {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
     margin-top: 5px;
-    border-radius: 5px;
+    text-align: center;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     #calendar-container {
-        grid-template-columns: repeat(7, 1fr); /* Keep 7 columns on small screens */
+        grid-template-columns: repeat(4, 1fr); /* Reduce columns for smaller screens */
+    }
+
+    .calendar-cell {
+        font-size: 14px; /* Adjust size for smaller screens */
     }
 }
