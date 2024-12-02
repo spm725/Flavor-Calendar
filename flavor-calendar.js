@@ -6,21 +6,7 @@ const flavorData = [
 
 const calendarSection = document.getElementById('calendar-section');
 
-// Helper function to generate all dates in a range
-const generateDates = (start, end) => {
-    const dates = [];
-    let current = new Date(start);
-    const last = new Date(end);
-
-    while (current <= last) {
-        dates.push(new Date(current));
-        current.setDate(current.getDate() + 1);
-    }
-
-    return dates;
-};
-
-// Helper function to format a date as "YYYY-MM-DD"
+// Helper function to format dates
 const formatDate = (date) => date.toISOString().split('T')[0];
 
 // Get current month and year
@@ -32,38 +18,29 @@ const currentYear = today.getFullYear();
 const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
 const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
 
-// Generate calendar layout
-const allDates = generateDates(firstDayOfMonth, lastDayOfMonth);
+// Generate the calendar
+let weekRow = document.createElement('div');
+weekRow.className = 'calendar-row';
 
-// Create a row for each week
-let currentRow = document.createElement('div');
-currentRow.className = 'calendar-row';
-
-// Add calendar cells for the entire month
-allDates.forEach((date, index) => {
+for (let date = firstDayOfMonth; date <= lastDayOfMonth; date.setDate(date.getDate() + 1)) {
+    const currentDate = new Date(date);
     const calendarCell = document.createElement('div');
     calendarCell.className = 'calendar-cell';
+    calendarCell.textContent = currentDate.getDate();
 
     // Highlight current date
-    if (formatDate(date) === formatDate(today)) {
-        calendarCell.innerHTML = `<span class="current-date">${date.getDate()}</span>`;
-    } else {
-        calendarCell.textContent = date.getDate();
+    if (formatDate(currentDate) === formatDate(today)) {
+        calendarCell.innerHTML = `<span class="current-date">${currentDate.getDate()}</span>`;
     }
 
-    currentRow.appendChild(calendarCell);
+    weekRow.appendChild(calendarCell);
 
     // Create a new row every 7 days
-    if ((index + 1) % 7 === 0) {
-        calendarSection.appendChild(currentRow);
-        currentRow = document.createElement('div');
-        currentRow.className = 'calendar-row';
+    if (currentDate.getDay() === 6 || currentDate.getTime() === lastDayOfMonth.getTime()) {
+        calendarSection.appendChild(weekRow);
+        weekRow = document.createElement('div');
+        weekRow.className = 'calendar-row';
     }
-});
-
-// Append the final row
-if (currentRow.childElementCount > 0) {
-    calendarSection.appendChild(currentRow);
 }
 
 // Add flavor bars
@@ -71,21 +48,24 @@ flavorData.forEach((flavor) => {
     const startDate = new Date(flavor.start);
     const endDate = new Date(flavor.end);
 
-    // Skip bars not in the current month
+    // Skip bars that don't overlap the current month
     if (endDate < firstDayOfMonth || startDate > lastDayOfMonth) return;
 
-    // Calculate start and end positions
-    const startDayIndex = Math.max(Math.floor((startDate - firstDayOfMonth) / (1000 * 60 * 60 * 24)), 0);
-    const endDayIndex = Math.min(Math.floor((endDate - firstDayOfMonth) / (1000 * 60 * 60 * 24)), allDates.length - 1);
+    // Calculate bar position
+    const startDayIndex = Math.max((startDate - firstDayOfMonth) / (1000 * 60 * 60 * 24), 0);
+    const endDayIndex = Math.min((endDate - firstDayOfMonth) / (1000 * 60 * 60 * 24), (lastDayOfMonth - firstDayOfMonth) / (1000 * 60 * 60 * 24));
 
-    // Create flavor bar
+    const barRowIndex = Math.floor(startDayIndex / 7);
+    const barStart = (startDayIndex % 7) + 1;
+    const barEnd = (endDayIndex % 7) + 2;
+
+    // Create the flavor bar
     const flavorBar = document.createElement('div');
     flavorBar.className = 'flavor-bar';
-    flavorBar.style.gridColumn = `${(startDayIndex % 7) + 1} / ${(endDayIndex % 7) + 2}`;
+    flavorBar.style.gridColumn = `${barStart} / ${barEnd}`;
     flavorBar.textContent = flavor.text;
 
-    // Append bar to the correct week row
-    const weekRowIndex = Math.floor(startDayIndex / 7);
-    const targetRow = calendarSection.children[weekRowIndex];
+    // Append the flavor bar to the correct week row
+    const targetRow = calendarSection.children[barRowIndex];
     targetRow.appendChild(flavorBar);
 });
