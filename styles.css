@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: 'Poppins', Arial, sans-serif; /* Modern font similar to Super Chix */
+    font-family: 'Poppins', Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
     padding: 20px;
@@ -10,75 +10,50 @@ body {
     text-align: center;
 }
 
-/* Container for the flavor section */
-#flavor-section {
-    display: flex;
-    flex-direction: row; /* Align text and image horizontally */
-    align-items: center; /* Align image with flavor box vertically */
-    gap: 20px;
+/* Container */
+.container {
+    padding: 20px;
     max-width: 800px;
     width: 100%;
+}
+
+/* Calendar Section */
+#calendar-section {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 10px;
     margin-top: 20px;
 }
 
-/* Flavor box */
-.flavor-box {
-    flex: 1;
+/* Calendar Cell */
+.calendar-cell {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center text horizontally */
-    display: flex;
-    flex-direction: column; /* Stack flavors vertically */
-    justify-content: center; /* Center text vertically */
-    align-items: center; /* Center text horizontally */
-    gap: 8px;
-    max-width: 400px;
-    height: 250px; /* Define consistent height for flavor box */
-    font-size: 16px; /* Slightly larger font for readability */
-    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
 }
 
-/* Highlight for the current flavor */
-.current-highlight {
+/* Highlight for the current date */
+.current-date {
     background-color: #FFFF33; /* Bright yellow highlight */
-    padding: 0; /* No padding */
-    border-radius: 2px; /* Slight rounding */
-    display: inline-block; /* Shrinks highlight to fit text */
-    margin: 0; /* Remove extra margin */
-    line-height: 1; /* Match text line height */
+    font-weight: bold;
+    border: 2px solid #FFB300; /* Slight orange border */
 }
 
-/* Flavor text */
+/* Flavor Text */
 .flavor-text {
-    margin: 5px 0; /* Spacing between flavor text */
-    text-align: center; /* Ensure text is centered */
-}
-
-/* Current flavor image */
-.current-flavor-image {
-    width: 25%; /* Smaller size */
-    height: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    font-size: 12px;
+    color: #555;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    #flavor-section {
-        flex-direction: column; /* Stack flavor box and image vertically */
-        align-items: center;
-    }
-
-    .current-flavor-image {
-        margin-top: 10px;
-        width: 50%; /* Scale down for smaller screens */
-    }
-
-    .flavor-box {
-        max-width: 100%;
+    #calendar-section {
+        grid-template-columns: repeat(3, 1fr); /* Adjust for smaller screens */
     }
 }
