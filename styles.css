@@ -114,6 +114,8 @@ button:disabled {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
+    padding: 10px;
+    width: 100%; /* Ensure full width */
 }
 
 /* Calendar Cell */
@@ -130,6 +132,7 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
+    height: 100%; /* Ensure cells stretch to fill available space */
 }
 
 .calendar-cell:hover {
