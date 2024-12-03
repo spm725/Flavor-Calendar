@@ -30,9 +30,15 @@ function updateCurrentFlavor() {
     });
 
     if (currentFlavor) {
-        currentFlavorBox.textContent = `Current Flavor: ${currentFlavor.text}`;
+        currentFlavorBox.innerHTML = `
+            <div class="title">Current Flavor</div>
+            <div class="flavor-name">${currentFlavor.text}</div>
+        `;
     } else {
-        currentFlavorBox.textContent = 'No Current Flavor';
+        currentFlavorBox.innerHTML = `
+            <div class="title">Current Flavor</div>
+            <div class="flavor-name">No Current Flavor</div>
+        `;
     }
 }
 
