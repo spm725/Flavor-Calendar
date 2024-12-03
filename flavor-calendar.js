@@ -8,7 +8,7 @@ const calendarContainer = document.getElementById('calendar-container');
 const monthDisplay = document.getElementById('month-display');
 const prevButton = document.getElementById('prev-button');
 const nextButton = document.getElementById('next-button');
-const currentFlavorText = document.querySelector('.featured-flavor-text'); // Selects the "Current Flavor" box
+const currentFlavorBox = document.getElementById('featured-flavor'); // Corrected selector
 
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
@@ -18,6 +18,7 @@ const normalizeDate = (dateString) => {
     return new Date(year, month - 1, day);
 };
 
+// Update the "Current Flavor" box
 function updateCurrentFlavor() {
     const today = new Date();
     const todayNormalized = normalizeDate(today.toISOString().split('T')[0]);
@@ -29,12 +30,13 @@ function updateCurrentFlavor() {
     });
 
     if (currentFlavor) {
-        currentFlavorText.textContent = currentFlavor.text;
+        currentFlavorBox.textContent = `Current Flavor: ${currentFlavor.text}`;
     } else {
-        currentFlavorText.textContent = 'No Current Flavor';
+        currentFlavorBox.textContent = 'No Current Flavor';
     }
 }
 
+// Render the calendar
 function renderCalendar(year, month) {
     calendarContainer.innerHTML = '';
     const today = new Date();
@@ -104,7 +106,6 @@ nextButton.addEventListener('click', () => {
     renderCalendar(currentYear, currentMonth);
 });
 
-updateCurrentFlavor(); // Updates the "Current Flavor" box
-renderCalendar(currentYear, currentMonth); // Renders the calendar
-
-renderCalendar(currentYear, currentMonth); // Ensure calendar is displayed
+// Initialize the calendar and "Current Flavor" box
+updateCurrentFlavor();
+renderCalendar(currentYear, currentMonth);
