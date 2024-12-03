@@ -35,12 +35,14 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff; /* Clean white background */
-    padding: 10px;
+    padding: 20px; /* Increased padding for better text spacing */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333; /* Neutral text color */
     display: inline-block;
-    max-width: 300px; /* Adjust size to fit larger text */
+    max-width: 600px; /* Doubled the width */
+    width: 100%; /* Allow responsiveness */
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 /* Featured Flavor Text */
@@ -49,6 +51,8 @@ h1 {
     font-size: 2rem; /* Larger text size */
     color: #333;
     margin: 0;
+    word-wrap: break-word; /* Ensure long text wraps within the box */
+    text-align: center; /* Center-align the text */
 }
 
 /* Calendar Navigation */
@@ -165,4 +169,6 @@ button:disabled {
     .featured-flavor-text {
         font-size: 1.5rem; /* Slightly smaller font size on mobile */
     }
+}
+
 }
