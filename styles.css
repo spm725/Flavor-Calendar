@@ -33,14 +33,11 @@ body {
 
 /* Title */
 h1 {
-    font-family: 'GothamSSm-Black', sans-serif;
+    font-family: 'GothamSSm-Black', sans-serif; /* Custom Font */
     font-size: 4rem;
     color: #333;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    white-space: nowrap; /* Prevent the title from breaking into multiple lines */
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Featured Flavor Section */
@@ -78,6 +75,39 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+/* Make sure buttons stay aligned */
+.calendar-navigation button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #fdd835, #ffeb3b);
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.calendar-navigation button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    color: #999;
+}
+
+/* Month Display */
+#month-display {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #444;
 }
 
 /* Calendar Grid */
@@ -139,33 +169,31 @@ h1 {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    /* Ensure the calendar stays 7 days wide on mobile */
+    /* Ensuring the calendar stays 7 days wide on mobile */
     #calendar-container {
-        grid-template-columns: repeat(7, 1fr); /* Keep 7 days across */
+        grid-template-columns: repeat(7, 1fr);
     }
 
-    /* Adjust title font size and layout for mobile */
-    h1 {
-        font-size: 3rem; /* Slightly smaller font on mobile */
-    }
-
-    /* Adjust button layout for mobile */
+    /* Align buttons next to each other */
     .calendar-navigation {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
-    /* Adjust the calendar grid on mobile if needed */
-    .calendar-cell {
-        font-size: 12px; /* Smaller font size for mobile */
-        padding: 8px; /* Reduced padding for a better fit */
+    /* Making sure the font loads properly on mobile */
+    body, h1, .title, .flavor-name {
+        font-family: 'Poppins', Arial, sans-serif; /* Ensure font-family is correctly applied */
     }
 
-    /* Optionally reduce grid to 5 columns for smaller screens */
-    @media (max-width: 480px) {
-        #calendar-container {
-            grid-template-columns: repeat(5, 1fr); /* Reduce to 5 columns on very small screens */
-        }
+    /* Adjust button padding and layout */
+    .calendar-navigation button {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    /* Adjust for small screens */
+    .featured-image {
+        width: 150px;
     }
 }
