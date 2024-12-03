@@ -48,7 +48,7 @@ h1 {
 /* Featured Flavor Text */
 .featured-flavor-text {
     font-family: 'Wisdom Script', cursive; /* Match title font */
-    font-size: 2rem; /* Larger text size */
+    font-size: 3rem; /* Increased text size */
     color: #333;
     margin: 0;
     word-wrap: break-word; /* Ensure long text wraps within the box */
