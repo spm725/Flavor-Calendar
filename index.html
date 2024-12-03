@@ -93,5 +93,16 @@
     </div>
 
     <script src="flavor-calendar.js"></script>
+
+    <!-- Send height to parent when content is loaded -->
+    <script>
+      window.addEventListener('load', function() {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({
+          type: 'setIframeHeight',
+          height: height
+        }, '*');
+      });
+    </script>
 </body>
 </html>
