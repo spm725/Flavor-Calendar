@@ -10,12 +10,6 @@ body {
     text-align: center;
 }
 
-/* Font Face for Gotham Black */
-@font-face {
-    font-family: 'Gotham Black';
-    src: url('./GothamSSm-Black.otf') format('opentype');
-}
-
 /* Container */
 .container {
     background: #ffffff;
@@ -29,7 +23,7 @@ body {
 
 /* Title */
 h1 {
-    font-family: 'Gotham Black', Arial, sans-serif; /* Updated font */
+    font-family: 'Wisdom Script', cursive;
     font-size: 3rem;
     color: #333;
     margin-bottom: 20px;
@@ -41,24 +35,22 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff; /* Clean white background */
-    padding: 20px;
+    padding: 10px; /* Minimal padding */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333; /* Neutral text color */
-    display: inline-block;
-    max-width: 600px;
-    width: 100%; /* Allow responsiveness */
-    box-sizing: border-box;
+    display: inline-block; /* Adjust size to fit content */
+    max-width: 220px; /* Ensure the box doesn’t expand excessively */
 }
 
-/* Featured Flavor Text */
-.featured-flavor-text {
-    font-family: 'Wisdom Script', cursive; /* Match "Custard Calendar" styling */
-    font-size: 3rem; /* Larger text size */
-    color: #333;
-    margin: 0; /* Remove unnecessary margin */
-    word-wrap: break-word; /* Ensure long text wraps within the box */
-    text-align: center; /* Center-align the text */
+/* Featured Image */
+.featured-image {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: none; /* Remove any shadow effects */
+    margin-bottom: 5px;
+    background: transparent;
 }
 
 /* Calendar Navigation */
@@ -168,11 +160,7 @@ button:disabled {
         grid-template-columns: repeat(3, 1fr); /* Adjust grid for smaller screens */
     }
 
-    .featured-flavor {
-        max-width: 100%; /* Allow flexibility for smaller screens */
-    }
-
-    .featured-flavor-text {
-        font-size: 1.5rem; /* Slightly smaller font size on mobile */
+    .featured-image {
+        width: 150px; /* Smaller featured image for smaller screens */
     }
 }
