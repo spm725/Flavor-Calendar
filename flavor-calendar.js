@@ -75,11 +75,27 @@ function checkPrevButton() {
     const today = new Date();
     const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
 
-    // Disable the "Previous" button if the displayed month is in the current year and is before the current month
     if (displayedDate < today) {
         prevButton.disabled = true; // Disable the button for past months of the current year
     } else {
         prevButton.disabled = false; // Allow navigation to past months of previous years
+    }
+}
+
+// Function to check and disable the "Next" button if there are no scheduled flavors in the future
+function checkNextButton() {
+    const lastFlavorEndDate = flavorData.reduce((latest, flavor) => {
+        const flavorEnd = normalizeDate(flavor.end);
+        return flavorEnd > latest ? flavorEnd : latest;
+    }, new Date(0)); // Start with a very early date
+
+    const displayedDate = new Date(currentYear, currentMonth + 1, 0); // Last day of the current displayed month
+
+    // If the displayed month is beyond the last flavor's scheduled date, disable the "Next" button
+    if (displayedDate >= lastFlavorEndDate) {
+        nextButton.disabled = true;
+    } else {
+        nextButton.disabled = false;
     }
 }
 
@@ -95,13 +111,11 @@ function updateCurrentFlavor() {
     });
 
     if (currentFlavor) {
-        // Ensure the "Current Flavor" box displays the flavor title and name correctly
         currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
             <div class="flavor-name">${currentFlavor.text}</div>
         `;
     } else {
-        // Display "No Current Flavor" if no flavor matches today's date
         currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
             <div class="flavor-name">No Current Flavor</div>
@@ -161,6 +175,7 @@ function renderCalendar(year, month) {
     }
 
     checkPrevButton(); // Ensure the "Previous" button is correctly enabled/disabled
+    checkNextButton(); // Ensure the "Next" button is correctly enabled/disabled
 }
 
 prevButton.addEventListener('click', () => {
@@ -184,4 +199,5 @@ nextButton.addEventListener('click', () => {
 // Initialize the calendar and "Current Flavor" box
 updateCurrentFlavor();
 renderCalendar(currentYear, currentMonth);
+
 
