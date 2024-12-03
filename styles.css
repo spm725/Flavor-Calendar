@@ -65,7 +65,7 @@ h1 {
 .featured-flavor .flavor-name {
     font-size: 3rem; /* Slightly smaller to fit inside the box */
     color: #333;
-    font-family: 'H.H. Samuel', cursive; /* Updated font for flavor name */
+    font-family: 'H.H. Samuel', cursive !important; /* Ensure HH Samuel font is applied explicitly */
     line-height: 1.2; /* Adjusted line-height for spacing */
     margin-top: 10px; /* Slight margin for spacing */
     white-space: nowrap; /* Prevent wrapping on desktop */
@@ -203,8 +203,8 @@ button:disabled {
 
     /* Current Flavor Name */
     .featured-flavor .flavor-name {
-        font-size: 2.8rem; /* Increase font size for better visibility */
-        font-family: 'H.H. Samuel', cursive; /* Use HH Samuel font for the flavor name */
+        font-size: 2.8rem !important; /* Increase font size for better visibility */
+        font-family: 'H.H. Samuel', cursive !important; /* Apply HH Samuel font explicitly */
         line-height: 1.2;
         margin-top: 10px;
         white-space: normal; /* Allow text to wrap in mobile */
@@ -220,18 +220,17 @@ button:disabled {
 
     /* Highlight for Current Date (circle fix) */
     .current-date {
-        width: 40px; /* Make sure the width and height are equal for a perfect circle */
-        height: 40px;
+        width: 100%; /* Make sure the width matches the cell size */
+        height: 100%; /* Maintain square ratio */
         border-radius: 50%;
         background: #ffeb3b;
         border: 2px solid #fdd835;
         font-weight: bold;
         color: #333;
-        padding: 5px;
-        box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         font-size: 14px; /* Adjust text size inside the circle */
+        box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
     }
 }
