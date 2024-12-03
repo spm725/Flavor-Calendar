@@ -23,8 +23,8 @@ const normalizeDate = (dateString) => new Date(dateString);
 function renderFeaturedFlavor() {
     const today = new Date();
     const currentFlavor = flavorData.find((flavor) => {
-        const flavorStart = normalizeDate(flavor.start);
-        const flavorEnd = normalizeDate(flavor.end);
+        const flavorStart = new Date(flavor.start);
+        const flavorEnd = new Date(flavor.end);
         return today >= flavorStart && today <= flavorEnd;
     });
 
@@ -32,8 +32,7 @@ function renderFeaturedFlavor() {
     if (currentFlavor) {
         featuredSection.innerHTML = `
             <h2>Current Flavor</h2>
-            <img src="${currentFlavor.imageSrc}" alt="${currentFlavor.text}" class="featured-image">
-            <p>${currentFlavor.text}</p>
+            <p class="featured-flavor-text">${currentFlavor.text}</p>
         `;
     } else {
         featuredSection.innerHTML = `
@@ -42,6 +41,7 @@ function renderFeaturedFlavor() {
         `;
     }
 }
+
 
 // Render the calendar
 function renderCalendar(year, month) {
