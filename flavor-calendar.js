@@ -1,5 +1,5 @@
 const flavorData = [
-    { id: 'flavor5', text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', imageSrc: 'https://www.dropbox.com/scl/fi/84qi6d4bxvefx2k63is86/FoW-Strawberry-Cheesecake.jpg?rlkey=t566tbzkm8d3pzuqe8gohyxfz&st=1airezf6&raw=1' },
+    { id: 'flavor5', text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', imageSrc: 'https://www.dropbox.com/scl/fi/wxp71y5wu6h2zt5lpavoq/strawberry-cheesecake.jpg?rlkey=c9do4uoam73ltxktfbmmn8rco&st=z2pzrjpg&raw=1' },
     { id: 'flavor6', text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29', imageSrc: 'https://www.dropbox.com/scl/fi/7c08vzdssay0jwu98q8hj/FoW-Mint-Oreo.jpg?rlkey=oe8mwqnzwesg91wwyubyk71tg&st=nb9xo8d4&dl=0' },
     { id: 'flavor7', text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05', imageSrc: 'images/reeses-cheesecake.jpg' },
     { id: 'flavor8', text: 'Coffee Toffee', start: '2025-01-06', end: '2025-01-12', imageSrc: 'images/coffee-toffee.jpg' },
