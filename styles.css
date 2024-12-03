@@ -169,9 +169,9 @@ button:disabled {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    /* Ensuring the calendar stays 7 days wide on mobile */
+    /* Ensuring the calendar shows 4 days across on mobile */
     #calendar-container {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
     }
 
     /* Align buttons next to each other */
