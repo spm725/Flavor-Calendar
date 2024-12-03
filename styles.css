@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    background-color: #f9f9f9;
+    background: linear-gradient(120deg, #fdfbfb, #ebedee);
     margin: 0;
     padding: 20px;
     display: flex;
@@ -12,9 +12,22 @@ body {
 
 /* Container */
 .container {
+    background: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     padding: 20px;
     max-width: 800px;
     width: 100%;
+    overflow: hidden;
+}
+
+/* Title */
+h1 {
+    font-family: 'Wisdom Script', cursive;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Calendar Navigation */
@@ -26,31 +39,34 @@ body {
 }
 
 .calendar-navigation button {
-    padding: 5px 15px;
+    padding: 10px 20px;
     font-size: 14px;
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 5px;
-    background-color: #fff;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .calendar-navigation button:hover {
-    background-color: #f0f0f0;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:disabled {
-    background-color: #e0e0e0;
+    background: #ccc;
     cursor: not-allowed;
     color: #999;
-    border: 1px solid #ccc;
 }
 
 /* Month Display */
 #month-display {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    margin: 0 20px;
+    margin: 10px 0;
+    color: #444;
 }
 
 /* Calendar Grid */
@@ -58,12 +74,11 @@ button:disabled {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
-    margin-top: 10px;
 }
 
 /* Calendar Cell */
 .calendar-cell {
-    background-color: #ffffff;
+    background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
@@ -73,14 +88,24 @@ button:disabled {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.calendar-cell:hover {
+    background: #f7f7f7;
+    transform: translateY(-5px);
 }
 
 /* Highlight for Current Date */
 .current-date {
-    background-color: #FFFF33; /* Bright yellow for the current date */
-    border-radius: 4px;
+    background: #ffeb3b;
+    border: 2px solid #fdd835;
+    border-radius: 50%;
     font-weight: bold;
+    color: #333;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
 }
 
 /* Day of the Week */
@@ -93,9 +118,14 @@ button:disabled {
 
 /* Flavor Text */
 .flavor-text {
+    background: #ff9a9e;
+    color: #fff;
     font-size: 12px;
-    color: #555;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
     margin-top: 5px;
+    text-align: center;
 }
 
 /* Responsive Styles */
