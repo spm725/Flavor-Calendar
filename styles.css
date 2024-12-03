@@ -56,9 +56,24 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    min-height: 80px;
+    min-height: 100px;
+}
+
+/* Current Date Highlight */
+.current-date {
+    background-color: #FFFF33; /* Bright yellow for the current date */
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Day of the Week */
+.day-of-week {
+    font-size: 12px;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 5px;
 }
 
 /* Flavor Text */
