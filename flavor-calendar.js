@@ -14,7 +14,7 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to compare two dates (ignoring time)
+// Helper function to check if two dates are the same
 const isSameDate = (date1, date2) => {
     return (
         date1.getFullYear() === date2.getFullYear() &&
