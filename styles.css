@@ -64,7 +64,7 @@ h1 {
 
 /* Current Flavor Name */
 .featured-flavor .flavor-name {
-    font-size: 3rem;
+    font-size: 5rem; /* Increased size for flavor name */
     color: #333;
     font-family: 'H.H. Samuel', cursive; /* Updated font */
 }
