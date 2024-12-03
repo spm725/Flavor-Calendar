@@ -14,13 +14,19 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to check if two dates are the same
-const isSameDate = (date1, date2) => {
-    return (
-        date1.getFullYear() === date2.getFullYear() &&
-        date1.getMonth() === date2.getMonth() &&
-        date1.getDate() === date2.getDate()
-    );
+// Helper function to normalize a date for comparison
+const normalizeDate = (date) => {
+    const normalized = new Date(date);
+    normalized.setHours(0, 0, 0, 0); // Remove time components
+    return normalized;
+};
+
+// Helper function to check if a date is within a flavor's range
+const isDateInRange = (date, start, end) => {
+    const currentDate = normalizeDate(date);
+    const startDate = normalizeDate(start);
+    const endDate = normalizeDate(end);
+    return currentDate >= startDate && currentDate <= endDate;
 };
 
 // Function to render the calendar
@@ -43,7 +49,7 @@ function renderCalendar(year, month) {
         cell.className = 'calendar-cell';
 
         // Add the day of the week
-        const dayOfWeek = new Date(date).toLocaleString('en-US', { weekday: 'short' }); // "Mon", "Tue", etc.
+        const dayOfWeek = date.toLocaleString('en-US', { weekday: 'short' }); // "Mon", "Tue", etc.
         const dayLabel = document.createElement('div');
         dayLabel.textContent = dayOfWeek;
         dayLabel.className = 'day-of-week';
@@ -60,7 +66,9 @@ function renderCalendar(year, month) {
         }
 
         // Check if the date matches a flavor range
-        const flavor = flavorData.find((flavor) => date >= flavor.start && date <= flavor.end);
+        const flavor = flavorData.find((flavor) =>
+            isDateInRange(date, flavor.start, flavor.end)
+        );
 
         // Add flavor text if applicable
         if (flavor) {
