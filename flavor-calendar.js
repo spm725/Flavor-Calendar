@@ -94,12 +94,23 @@ function updateCurrentFlavor() {
         return todayNormalized >= flavorStart && todayNormalized <= flavorEnd;
     });
 
+    const currentFlavorBox = document.getElementById('featured-flavor');
+
     if (currentFlavor) {
-        currentFlavorBox.textContent = `Current Flavor: ${currentFlavor.text}`;
+        // Ensure the "Current Flavor" box displays the flavor title and name correctly
+        currentFlavorBox.innerHTML = `
+            <div class="title">Current Flavor</div>
+            <div class="flavor-name">${currentFlavor.text}</div>
+        `;
     } else {
-        currentFlavorBox.textContent = 'No Current Flavor';
+        // Display "No Current Flavor" if no flavor matches today's date
+        currentFlavorBox.innerHTML = `
+            <div class="title">Current Flavor</div>
+            <div class="flavor-name">No Current Flavor</div>
+        `;
     }
 }
+
 
 // Render the calendar
 function renderCalendar(year, month) {
