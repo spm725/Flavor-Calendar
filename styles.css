@@ -138,15 +138,43 @@ button:disabled {
     transform: translateY(-5px);
 }
 
-/* Highlight for Current Date */
+/* Highlight for Current Date with Cup of Custard Shape */
 .current-date {
-    background: #ffeb3b;
-    border: 2px solid #fdd835;
+    width: 60px;
+    height: 80px;
+    background-color: #fdd835; /* Light custard yellow */
+    border-radius: 12px 12px 5px 5px; /* Rounded cup edges */
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+/* Creamy Top of Custard */
+.current-date::before {
+    content: "";
+    width: 80%;
+    height: 15px;
+    background-color: #fff8e1; /* Creamy white */
     border-radius: 50%;
-    font-weight: bold;
-    color: #333;
-    padding: 5px;
-    box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
+    position: absolute;
+    top: -7px;
+    left: 10%;
+}
+
+/* Optional: Adding a little swirl to the custard top */
+.current-date::after {
+    content: "";
+    width: 30px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg); /* Rotate to create a swirl */
 }
 
 /* Day of the Week */
