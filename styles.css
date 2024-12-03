@@ -4,6 +4,11 @@
     src: url('GothamSSm-Black.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'Wisdom Script', cursive;
+    src: url('WisdomScript.otf') format('opentype'); /* Ensure this is correct if you have the font in your repository */
+}
+
 body {
     font-family: 'Poppins', Arial, sans-serif;
     background: linear-gradient(120deg, #fdfbfb, #ebedee);
@@ -29,7 +34,7 @@ body {
 /* Title */
 h1 {
     font-family: 'GothamSSm-Black', sans-serif; /* Custom Font */
-    font-size: 4rem; /* Increased size for prominence */
+    font-size: 4rem;
     color: #333;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -45,33 +50,23 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     display: inline-block;
-    max-width: 800px; /* Expanded width to accommodate longer text */
+    max-width: 800px;
     font-family: 'Poppins', Arial, sans-serif;
 }
 
-/* Current Flavor Title (Smaller Text Size) */
+/* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 1.5rem; /* Reduced size for the title */
+    font-size: 1.5rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 15px;
 }
 
-/* Current Flavor Name (Larger Text Size) */
+/* Current Flavor Name */
 .featured-flavor .flavor-name {
-    font-size: 3rem; /* Increased font size for flavor name */
+    font-size: 3rem;
     color: #333;
-    font-family: 'Wisdom Script', cursive; /* New font for flavor text */
-}
-
-/* Featured Image */
-.featured-image {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: none;
-    margin-bottom: 5px;
-    background: transparent;
+    font-family: 'Wisdom Script', cursive;
 }
 
 /* Calendar Navigation */
@@ -82,6 +77,7 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* Make sure buttons stay aligned */
 .calendar-navigation button {
     padding: 10px 20px;
     font-size: 14px;
@@ -94,6 +90,7 @@ h1 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover effect */
 .calendar-navigation button:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
@@ -116,7 +113,7 @@ button:disabled {
 /* Calendar Grid */
 #calendar-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
 }
 
@@ -172,15 +169,30 @@ button:disabled {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .calendar-navigation {
-        flex-direction: column;
-        gap: 10px;
-    }
-
+    /* Ensuring the calendar stays 7 days wide on mobile */
     #calendar-container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(7, 1fr);
     }
 
+    /* Align buttons next to each other */
+    .calendar-navigation {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Making sure the font loads properly on mobile */
+    body, h1, .title, .flavor-name {
+        font-family: 'Poppins', Arial, sans-serif; /* Ensure font-family is correctly applied */
+    }
+
+    /* Adjust button padding and layout */
+    .calendar-navigation button {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    /* Adjust for small screens */
     .featured-image {
         width: 150px;
     }
