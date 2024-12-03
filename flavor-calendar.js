@@ -75,11 +75,11 @@ function checkPrevButton() {
     const today = new Date();
     const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
 
-    // Disable the "Previous" button if the displayed month is before the current month
+    // Disable the "Previous" button if the displayed month is in the current year and is before the current month
     if (displayedDate < today) {
-        prevButton.disabled = false; // Allow navigation to past months
+        prevButton.disabled = true; // Disable the button for past months of the current year
     } else {
-        prevButton.disabled = true; // Disable navigation to months before the current month
+        prevButton.disabled = false; // Allow navigation to past months of previous years
     }
 }
 
@@ -93,8 +93,6 @@ function updateCurrentFlavor() {
         const flavorEnd = normalizeDate(flavor.end);
         return todayNormalized >= flavorStart && todayNormalized <= flavorEnd;
     });
-
-    const currentFlavorBox = document.getElementById('featured-flavor');
 
     if (currentFlavor) {
         // Ensure the "Current Flavor" box displays the flavor title and name correctly
@@ -110,7 +108,6 @@ function updateCurrentFlavor() {
         `;
     }
 }
-
 
 // Render the calendar
 function renderCalendar(year, month) {
@@ -187,3 +184,4 @@ nextButton.addEventListener('click', () => {
 // Initialize the calendar and "Current Flavor" box
 updateCurrentFlavor();
 renderCalendar(currentYear, currentMonth);
+
