@@ -64,16 +64,22 @@ const currentFlavorBox = document.getElementById('featured-flavor');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
+// Function to normalize date format
+function normalizeDate(dateString) {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day);
+}
+
 // Function to check and disable the "Previous" button for past months
 function checkPrevButton() {
     const today = new Date();
     const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
 
-    // Only disable "Previous" button for months that have already passed
+    // Disable "Previous" button if the displayed month is before the current month
     if (displayedDate < today) {
         prevButton.disabled = false; // Allow navigation to past months
     } else {
-        prevButton.disabled = true; // Disable navigation to months in the past
+        prevButton.disabled = true; // Disable navigation to months before the current month
     }
 }
 
