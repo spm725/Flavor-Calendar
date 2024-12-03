@@ -15,7 +15,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Prevent body from scrolling */
+            overflow: hidden; /* Prevent scrolling */
         }
 
         /* Full container height and centered content */
@@ -27,7 +27,7 @@
             height: 100%;
             padding: 0;
             box-sizing: border-box;
-            overflow: hidden; /* Prevent scrolling within the container */
+            overflow: hidden; /* Prevent scrolling */
         }
 
         /* Featured Flavor Box Centered */
@@ -57,7 +57,7 @@
         /* The calendar container should take full space and allow scrolling within it */
         #calendar-container {
             flex-grow: 1;
-            overflow-y: auto; /* Enable scrolling only within the calendar */
+            overflow-y: auto; /* Enable scrolling only within the calendar if needed */
             width: 100%;
         }
 
@@ -97,7 +97,10 @@
     <!-- Send height to parent when content is loaded -->
     <script>
       window.addEventListener('load', function() {
-        const height = document.body.scrollHeight;
+        // Calculate the height of the content and send it to the parent window
+        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+        
+        // Send the height of the content to the parent window
         window.parent.postMessage({
           type: 'setIframeHeight',
           height: height
