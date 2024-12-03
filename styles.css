@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'H.H. Samuel';
-    src: url('H.H. Samuel-font-defharo.ttf') format('truetype'); /* Ensure the path to the font is correct */
+    src: url('H.H. Samuel-font-defharo.ttf') format('truetype');
 }
 
 body {
@@ -33,7 +33,7 @@ body {
 
 /* Title */
 h1 {
-    font-family: 'GothamSSm-Black', sans-serif; /* Custom Font */
+    font-family: 'GothamSSm-Black', sans-serif;
     font-size: 4rem;
     color: #333;
     margin-bottom: 20px;
@@ -62,11 +62,11 @@ h1 {
     margin-bottom: 15px;
 }
 
-/* Current Flavor Name (Updated font) */
+/* Current Flavor Name */
 .featured-flavor .flavor-name {
     font-size: 3rem;
     color: #333;
-    font-family: 'H.H. Samuel', cursive; /* New font for the flavor name */
+    font-family: 'H.H. Samuel', cursive;
 }
 
 /* Calendar Navigation */
@@ -169,9 +169,9 @@ button:disabled {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    /* Ensuring the calendar stays 7 days wide on mobile */
+    /* Ensuring the calendar stays 4 days wide on mobile */
     #calendar-container {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for smaller screens */
     }
 
     /* Align buttons next to each other */
