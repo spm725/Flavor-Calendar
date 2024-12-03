@@ -55,7 +55,6 @@ const flavorData = [
     { text: 'Strawberry Cheesecake', start: '2025-12-22', end: '2025-12-28' }
 ];
 
-
 const calendarContainer = document.getElementById('calendar-container');
 const monthDisplay = document.getElementById('month-display');
 const prevButton = document.getElementById('prev-button');
@@ -64,6 +63,12 @@ const currentFlavorBox = document.getElementById('featured-flavor');
 
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
+
+// Function to normalize date strings to Date objects
+function normalizeDate(dateString) {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day);  // Adjust for zero-indexed month
+}
 
 // Function to check and disable the "Previous" button if the month is in the past
 function checkPrevButton() {
