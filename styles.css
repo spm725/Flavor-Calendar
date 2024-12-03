@@ -41,7 +41,7 @@ h1 {
 }
 
 /* Featured Flavor Section */
-.featured-flavor {
+#featured-flavor {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff;
@@ -55,26 +55,17 @@ h1 {
     max-width: 70%; /* Ensure it doesn't become too wide */
 }
 
-/* Current Flavor Title */
-.featured-flavor .title {
-    font-size: 2rem; /* Adjusted title font size */
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px; /* Reduced margin for better spacing */
+/* Current Flavor Image */
+#featured-flavor img {
+    width: 100%; /* Makes the image fill the box */
+    height: auto;
+    max-width: 600px; /* Maximum width for the image */
+    border-radius: 10px; /* Optional: For rounded corners */
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Current Flavor Name */
-.featured-flavor .flavor-name {
-    font-size: 3rem; /* Slightly smaller to fit inside the box */
-    color: #333;
-    font-family: 'Permanent Marker', cursive; /* Updated font to Permanent Marker */
-    line-height: 1.2; /* Adjusted line-height for spacing */
-    margin-top: 10px; /* Slight margin for spacing */
-    white-space: nowrap; /* Prevent wrapping on desktop */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis for long text if needed */
-    padding: 10px;
-    display: inline-block;
+#featured-flavor img:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
 }
 
 /* Calendar Navigation */
