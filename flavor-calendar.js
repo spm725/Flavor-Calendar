@@ -1,3 +1,4 @@
+// Original flavor data with images assigned to each flavor
 const flavorData = [
     { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', image: 'images/strawberry-cheesecake.jpg' },
     { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29', image: 'images/mint-oreo.jpg' },
@@ -78,6 +79,11 @@ function updateCurrentFlavor() {
             <div class="flavor-name">No Current Flavor</div>
         `;
     }
+}
+
+// Function to render your calendar (existing code)
+function renderCalendar() {
+    // Add your original calendar rendering logic here
 }
 
 // Initialize the calendar and flavor updates on page load
