@@ -14,10 +14,17 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
+// Helper function to normalize a date (removes time components)
+const normalizeDate = (date) => {
+    const normalized = new Date(date);
+    normalized.setHours(0, 0, 0, 0);
+    return normalized;
+};
+
 // Function to render the calendar
 function renderCalendar(year, month) {
     calendarContainer.innerHTML = ''; // Clear previous calendar
-    const today = new Date();
+    const today = normalizeDate(new Date());
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
 
@@ -36,7 +43,8 @@ function renderCalendar(year, month) {
     }
 
     // Generate calendar cells
-    for (let date = new Date(firstDayOfMonth); date <= lastDayOfMonth; date.setDate(date.getDate() + 1)) {
+    for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d = new Date(d.setDate(d.getDate() + 1))) {
+        const date = normalizeDate(d); // Clone and normalize date
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
 
@@ -53,17 +61,15 @@ function renderCalendar(year, month) {
         cell.appendChild(dayNumber);
 
         // Highlight today's date
-        if (
-            today.getFullYear() === date.getFullYear() &&
-            today.getMonth() === date.getMonth() &&
-            today.getDate() === date.getDate()
-        ) {
+        if (today.getTime() === date.getTime()) {
             cell.classList.add('current-date');
         }
 
         // Check if the date matches a flavor range
         const flavor = flavorData.find((flavor) => {
-            return date >= flavor.start && date <= flavor.end;
+            const flavorStart = normalizeDate(flavor.start);
+            const flavorEnd = normalizeDate(flavor.end);
+            return date >= flavorStart && date <= flavorEnd;
         });
 
         // Add flavor text if applicable
