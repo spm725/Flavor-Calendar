@@ -8,18 +8,16 @@ const calendarContainer = document.getElementById('calendar-container');
 const monthDisplay = document.getElementById('month-display');
 const prevButton = document.getElementById('prev-button');
 const nextButton = document.getElementById('next-button');
-const currentFlavorText = document.querySelector('.featured-flavor-text'); // Correct box selector
+const currentFlavorText = document.querySelector('.featured-flavor-text'); // Selects the "Current Flavor" box
 
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to normalize a date
 const normalizeDate = (dateString) => {
     const [year, month, day] = dateString.split('-').map(Number);
     return new Date(year, month - 1, day);
 };
 
-// Update the Current Flavor Box
 function updateCurrentFlavor() {
     const today = new Date();
     const todayNormalized = normalizeDate(today.toISOString().split('T')[0]);
@@ -31,15 +29,14 @@ function updateCurrentFlavor() {
     });
 
     if (currentFlavor) {
-        currentFlavorText.textContent = currentFlavor.text; // Update box with flavor
+        currentFlavorText.textContent = currentFlavor.text;
     } else {
-        currentFlavorText.textContent = 'No Current Flavor'; // Fallback text
+        currentFlavorText.textContent = 'No Current Flavor';
     }
 }
 
-// Render the Calendar
 function renderCalendar(year, month) {
-    calendarContainer.innerHTML = ''; // Clear previous calendar
+    calendarContainer.innerHTML = '';
     const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
@@ -50,7 +47,6 @@ function renderCalendar(year, month) {
     ];
     monthDisplay.textContent = `${monthNames[month]} ${year}`;
 
-    // Generate calendar cells
     for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
@@ -65,7 +61,6 @@ function renderCalendar(year, month) {
         dayNumber.textContent = d.getDate();
         cell.appendChild(dayNumber);
 
-        // Highlight today's date
         if (
             today.getFullYear() === d.getFullYear() &&
             today.getMonth() === d.getMonth() &&
@@ -74,7 +69,6 @@ function renderCalendar(year, month) {
             cell.classList.add('current-date');
         }
 
-        // Add flavor text for matching dates
         const flavor = flavorData.find((flavor) => {
             const flavorStart = normalizeDate(flavor.start);
             const flavorEnd = normalizeDate(flavor.end);
@@ -92,7 +86,6 @@ function renderCalendar(year, month) {
     }
 }
 
-// Event listeners for navigation
 prevButton.addEventListener('click', () => {
     currentMonth -= 1;
     if (currentMonth < 0) {
@@ -111,6 +104,7 @@ nextButton.addEventListener('click', () => {
     renderCalendar(currentYear, currentMonth);
 });
 
-// Initial Render
-updateCurrentFlavor(); // Ensure the "Current Flavor" box is updated
+updateCurrentFlavor(); // Updates the "Current Flavor" box
+renderCalendar(currentYear, currentMonth); // Renders the calendar
+
 renderCalendar(currentYear, currentMonth); // Ensure calendar is displayed
