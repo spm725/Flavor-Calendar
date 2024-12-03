@@ -14,8 +14,12 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to format dates
-const formatDate = (date) => date.toISOString().split('T')[0];
+// Helper function to normalize date for comparison
+const normalizeDate = (date) => {
+    const normalized = new Date(date);
+    normalized.setHours(0, 0, 0, 0); // Remove time components
+    return normalized;
+};
 
 // Function to render the calendar
 function renderCalendar(year, month) {
@@ -42,9 +46,10 @@ function renderCalendar(year, month) {
 
         // Check if the date matches a flavor range
         const flavor = flavorData.find((flavor) => {
-            const flavorStart = new Date(flavor.start);
-            const flavorEnd = new Date(flavor.end);
-            return date >= flavorStart && date <= flavorEnd;
+            const flavorStart = normalizeDate(flavor.start);
+            const flavorEnd = normalizeDate(flavor.end);
+            const currentDate = normalizeDate(date);
+            return currentDate >= flavorStart && currentDate <= flavorEnd;
         });
 
         // Add flavor text if applicable
