@@ -52,11 +52,12 @@ h1 {
     display: inline-block;
     max-width: 800px;
     font-family: 'Poppins', Arial, sans-serif;
+    width: 100%; /* Ensures full width */
 }
 
 /* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Adjusted title font size */
     font-weight: bold;
     color: #333;
     margin-bottom: 15px;
@@ -64,9 +65,10 @@ h1 {
 
 /* Current Flavor Name */
 .featured-flavor .flavor-name {
-    font-size: 5rem; /* Increased size for flavor name */
+    font-size: 5rem; /* Increased size for the flavor name */
     color: #333;
-    font-family: 'H.H. Samuel', cursive; /* Updated font */
+    font-family: 'H.H. Samuel', cursive; /* Updated font for flavor name */
+    line-height: 1.2; /* Adjusted line-height for spacing */
 }
 
 /* Calendar Navigation */
