@@ -4,11 +4,9 @@
     src: url('GothamSSm-Black.otf') format('opentype');
 }
 
-@font-face {
-    font-family: 'H.H. Samuel', cursive;
-    src: url('H.H. Samuel-font-defharo.ttf') format('truetype'); /* Correct path to the font file */
-}
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@800&display=swap'); /* Adding Bitter Extra Bold 800 */
 
+/* Applying fonts */
 body {
     font-family: 'Poppins', Arial, sans-serif;
     background: linear-gradient(120deg, #fdfbfb, #ebedee);
@@ -65,7 +63,7 @@ h1 {
 .featured-flavor .flavor-name {
     font-size: 3rem; /* Slightly smaller to fit inside the box */
     color: #333;
-    font-family: 'H.H. Samuel', cursive; /* Updated font for flavor name */
+    font-family: 'Bitter', sans-serif; /* Updated font for flavor name */
     line-height: 1.2; /* Adjusted line-height for spacing */
     margin-top: 10px; /* Slight margin for spacing */
     white-space: nowrap; /* Prevent wrapping on desktop */
@@ -207,3 +205,4 @@ button:disabled {
         width: 150px;
     }
 }
+
