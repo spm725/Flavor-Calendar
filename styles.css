@@ -5,8 +5,8 @@
 }
 
 @font-face {
-    font-family: 'Wisdom Script', cursive;
-    src: url('WisdomScript.otf') format('opentype'); /* Ensure this is correct if you have the font in your repository */
+    font-family: 'H.H. Samuel';
+    src: url('H.H. Samuel-font-defharo.ttf') format('truetype'); /* Ensure the path to the font is correct */
 }
 
 body {
@@ -62,11 +62,11 @@ h1 {
     margin-bottom: 15px;
 }
 
-/* Current Flavor Name */
+/* Current Flavor Name (Updated font) */
 .featured-flavor .flavor-name {
     font-size: 3rem;
     color: #333;
-    font-family: 'Wisdom Script', cursive;
+    font-family: 'H.H. Samuel', cursive; /* New font for the flavor name */
 }
 
 /* Calendar Navigation */
