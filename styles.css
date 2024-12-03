@@ -45,17 +45,17 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff;
-    padding: 20px; /* Reduced padding for smaller box */
+    padding: 40px; /* Increased padding for a slightly larger box */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     display: inline-block;
-    width: 50%; /* Reduced size of the box to 50% */
+    width: 60%; /* Increased box width for more space */
 }
 
 /* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 1.5rem; /* Adjusted title font size */
+    font-size: 2rem; /* Adjusted title font size */
     font-weight: bold;
     color: #333;
     margin-bottom: 10px; /* Reduced margin for better spacing */
@@ -63,11 +63,11 @@ h1 {
 
 /* Current Flavor Name */
 .featured-flavor .flavor-name {
-    font-size: 3.5rem; /* Reduced size for better text fit on desktop */
+    font-size: 4.5rem; /* Increased size for the flavor name */
     color: #333;
     font-family: 'H.H. Samuel', cursive; /* Updated font for flavor name */
     line-height: 1.2; /* Adjusted line-height for spacing */
-    margin-top: 5px; /* Slight margin for spacing */
+    margin-top: 10px; /* Slight margin for spacing */
     white-space: nowrap; /* Prevent wrapping on desktop */
     overflow: hidden;
     text-overflow: ellipsis; /* Add ellipsis for long text if needed */
