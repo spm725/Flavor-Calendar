@@ -28,7 +28,7 @@ body {
 
 /* Title */
 h1 {
-    font-family: 'GothamSSm-Black', sans-serif; /* Updated font to GothamSSm-Black */
+    font-family: 'GothamSSm-Black', sans-serif; /* Custom Font */
     font-size: 4rem; /* Increased size for prominence */
     color: #333;
     margin-bottom: 20px;
@@ -45,23 +45,23 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     display: inline-block;
-    max-width: 660px;
+    max-width: 800px; /* Expanded width to accommodate longer text */
     font-family: 'Poppins', Arial, sans-serif;
 }
 
-/* Current Flavor Title */
+/* Current Flavor Title (Smaller Text Size) */
 .featured-flavor .title {
-    font-size: 2.5rem;
+    font-size: 1.5rem; /* Reduced size for the title */
     font-weight: bold;
     color: #333;
     margin-bottom: 15px;
 }
 
-/* Current Flavor Name */
+/* Current Flavor Name (Larger Text Size) */
 .featured-flavor .flavor-name {
-    font-size: 2rem;
+    font-size: 3rem; /* Increased font size for flavor name */
     color: #333;
-    font-family: 'Wisdom Script', cursive;
+    font-family: 'Wisdom Script', cursive; /* New font for flavor text */
 }
 
 /* Featured Image */
