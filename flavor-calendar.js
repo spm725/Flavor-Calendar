@@ -69,11 +69,11 @@ function checkPrevButton() {
     const today = new Date();
     const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
 
-    // Disable the "Previous" button if the displayed month is in the past
+    // Only disable "Previous" button for months that have already passed
     if (displayedDate < today) {
-        prevButton.disabled = false; // Allow navigation to months before the current one
+        prevButton.disabled = false; // Allow navigation to past months
     } else {
-        prevButton.disabled = true; // Disable the "Previous" button if it's the current month or future months
+        prevButton.disabled = true; // Disable navigation to months in the past
     }
 }
 
@@ -97,7 +97,7 @@ function updateCurrentFlavor() {
 
 // Render the calendar
 function renderCalendar(year, month) {
-    calendarContainer.innerHTML = '';
+    calendarContainer.innerHTML = ''; // Reset calendar container
     const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
