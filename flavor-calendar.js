@@ -1,3 +1,4 @@
+// Flavor data with start and end dates
 const flavorData = [
     { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', image: 'path/to/strawberry-cheesecake.jpg' },
     { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29', image: 'path/to/mint-oreo.jpg' },
@@ -46,42 +47,79 @@ const flavorData = [
     { text: 'Butterfinger®', start: '2025-10-20', end: '2025-10-26', image: 'path/to/butterfinger.jpg' },
     { text: 'Oreo® Cheesecake', start: '2025-10-27', end: '2025-11-02', image: 'path/to/oreo-cheesecake.jpg' },
     { text: 'Toasted Coconut', start: '2025-11-03', end: '2025-11-09', image: 'path/to/toasted-coconut.jpg' },
-    { text: 'Strawberry Swirl', start: '2025-11-10', end: '2025-11-16', image: 'path/to/strawberry-swirl.jpg' },
-    { text: 'Heath Bar®', start: '2025-11-17', end: '2025-11-23', image: 'path/to/heath-bar.jpg' },
-    { text: 'Blueberry Pie', start: '2025-11-24', end: '2025-11-30', image: 'path/to/blueberry-pie.jpg' },
-    { text: 'Nutter Butter', start: '2025-12-01', end: '2025-12-07', image: 'path/to/nutter-butter.jpg' },
-    { text: 'Coffee Toffee', start: '2025-12-08', end: '2025-12-14', image: 'path/to/coffee-toffee.jpg' },
-    { text: 'Mint Oreo®', start: '2025-12-15', end: '2025-12-21', image: 'path/to/mint-oreo.jpg' },
-    { text: 'Strawberry Cheesecake', start: '2025-12-22', end: '2025-12-28', image: 'path/to/strawberry-cheesecake.jpg' },
+    { text: 'Strawberry Swirl', start: '2025-11-10', end: '2025-11-16', image: 'path/to/strawberry-swirl.jpg' }
 ];
 
+// Normalize the date format (YYYY-MM-DD) for comparison
 function normalizeDate(dateStr) {
-    return dateStr.split('T')[0]; // Only keep the YYYY-MM-DD part
+    return new Date(dateStr).toISOString().split('T')[0];
 }
 
-function updateCurrentFlavor() {
-    const today = new Date();
-    const todayNormalized = normalizeDate(today.toISOString().split('T')[0]);
+// Function to generate the calendar for a given month and year
+function generateCalendar(month, year) {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const totalDays = lastDay.getDate();
+    const calendarContainer = document.getElementById('calendar-container');
+    calendarContainer.innerHTML = ''; // Clear existing cells
 
-    const currentFlavor = flavorData.find((flavor) => {
-        const flavorStart = normalizeDate(flavor.start);
-        const flavorEnd = normalizeDate(flavor.end);
-        return todayNormalized >= flavorStart && todayNormalized <= flavorEnd;
-    });
+    // Loop through all the days in the month
+    for (let i = 1; i <= totalDays; i++) {
+        const currentDate = new Date(year, month, i);
+        const dayOfWeek = currentDate.getDay(); // Get day of the week (0-6)
 
-    const currentFlavorBox = document.getElementById('featured-flavor');
+        // Create a new cell for the current day
+        const cell = document.createElement('div');
+        cell.classList.add('calendar-cell');
 
-    if (currentFlavor) {
-        currentFlavorBox.innerHTML = `
-            <img src="${currentFlavor.image}" alt="${currentFlavor.text}" class="current-flavor-image">
-        `;
-    } else {
-        currentFlavorBox.innerHTML = `
-            <img src="path/to/placeholder-image.jpg" alt="No Current Flavor" class="current-flavor-image">
-        `;
+        // Add the day of the week label (Sun, Mon, Tue, etc.)
+        const dayLabel = document.createElement('div');
+        dayLabel.classList.add('day-of-week');
+        dayLabel.textContent = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dayOfWeek];
+        cell.appendChild(dayLabel);
+
+        // Check if there is a flavor for this date
+        const flavor = flavorData.find((flavor) => {
+            const flavorStart = normalizeDate(flavor.start);
+            const flavorEnd = normalizeDate(flavor.end);
+            const currentNormalizedDate = normalizeDate(currentDate);
+            return currentNormalizedDate >= flavorStart && currentNormalizedDate <= flavorEnd;
+        });
+
+        // If a flavor is found, add the flavor text and image
+        if (flavor) {
+            const flavorText = document.createElement('div');
+            flavorText.classList.add('flavor-text');
+            flavorText.textContent = flavor.text;
+            cell.appendChild(flavorText);
+
+            const flavorImage = document.createElement('img');
+            flavorImage.src = flavor.image; // Add the image path for the flavor
+            flavorImage.alt = flavor.text;
+            flavorImage.classList.add('flavor-image');
+            cell.appendChild(flavorImage);
+        }
+
+        // Add the date number
+        const dateText = document.createElement('div');
+        dateText.classList.add('date-text');
+        dateText.textContent = i;
+        cell.appendChild(dateText);
+
+        // Highlight the current date
+        const currentDateString = normalizeDate(new Date());
+        const currentCellDate = normalizeDate(currentDate);
+        if (currentDateString === currentCellDate) {
+            cell.classList.add('current-date');
+        }
+
+        // Append the day cell to the calendar container
+        calendarContainer.appendChild(cell);
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    updateCurrentFlavor();
-});
+// Initialize the calendar for the current month
+const today = new Date();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+generateCalendar(currentMonth, currentYear);
