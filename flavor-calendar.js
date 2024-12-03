@@ -45,8 +45,8 @@ const flavorData = [
     { text: 'Mint Oreo®', start: '2025-10-13', end: '2025-10-19', image: 'images/mint-oreo.jpg' },
     { text: 'Butterfinger®', start: '2025-10-20', end: '2025-10-26', image: 'images/butterfinger.jpg' },
     { text: 'Oreo® Cheesecake', start: '2025-10-27', end: '2025-11-02', image: 'images/oreo-cheesecake.jpg' },
-    { text: 'Toasted Coconut', start: '2025-11-03', end: '2025-11-09', image: 'images/toasted-coconut.jpg' },
-    { text: 'Strawberry Swirl', start: '2025-11-10', end: '2025-11-16', image: 'images/strawberry-swirl.jpg' }
+    { text: 'Peaches n\' Cream', start: '2025-11-03', end: '2025-11-09', image: 'images/peaches-n-cream.jpg' },
+    { text: 'Strawberry Cheesecake', start: '2025-11-10', end: '2025-11-16', image: 'images/strawberry-cheesecake.jpg' }
 ];
 
 // Normalize date format (YYYY-MM-DD)
@@ -80,5 +80,10 @@ function updateCurrentFlavor() {
     }
 }
 
-// Call the function to update the current flavor box
-updateCurrentFlavor();
+// Initialize the calendar and flavor updates on page load
+function initializeCalendar() {
+    updateCurrentFlavor(); // Update the current flavor box
+    renderCalendar(); // Call your original calendar rendering logic here
+}
+
+initializeCalendar();
