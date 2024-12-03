@@ -45,12 +45,12 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff;
-    padding: 40px; /* Increased padding for a slightly larger box */
+    padding: 30px; /* Keep the box size consistent */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     display: inline-block;
-    width: 60%; /* Increased box width for more space */
+    width: 50%; /* Keep the box width the same as before */
 }
 
 /* Current Flavor Title */
@@ -63,7 +63,7 @@ h1 {
 
 /* Current Flavor Name */
 .featured-flavor .flavor-name {
-    font-size: 4.5rem; /* Increased size for the flavor name */
+    font-size: 3.5rem; /* Slightly smaller to fit inside the box */
     color: #333;
     font-family: 'H.H. Samuel', cursive; /* Updated font for flavor name */
     line-height: 1.2; /* Adjusted line-height for spacing */
