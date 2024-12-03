@@ -1,9 +1,9 @@
 const flavorData = [
-    { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15' },
-    { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29' },
-    { text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05' },
-    { text: 'Coffee Toffee', start: '2025-01-06', end: '2025-01-12' },
-    { text: 'Butterfinger®', start: '2025-01-13', end: '2025-01-19' },
+    { text: 'Strawberry Cheesecake', start: new Date('2024-12-02'), end: new Date('2024-12-15') },
+    { text: 'Mint Oreo®', start: new Date('2024-12-16'), end: new Date('2024-12-29') },
+    { text: 'Reese\'s® Cheesecake', start: new Date('2024-12-30'), end: new Date('2025-01-05') },
+    { text: 'Coffee Toffee', start: new Date('2025-01-06'), end: new Date('2025-01-12') },
+    { text: 'Butterfinger®', start: new Date('2025-01-13'), end: new Date('2025-01-19') },
 ];
 
 const calendarContainer = document.getElementById('calendar-container');
@@ -14,16 +14,19 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to normalize date for comparison
-const normalizeDate = (date) => {
-    const normalized = new Date(date);
-    normalized.setHours(0, 0, 0, 0); // Remove time components
-    return normalized;
+// Helper function to normalize a date for comparison
+const isSameDate = (date1, date2) => {
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    );
 };
 
 // Function to render the calendar
 function renderCalendar(year, month) {
     calendarContainer.innerHTML = ''; // Clear previous calendar
+    const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
 
@@ -44,13 +47,13 @@ function renderCalendar(year, month) {
         day.textContent = date.getDate();
         cell.appendChild(day);
 
+        // Highlight today's date
+        if (isSameDate(date, today)) {
+            cell.classList.add('current-date');
+        }
+
         // Check if the date matches a flavor range
-        const flavor = flavorData.find((flavor) => {
-            const flavorStart = normalizeDate(flavor.start);
-            const flavorEnd = normalizeDate(flavor.end);
-            const currentDate = normalizeDate(date);
-            return currentDate >= flavorStart && currentDate <= flavorEnd;
-        });
+        const flavor = flavorData.find((flavor) => date >= flavor.start && date <= flavor.end);
 
         // Add flavor text if applicable
         if (flavor) {
