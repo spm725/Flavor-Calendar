@@ -148,7 +148,7 @@ button:disabled {
 
 /* Flavor Text */
 .flavor-text {
-    background: #ff9a9e;
+    background: #444;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
