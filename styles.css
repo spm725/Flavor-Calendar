@@ -35,11 +35,12 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff; /* Clean white background */
-    padding: 10px; /* Reduced padding */
+    padding: 10px; /* Minimal padding */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333; /* Neutral text color */
-    width: auto; /* Automatically adjust size to fit content */
+    display: inline-block; /* Adjust size to fit content */
+    max-width: 220px; /* Ensure the box doesn’t expand excessively */
 }
 
 /* Featured Image */
@@ -47,9 +48,9 @@ h1 {
     width: 200px;
     height: auto;
     border-radius: 10px;
-    box-shadow: none; /* Remove background effects */
-    margin-bottom: 10px;
-    background: transparent; /* Transparent background */
+    box-shadow: none; /* Remove any shadow effects */
+    margin-bottom: 5px;
+    background: transparent;
 }
 
 /* Calendar Navigation */
@@ -74,7 +75,7 @@ h1 {
 
 .calendar-navigation button:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4); /* Match yellow highlight */
+    box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
 }
 
 button:disabled {
