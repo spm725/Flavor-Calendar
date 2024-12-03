@@ -4,7 +4,7 @@
     src: url('GothamSSm-Black.otf') format('opentype');
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap'); /* Adding Merriweather Black 900 */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap'); /* Adding Oswald Bold 700 */
 
 /* Applying fonts */
 body {
@@ -63,8 +63,8 @@ h1 {
 .featured-flavor .flavor-name {
     font-size: 3rem; /* Slightly smaller to fit inside the box */
     color: #333;
-    font-family: 'Merriweather', serif; /* Updated font for flavor name */
-    font-weight: 900; /* Ensuring boldness */
+    font-family: 'Oswald', sans-serif; /* Updated font to Oswald */
+    font-weight: 700; /* Bold weight */
     line-height: 1.2; /* Adjusted line-height for spacing */
     margin-top: 10px; /* Slight margin for spacing */
     white-space: nowrap; /* Prevent wrapping on desktop */
