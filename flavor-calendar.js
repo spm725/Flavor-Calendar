@@ -14,7 +14,7 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to normalize a date for comparison
+// Helper function to compare two dates (ignoring time)
 const isSameDate = (date1, date2) => {
     return (
         date1.getFullYear() === date2.getFullYear() &&
@@ -42,10 +42,17 @@ function renderCalendar(year, month) {
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
 
+        // Add the day of the week
+        const dayOfWeek = new Date(date).toLocaleString('en-US', { weekday: 'short' }); // "Mon", "Tue", etc.
+        const dayLabel = document.createElement('div');
+        dayLabel.textContent = dayOfWeek;
+        dayLabel.className = 'day-of-week';
+        cell.appendChild(dayLabel);
+
         // Add the day number
-        const day = document.createElement('div');
-        day.textContent = date.getDate();
-        cell.appendChild(day);
+        const dayNumber = document.createElement('div');
+        dayNumber.textContent = date.getDate();
+        cell.appendChild(dayNumber);
 
         // Highlight today's date
         if (isSameDate(date, today)) {
