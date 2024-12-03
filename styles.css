@@ -17,12 +17,33 @@ body {
     width: 100%;
 }
 
+/* Calendar Navigation */
+.calendar-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-navigation button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.calendar-navigation button:hover {
+    background-color: #f0f0f0;
+}
+
 /* Calendar Grid */
 #calendar-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /* Calendar Cell */
@@ -40,18 +61,9 @@ body {
     min-height: 80px;
 }
 
-/* Current Date Highlight */
-.current-date {
-    background-color: #FFFF33; /* Bright yellow for the current date */
-    border-radius: 4px;
-    font-weight: bold;
-}
-
 /* Flavor Text */
 .flavor-text {
     font-size: 12px;
     color: #555;
-    font-weight: 500;
     margin-top: 5px;
-    text-align: center;
 }
