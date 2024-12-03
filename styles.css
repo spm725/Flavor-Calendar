@@ -34,13 +34,28 @@ h1 {
 .featured-flavor {
     text-align: center;
     margin-bottom: 20px;
-    background: #ffffff; /* Clean white background */
-    padding: 10px; /* Minimal padding */
+    background: #ffffff;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333; /* Neutral text color */
-    display: inline-block; /* Adjust size to fit content */
-    max-width: 220px; /* Ensure the box doesn’t expand excessively */
+    color: #333;
+    display: inline-block;
+    max-width: 220px;
+    font-family: 'Wisdom Script', cursive; /* Applying the same font as title */
+}
+
+/* Current Flavor Title */
+.featured-flavor .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Current Flavor Name */
+.featured-flavor .flavor-name {
+    font-size: 1.25rem;
+    color: #333;
 }
 
 /* Featured Image */
@@ -48,7 +63,7 @@ h1 {
     width: 200px;
     height: auto;
     border-radius: 10px;
-    box-shadow: none; /* Remove any shadow effects */
+    box-shadow: none;
     margin-bottom: 5px;
     background: transparent;
 }
@@ -66,7 +81,7 @@ h1 {
     font-size: 14px;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(45deg, #fdd835, #ffeb3b); /* Yellow gradient highlight */
+    background: linear-gradient(45deg, #fdd835, #ffeb3b);
     color: #333;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -95,7 +110,7 @@ button:disabled {
 /* Calendar Grid */
 #calendar-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
+    grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
 
@@ -141,12 +156,12 @@ button:disabled {
 
 /* Flavor Text */
 .flavor-text {
-    color: #333; /* Neutral text color */
+    color: #333;
     font-size: 12px;
     font-weight: bold;
     margin-top: 5px;
     text-align: center;
-    background: none; /* Remove background */
+    background: none;
 }
 
 /* Responsive Styles */
@@ -157,10 +172,10 @@ button:disabled {
     }
 
     #calendar-container {
-        grid-template-columns: repeat(3, 1fr); /* Adjust grid for smaller screens */
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .featured-image {
-        width: 150px; /* Smaller featured image for smaller screens */
+        width: 150px;
     }
 }
