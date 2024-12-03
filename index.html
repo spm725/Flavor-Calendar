@@ -7,62 +7,60 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Ensuring content is centered and fills the page properly -->
     <style>
-        /* Ensure the body and html take up full height */
+        /* Ensure the body and html take up full height without overflow */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;  /* Center the content horizontally */
-            align-items: flex-start;  /* Align items at the top */
             flex-direction: column;
-            overflow: hidden; /* Prevent scrolling of the entire page */
+            overflow: hidden; /* Prevent body from scrolling */
         }
 
-        /* Ensure the container uses the full height */
+        /* Full container height and centered content */
         .container {
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 20px;
+            width: 100%;
+            height: 100%;
+            padding: 0;
             box-sizing: border-box;
-            align-items: center; /* Center the container horizontally */
+            overflow: hidden; /* Prevent scrolling within the container */
         }
 
-        /* Make sure the calendar container fills available space */
-        #calendar-container {
-            flex-grow: 1; /* Allow calendar to expand to fill the remaining space */
-            overflow-y: auto; /* Allow scrolling within the calendar if necessary */
-            width: 100%; /* Ensure the calendar takes up the full width */
-        }
-
-        /* Ensure Current Flavor box is centered */
+        /* Featured Flavor Box Centered */
         .featured-flavor {
             width: 100%;
-            max-width: 500px; /* Set a max-width for better responsiveness */
-            margin: 0 auto; /* Center the box horizontally */
-            padding: 10px;
+            max-width: 500px;
+            margin: 0 auto;
             text-align: center;
+            padding: 10px;
         }
 
-        /* Navigation style adjustments */
+        /* Navigation section styling */
         .calendar-navigation {
             display: flex;
-            justify-content: center; /* Center the navigation buttons */
-            width: 100%;
+            justify-content: center;
+            align-items: center;
             margin: 10px 0;
+            padding: 0 10px;
         }
 
         .calendar-navigation button {
             padding: 10px;
-            margin: 0 10px; /* Space between buttons */
+            margin: 0 10px;
+            font-size: 16px;
         }
 
-        /* Title and responsiveness */
+        /* The calendar container should take full space and allow scrolling within it */
+        #calendar-container {
+            flex-grow: 1;
+            overflow-y: auto; /* Enable scrolling only within the calendar */
+            width: 100%;
+        }
+
         h1 {
             text-align: center;
             font-size: 2rem;
@@ -70,18 +68,14 @@
             margin-bottom: 20px;
         }
 
-        /* Adjustments for smaller screen sizes */
+        /* Media Queries for smaller screens */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.5rem;
             }
 
-            .container {
-                padding: 10px;
-            }
-
             .calendar-navigation button {
-                font-size: 14px; /* Smaller button text */
+                font-size: 14px;
             }
         }
     </style>
@@ -97,6 +91,7 @@
         </div>
         <div id="calendar-container"></div>
     </div>
+
     <script src="flavor-calendar.js"></script>
 </body>
 </html>
