@@ -4,80 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custard Calendar</title>
-    
-    <!-- External CSS Link -->
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Ensuring the page uses the full height */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%; /* Full height of the viewport */
-            overflow: hidden; /* Prevent outer scrolling */
-        }
-
-        /* Container styles to fill the page */
-        .container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh; /* Full height of the viewport */
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Ensure the calendar content fills the available space */
-        #calendar-container {
-            flex-grow: 1;
-            overflow: auto; /* Scroll inside the calendar */
-            padding: 20px;
-        }
-
-        /* Keep buttons and title in place */
-        .calendar-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Adjust the header size for small screens */
-        h1 {
-            font-size: 2rem;
-            text-align: center;
-        }
-
-        /* Responsive styles for mobile screens */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <h1>Custard Calendar</h1>
-        
         <div id="featured-flavor" class="featured-flavor"></div>
-
         <div class="calendar-navigation">
             <button id="prev-button">Previous</button>
             <div id="month-display"></div>
             <button id="next-button">Next</button>
         </div>
-
         <div id="calendar-container"></div>
     </div>
-
-    <!-- External JS Link -->
     <script src="flavor-calendar.js"></script>
 </body>
 </html>
-
