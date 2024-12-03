@@ -189,9 +189,9 @@ button:disabled {
         align-items: center;
     }
 
-    /* Apply Permanent Marker font on mobile as well */
+    /* Making sure the font loads properly on mobile */
     body, h1, .title, .flavor-name {
-        font-family: 'Permanent Marker', cursive !important; /* Force Permanent Marker font on mobile */
+        font-family: 'Poppins', Arial, sans-serif; /* Ensure font-family is correctly applied */
     }
 
     /* Adjust button padding and layout */
