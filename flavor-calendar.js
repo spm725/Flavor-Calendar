@@ -111,15 +111,15 @@ function updateCurrentFlavor() {
     });
 
     if (currentFlavor) {
-        currentFlavorBox.innerHTML = 
+        currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
             <div class="flavor-name">${currentFlavor.text}</div>
-        ;
+        `;
     } else {
-        currentFlavorBox.innerHTML = 
+        currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
             <div class="flavor-name">No Current Flavor</div>
-        ;
+        `;
     }
 }
 
@@ -134,7 +134,7 @@ function renderCalendar(year, month) {
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December',
     ];
-    monthDisplay.textContent = ${monthNames[month]} ${year};
+    monthDisplay.textContent = `${monthNames[month]} ${year}`;
 
     for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
         const cell = document.createElement('div');
