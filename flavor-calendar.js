@@ -60,15 +60,23 @@ const calendarContainer = document.getElementById('calendar-container');
 const monthDisplay = document.getElementById('month-display');
 const prevButton = document.getElementById('prev-button');
 const nextButton = document.getElementById('next-button');
-const currentFlavorBox = document.getElementById('featured-flavor'); // Corrected selector
+const currentFlavorBox = document.getElementById('featured-flavor');
 
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-const normalizeDate = (dateString) => {
-    const [year, month, day] = dateString.split('-').map(Number);
-    return new Date(year, month - 1, day);
-};
+// Function to check and disable the "Previous" button if the month is in the past
+function checkPrevButton() {
+    const today = new Date();
+    const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
+
+    // Disable the "Previous" button if the displayed date is in the past
+    if (displayedDate < today) {
+        prevButton.disabled = false; // Enable the "Previous" button for past months
+    } else {
+        prevButton.disabled = true; // Disable the "Previous" button for current or future months
+    }
+}
 
 // Update the "Current Flavor" box
 function updateCurrentFlavor() {
@@ -82,15 +90,9 @@ function updateCurrentFlavor() {
     });
 
     if (currentFlavor) {
-        currentFlavorBox.innerHTML = `
-            <div class="title">Current Flavor</div>
-            <div class="flavor-name">${currentFlavor.text}</div>
-        `;
+        currentFlavorBox.textContent = `Current Flavor: ${currentFlavor.text}`;
     } else {
-        currentFlavorBox.innerHTML = `
-            <div class="title">Current Flavor</div>
-            <div class="flavor-name">No Current Flavor</div>
-        `;
+        currentFlavorBox.textContent = 'No Current Flavor';
     }
 }
 
@@ -144,6 +146,8 @@ function renderCalendar(year, month) {
 
         calendarContainer.appendChild(cell);
     }
+
+    checkPrevButton(); // Ensure the "Previous" button is correctly enabled/disabled
 }
 
 prevButton.addEventListener('click', () => {
