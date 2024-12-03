@@ -4,9 +4,11 @@
     src: url('GothamSSm-Black.otf') format('opentype');
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap'); /* Adding Permanent Marker Font */
+@font-face {
+    font-family: 'Permanent Marker', cursive;
+    src: url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap'); /* Correct path to the Google font */
+}
 
-/* Applying fonts */
 body {
     font-family: 'Poppins', Arial, sans-serif;
     background: linear-gradient(120deg, #fdfbfb, #ebedee);
@@ -48,7 +50,9 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     display: inline-block;
-    width: 50%; /* Keep the box width the same as before */
+    width: auto; /* Let the box width adjust dynamically */
+    min-width: 200px; /* Minimum width for smaller text */
+    max-width: 70%; /* Ensure it doesn't become too wide */
 }
 
 /* Current Flavor Title */
@@ -69,6 +73,8 @@ h1 {
     white-space: nowrap; /* Prevent wrapping on desktop */
     overflow: hidden;
     text-overflow: ellipsis; /* Add ellipsis for long text if needed */
+    padding: 10px;
+    display: inline-block;
 }
 
 /* Calendar Navigation */
