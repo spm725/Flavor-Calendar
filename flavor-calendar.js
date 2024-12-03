@@ -75,7 +75,7 @@ function checkPrevButton() {
     const today = new Date();
     const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
 
-    // Disable "Previous" button if the displayed month is before the current month
+    // Disable the "Previous" button if the displayed month is before the current month
     if (displayedDate < today) {
         prevButton.disabled = false; // Allow navigation to past months
     } else {
