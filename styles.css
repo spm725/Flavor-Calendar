@@ -35,28 +35,30 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff;
-    padding: 10px;
+    padding: 30px; /* Tripled the size of the box */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
     display: inline-block;
-    max-width: 220px;
-    font-family: 'Wisdom Script', cursive; /* Applying the same font as title */
+    max-width: 660px; /* Increased the width */
+    font-family: 'Poppins', Arial, sans-serif; /* Reverted to original font */
 }
 
 /* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 1.5rem;
+    font-size: 2.5rem; /* Larger size for the title */
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 /* Current Flavor Name */
 .featured-flavor .flavor-name {
-    font-size: 1.25rem;
+    font-size: 2rem; /* Increased font size */
     color: #333;
+    font-family: 'Wisdom Script', cursive; /* New font for flavor text */
 }
+
 
 /* Featured Image */
 .featured-image {
