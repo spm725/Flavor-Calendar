@@ -35,10 +35,11 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     background: #ffffff; /* Clean white background */
-    padding: 15px;
+    padding: 10px; /* Reduced padding */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333; /* Neutral text color */
+    width: auto; /* Automatically adjust size to fit content */
 }
 
 /* Featured Image */
@@ -64,8 +65,8 @@ h1 {
     font-size: 14px;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-    color: #fff;
+    background: linear-gradient(45deg, #fdd835, #ffeb3b); /* Yellow gradient highlight */
+    color: #333;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -73,7 +74,7 @@ h1 {
 
 .calendar-navigation button:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4); /* Match yellow highlight */
 }
 
 button:disabled {
