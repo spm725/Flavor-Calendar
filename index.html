@@ -6,6 +6,56 @@
     <title>Custard Calendar</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Make sure the body and html fill the entire height -->
+    <style>
+        /* Ensure the body and html take up full height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling of the entire page */
+        }
+
+        /* Ensure the container uses the full height */
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Make sure the calendar container fills available space */
+        #calendar-container {
+            flex-grow: 1; /* Allow calendar to expand to fill the remaining space */
+            overflow-y: auto; /* Allow scrolling within the calendar if necessary */
+        }
+
+        /* Adjust the header and navigation */
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .calendar-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Make it responsive for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
