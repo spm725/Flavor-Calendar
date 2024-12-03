@@ -1,9 +1,9 @@
 const flavorData = [
-    { text: 'Strawberry Cheesecake', start: new Date('2024-12-02'), end: new Date('2024-12-15') },
-    { text: 'Mint Oreo®', start: new Date('2024-12-16'), end: new Date('2024-12-29') },
-    { text: 'Reese\'s® Cheesecake', start: new Date('2024-12-30'), end: new Date('2025-01-05') },
-    { text: 'Coffee Toffee', start: new Date('2025-01-06'), end: new Date('2025-01-12') },
-    { text: 'Butterfinger®', start: new Date('2025-01-13'), end: new Date('2025-01-19') },
+    { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15' },
+    { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29' },
+    { text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05' },
+    { text: 'Coffee Toffee', start: '2025-01-06', end: '2025-01-12' },
+    { text: 'Butterfinger®', start: '2025-01-13', end: '2025-01-19' },
 ];
 
 const calendarContainer = document.getElementById('calendar-container');
@@ -14,19 +14,10 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Helper function to normalize a date for comparison
-const normalizeDate = (date) => {
-    const normalized = new Date(date);
-    normalized.setHours(0, 0, 0, 0); // Remove time components
-    return normalized;
-};
-
-// Helper function to check if a date is within a flavor's range
-const isDateInRange = (date, start, end) => {
-    const currentDate = normalizeDate(date);
-    const startDate = normalizeDate(start);
-    const endDate = normalizeDate(end);
-    return currentDate >= startDate && currentDate <= endDate;
+// Function to normalize a date (removes time)
+const normalizeDate = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day);
 };
 
 // Function to render the calendar
@@ -61,14 +52,20 @@ function renderCalendar(year, month) {
         cell.appendChild(dayNumber);
 
         // Highlight today's date
-        if (isSameDate(date, today)) {
+        if (
+            today.getFullYear() === date.getFullYear() &&
+            today.getMonth() === date.getMonth() &&
+            today.getDate() === date.getDate()
+        ) {
             cell.classList.add('current-date');
         }
 
         // Check if the date matches a flavor range
-        const flavor = flavorData.find((flavor) =>
-            isDateInRange(date, flavor.start, flavor.end)
-        );
+        const flavor = flavorData.find((flavor) => {
+            const flavorStart = normalizeDate(flavor.start);
+            const flavorEnd = normalizeDate(flavor.end);
+            return date >= flavorStart && date <= flavorEnd;
+        });
 
         // Add flavor text if applicable
         if (flavor) {
