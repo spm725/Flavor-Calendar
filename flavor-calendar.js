@@ -70,4 +70,61 @@ function renderCalendar(year, month) {
         const dayOfWeek = date.toLocaleString('en-US', { weekday: 'short' });
         const dayLabel = document.createElement('div');
         dayLabel.textContent = dayOfWeek;
-        dayLabel.className = 'day-o
+        dayLabel.className = 'day-of-week';
+        cell.appendChild(dayLabel);
+
+        const dayNumber = document.createElement('div');
+        dayNumber.textContent = date.getDate();
+        cell.appendChild(dayNumber);
+
+        // Highlight current date
+        if (
+            date.getFullYear() === today.getFullYear() &&
+            date.getMonth() === today.getMonth() &&
+            date.getDate() === today.getDate()
+        ) {
+            cell.classList.add('current-date');
+        }
+
+        // Add flavor for the day
+        const flavor = flavorData.find((flavor) => {
+            const flavorStart = normalizeDate(flavor.start);
+            const flavorEnd = normalizeDate(flavor.end);
+            return date >= flavorStart && date <= flavorEnd;
+        });
+
+        if (flavor) {
+            const flavorText = document.createElement('div');
+            flavorText.textContent = flavor.text;
+            flavorText.className = 'flavor-text';
+            cell.appendChild(flavorText);
+        }
+
+        calendarContainer.appendChild(cell);
+    }
+}
+
+// Event listeners for navigation
+prevButton.addEventListener('click', () => {
+    currentMonth -= 1;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear -= 1;
+    }
+    renderCalendar(currentYear, currentMonth);
+    renderFeaturedFlavor();
+});
+
+nextButton.addEventListener('click', () => {
+    currentMonth += 1;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear += 1;
+    }
+    renderCalendar(currentYear, currentMonth);
+    renderFeaturedFlavor();
+});
+
+// Initial render
+renderCalendar(currentYear, currentMonth);
+renderFeaturedFlavor();
