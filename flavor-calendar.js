@@ -1,11 +1,7 @@
 const flavorData = [
-    { id: 'flavor5', text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', imageSrc: 'https://www.dropbox.com/scl/fi/wxp71y5wu6h2zt5lpavoq/strawberry-cheesecake.jpg?rlkey=c9do4uoam73ltxktfbmmn8rco&st=z2pzrjpg&raw=1' },
-    { id: 'flavor6', text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29', imageSrc: 'https://www.dropbox.com/scl/fi/7c08vzdssay0jwu98q8hj/FoW-Mint-Oreo.jpg?rlkey=oe8mwqnzwesg91wwyubyk71tg&st=nb9xo8d4&dl=0' },
-    { id: 'flavor7', text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05', imageSrc: 'images/reeses-cheesecake.jpg' },
-    { id: 'flavor8', text: 'Coffee Toffee', start: '2025-01-06', end: '2025-01-12', imageSrc: 'images/coffee-toffee.jpg' },
-    { id: 'flavor9', text: 'Butterfinger®', start: '2025-01-13', end: '2025-01-19', imageSrc: 'images/butterfinger.jpg' },
-    { id: 'flavor10', text: 'Toasted Coconut', start: '2025-01-20', end: '2025-01-26', imageSrc: 'images/toasted-coconut.jpg' },
-    // Add more flavors as needed
+    { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15' },
+    { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29' },
+    { text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05' },
 ];
 
 const calendarContainer = document.getElementById('calendar-container');
@@ -16,40 +12,16 @@ const nextButton = document.getElementById('next-button');
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Normalize dates for comparison
-const normalizeDate = (dateString) => new Date(dateString);
+const normalizeDate = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day);
+};
 
-// Render the featured flavor
-function renderFeaturedFlavor() {
-    const today = new Date();
-    const currentFlavor = flavorData.find((flavor) => {
-        const flavorStart = new Date(flavor.start);
-        const flavorEnd = new Date(flavor.end);
-        return today >= flavorStart && today <= flavorEnd;
-    });
-
-    const featuredSection = document.getElementById('featured-flavor');
-    if (currentFlavor) {
-        featuredSection.innerHTML = `
-            <h2>Current Flavor</h2>
-            <p class="featured-flavor-text">${currentFlavor.text}</p>
-        `;
-    } else {
-        featuredSection.innerHTML = `
-            <h2>Current Flavor</h2>
-            <p>No flavor available at this time.</p>
-        `;
-    }
-}
-
-
-// Render the calendar
 function renderCalendar(year, month) {
-    calendarContainer.innerHTML = ''; // Clear previous calendar
+    calendarContainer.innerHTML = '';
+    const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
-
-    const today = new Date();
 
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -57,40 +29,32 @@ function renderCalendar(year, month) {
     ];
     monthDisplay.textContent = `${monthNames[month]} ${year}`;
 
-    // Disable previous button for past months
-    prevButton.disabled = year < today.getFullYear() || (year === today.getFullYear() && month <= today.getMonth());
-
-    // Generate calendar cells
     for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
-        const date = new Date(d);
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
 
-        // Add day of the week and date number
-        const dayOfWeek = date.toLocaleString('en-US', { weekday: 'short' });
+        const dayOfWeek = d.toLocaleString('en-US', { weekday: 'short' });
         const dayLabel = document.createElement('div');
         dayLabel.textContent = dayOfWeek;
         dayLabel.className = 'day-of-week';
         cell.appendChild(dayLabel);
 
         const dayNumber = document.createElement('div');
-        dayNumber.textContent = date.getDate();
+        dayNumber.textContent = d.getDate();
         cell.appendChild(dayNumber);
 
-        // Highlight current date
         if (
-            date.getFullYear() === today.getFullYear() &&
-            date.getMonth() === today.getMonth() &&
-            date.getDate() === today.getDate()
+            today.getFullYear() === d.getFullYear() &&
+            today.getMonth() === d.getMonth() &&
+            today.getDate() === d.getDate()
         ) {
             cell.classList.add('current-date');
         }
 
-        // Add flavor for the day
         const flavor = flavorData.find((flavor) => {
             const flavorStart = normalizeDate(flavor.start);
             const flavorEnd = normalizeDate(flavor.end);
-            return date >= flavorStart && date <= flavorEnd;
+            return d >= flavorStart && d <= flavorEnd;
         });
 
         if (flavor) {
@@ -104,7 +68,6 @@ function renderCalendar(year, month) {
     }
 }
 
-// Event listeners for navigation
 prevButton.addEventListener('click', () => {
     currentMonth -= 1;
     if (currentMonth < 0) {
@@ -112,7 +75,6 @@ prevButton.addEventListener('click', () => {
         currentYear -= 1;
     }
     renderCalendar(currentYear, currentMonth);
-    renderFeaturedFlavor();
 });
 
 nextButton.addEventListener('click', () => {
@@ -122,9 +84,6 @@ nextButton.addEventListener('click', () => {
         currentYear += 1;
     }
     renderCalendar(currentYear, currentMonth);
-    renderFeaturedFlavor();
 });
 
-// Initial render
 renderCalendar(currentYear, currentMonth);
-renderFeaturedFlavor();
