@@ -63,18 +63,18 @@ h1 {
     margin-bottom: 10px; /* Reduced margin for better spacing */
 }
 
-/* Current Flavor Name */
+/* Current Flavor Box to Display Image */
 .featured-flavor .flavor-name {
-    font-size: 3rem; /* Slightly smaller to fit inside the box */
-    color: #333;
-    font-family: 'Permanent Marker', cursive; /* Updated font to Permanent Marker */
-    line-height: 1.2; /* Adjusted line-height for spacing */
-    margin-top: 10px; /* Slight margin for spacing */
-    white-space: nowrap; /* Prevent wrapping on desktop */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis for long text if needed */
-    padding: 10px;
-    display: inline-block;
+    font-size: 0; /* Hide the text */
+    padding: 0; /* Remove any unnecessary padding */
+}
+
+.featured-flavor .flavor-image {
+    width: 100%; /* Makes the image span the full width of the box */
+    height: auto; /* Maintains the aspect ratio */
+    max-width: 100%; /* Ensures the image doesn't stretch beyond its container */
+    object-fit: contain; /* Ensures the image fits within the container without distortion */
+    border-radius: 10px; /* Optional: rounds the corners of the image */
 }
 
 /* Calendar Navigation */
