@@ -28,6 +28,13 @@ function renderCalendar(year, month) {
     ];
     monthDisplay.textContent = `${monthNames[month]} ${year}`;
 
+    // Disable the Previous button if the current month is before today's month
+    if (year < today.getFullYear() || (year === today.getFullYear() && month <= today.getMonth())) {
+        prevButton.disabled = true;
+    } else {
+        prevButton.disabled = false;
+    }
+
     // Generate calendar cells
     for (let date = new Date(firstDayOfMonth); date <= lastDayOfMonth; date.setDate(date.getDate() + 1)) {
         const cell = document.createElement('div');
