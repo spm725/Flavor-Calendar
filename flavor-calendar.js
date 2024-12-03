@@ -1,5 +1,5 @@
 const flavorData = [
-    { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', image: 'images/strawberry-cheesecake.jpg' },
+    { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', image: 'https://www.dropbox.com/scl/fi/wxp71y5wu6h2zt5lpavoq/strawberry-cheesecake.jpg?rlkey=c9do4uoam73ltxktfbmmn8rco&st=rsqbqjfo&raw=1' },
     { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29', image: 'images/mint-oreo.jpg' },
     { text: 'Reese\'s® Cheesecake', start: '2024-12-30', end: '2025-01-05', image: 'images/reeses-cheesecake.jpg' },
     { text: 'Coffee Toffee', start: '2025-01-06', end: '2025-01-12', image: 'images/coffee-toffee.jpg' },
