@@ -43,7 +43,7 @@ function renderCalendar(year, month) {
     }
 
     // Generate calendar cells
-    for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d = new Date(d.setDate(d.getDate() + 1))) {
+    for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
         const date = normalizeDate(d); // Clone and normalize date
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
