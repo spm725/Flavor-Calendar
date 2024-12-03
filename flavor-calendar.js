@@ -100,7 +100,7 @@ function checkNextButton() {
     }
 }
 
-// Update the "Current Flavor" box
+// Update the "Current Flavor" box with an image of the current flavor
 function updateCurrentFlavor() {
     const today = new Date();
     const todayNormalized = normalizeDate(today.toISOString().split('T')[0]);
@@ -111,18 +111,21 @@ function updateCurrentFlavor() {
         return todayNormalized >= flavorStart && todayNormalized <= flavorEnd;
     });
 
+    const currentFlavorBox = document.getElementById('featured-flavor');
+
     if (currentFlavor) {
         currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
-            <div class="flavor-name">${currentFlavor.text}</div>
+            <img src="${currentFlavor.image}" alt="${currentFlavor.text}" class="flavor-image" />
         `;
     } else {
         currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
-            <div class="flavor-name">No Current Flavor</div>
+            <div class="flavor-image">No Current Flavor</div>
         `;
     }
 }
+
 
 // Render the calendar
 function renderCalendar(year, month) {
