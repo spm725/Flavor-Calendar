@@ -45,16 +45,16 @@ const flavorData = [
     { text: 'Mint Oreo®', start: '2025-10-13', end: '2025-10-19', image: 'path/to/mint-oreo.jpg' },
     { text: 'Butterfinger®', start: '2025-10-20', end: '2025-10-26', image: 'path/to/butterfinger.jpg' },
     { text: 'Oreo® Cheesecake', start: '2025-10-27', end: '2025-11-02', image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Toasted Coconut', start: '2025-11-03', end: '2025-11-09' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Strawberry Swirl', start: '2025-11-10', end: '2025-11-16' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Heath Bar®', start: '2025-11-17', end: '2025-11-23' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Blueberry Pie', start: '2025-11-24', end: '2025-11-30' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Nutter Butter', start: '2025-12-01', end: '2025-12-07' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Coffee Toffee', start: '2025-12-08', end: '2025-12-14' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Mint Oreo®', start: '2025-12-15', end: '2025-12-21' }, image: 'path/to/oreo-cheesecake.jpg' },
-    { text: 'Strawberry Cheesecake', start: '2025-12-22', end: '2025-12-28' }, image: 'path/to/oreo-cheesecake.jpg' },
-        
+    { text: 'Toasted Coconut', start: '2025-11-03', end: '2025-11-09', image: 'path/to/toasted-coconut.jpg' },
+    { text: 'Strawberry Swirl', start: '2025-11-10', end: '2025-11-16', image: 'path/to/strawberry-swirl.jpg' },
+    { text: 'Heath Bar®', start: '2025-11-17', end: '2025-11-23', image: 'path/to/heath-bar.jpg' },
+    { text: 'Blueberry Pie', start: '2025-11-24', end: '2025-11-30', image: 'path/to/blueberry-pie.jpg' },
+    { text: 'Nutter Butter', start: '2025-12-01', end: '2025-12-07', image: 'path/to/nutter-butter.jpg' },
+    { text: 'Coffee Toffee', start: '2025-12-08', end: '2025-12-14', image: 'path/to/coffee-toffee.jpg' },
+    { text: 'Mint Oreo®', start: '2025-12-15', end: '2025-12-21', image: 'path/to/mint-oreo.jpg' },
+    { text: 'Strawberry Cheesecake', start: '2025-12-22', end: '2025-12-28', image: 'path/to/strawberry-cheesecake.jpg' },
 ];
+
 function normalizeDate(dateStr) {
     return dateStr.split('T')[0]; // Only keep the YYYY-MM-DD part
 }
