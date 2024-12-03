@@ -7,52 +7,81 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Make sure the body and html fill the entire height -->
+    <!-- Ensuring content is centered and fills the page properly -->
     <style>
         /* Ensure the body and html take up full height */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;  /* Center the content horizontally */
+            align-items: flex-start;  /* Align items at the top */
+            flex-direction: column;
             overflow: hidden; /* Prevent scrolling of the entire page */
         }
 
         /* Ensure the container uses the full height */
         .container {
+            width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             padding: 20px;
             box-sizing: border-box;
-            overflow: hidden;
+            align-items: center; /* Center the container horizontally */
         }
 
         /* Make sure the calendar container fills available space */
         #calendar-container {
             flex-grow: 1; /* Allow calendar to expand to fill the remaining space */
             overflow-y: auto; /* Allow scrolling within the calendar if necessary */
+            width: 100%; /* Ensure the calendar takes up the full width */
         }
 
-        /* Adjust the header and navigation */
+        /* Ensure Current Flavor box is centered */
+        .featured-flavor {
+            width: 100%;
+            max-width: 500px; /* Set a max-width for better responsiveness */
+            margin: 0 auto; /* Center the box horizontally */
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Navigation style adjustments */
+        .calendar-navigation {
+            display: flex;
+            justify-content: center; /* Center the navigation buttons */
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .calendar-navigation button {
+            padding: 10px;
+            margin: 0 10px; /* Space between buttons */
+        }
+
+        /* Title and responsiveness */
         h1 {
             text-align: center;
             font-size: 2rem;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
-        .calendar-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Make it responsive for smaller screens */
+        /* Adjustments for smaller screen sizes */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.5rem;
             }
+
             .container {
                 padding: 10px;
+            }
+
+            .calendar-navigation button {
+                font-size: 14px; /* Smaller button text */
             }
         }
     </style>
