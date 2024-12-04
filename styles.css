@@ -94,6 +94,7 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     min-width: 80px; /* Ensure a minimum width for tap area */
+    border: 1px solid #000000; /* Add thin black outline */
 }
 
 /* Hover effect */
@@ -177,7 +178,7 @@ button:disabled {
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
     word-break: keep-all; /* Prevent breaking individual letters */
     white-space: normal; /* Allow text to wrap within the container */
-    font-size: 1rem;
+    font-size: 1.1rem; /* Increased size slightly for better visibility */
     line-height: 1.2;
     max-height: 100%;
     margin-top: auto;
@@ -207,6 +208,8 @@ button:disabled {
 
     .calendar-navigation {
         gap: 10px; /* Reduce the gap slightly for smaller screens */
+        flex-direction: row; /* Ensure Previous and Next buttons are on the sides of the month */
+        justify-content: space-between;
     }
 
     h1 {
@@ -250,4 +253,9 @@ button:disabled {
         max-width: 90%;
         font-size: 1rem;
     }
+}
+
+/* Bottom Padding for Duda */
+.bottom-padding {
+    height: 50px; /* Adjust height as needed for more or less space */
 }
