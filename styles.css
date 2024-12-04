@@ -176,9 +176,9 @@ button:disabled {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    /* Ensuring the calendar shows 3 days across on mobile */
+    /* Ensuring the calendar shows 4 days across on mobile */
     #calendar-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
         gap: 8px; /* Increase gap slightly for better spacing */
     }
 
@@ -216,7 +216,7 @@ button:disabled {
 
 @media (max-width: 480px) {
     #calendar-container {
-        grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns for very small screens */
+        grid-template-columns: repeat(4, 1fr); /* Maintain 4 columns for very small screens */
     }
 
     .featured-flavor {
