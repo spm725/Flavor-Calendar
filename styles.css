@@ -1,142 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added the viewport meta tag -->
-    <title>Custard Calendar</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Ensure the body and html take up full height without overflow */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            overflow: auto; /* Allow scrolling for smaller devices */
-        }
+/* General Styles */
+@font-face {
+    font-family: 'GothamSSm-Black';
+    src: url('GothamSSm-Black.otf') format('opentype');
+}
 
-        /* Full container height and centered content */
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Distribute content evenly */
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            box-sizing: border-box;
-            overflow-y: auto; /* Allow scrolling within the container if content is longer */
-        }
+@font-face {
+    font-family: 'Permanent Marker', cursive;
+    src: url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap'); /* Correct path to the Google font */
+}
 
-        /* Featured Flavor Box Centered */
-        .featured-flavor {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 10px;
-        }
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
 
-        /* Navigation section styling */
-        .calendar-navigation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-            padding: 0 10px;
-        }
+/* Container */
+.container {
+    background: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
-        .calendar-navigation button {
-            padding: 15px;
-            margin: 0 10px;
-            font-size: 16px;
-            min-width: 80px; /* Ensure a minimum width for tap area */
-        }
+/* Title */
+h1 {
+    font-family: 'GothamSSm-Black', sans-serif;
+    font-size: 2.5rem; /* Adjusted size for better mobile readability */
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-        /* The calendar container should take full space and allow scrolling within it */
-        #calendar-container {
-            flex-grow: 1; /* Make calendar container fill available space */
-            width: 100%;
-            overflow-y: auto; /* Enable scrolling only if needed */
-            display: grid;
-            grid-template-columns: repeat(7, 1fr); /* Default 7 columns for larger screens */
-            gap: 5px; /* Add spacing between the days */
-            padding: 10px;
-        }
+/* Featured Flavor Box Centered */
+.featured-flavor {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 8px;
+}
 
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            width: 100%;
-            margin-bottom: 20px;
-        }
+/* Current Flavor Title */
+.featured-flavor .title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
 
-        /* Media Queries for smaller screens */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5rem;
-            }
+/* Current Flavor Box to Display Image */
+.featured-flavor .flavor-name {
+    font-size: 0;
+    padding: 0;
+}
 
-            .calendar-navigation {
-                flex-direction: column; /* Stack the buttons and month-display vertically */
-            }
+.featured-flavor .flavor-image {
+    width: 70%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
 
-            .calendar-navigation button {
-                font-size: 14px;
-                margin: 5px 0; /* Add some space between buttons vertically */
-                min-width: 100px; /* Increase button size for better tap accuracy */
-            }
+/* Calendar Navigation */
+.calendar-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-            #month-display {
-                margin: 10px 0;
-            }
+.calendar-navigation button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #fdd835, #ffeb3b);
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-            #calendar-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 days across for better fit on mobile */
-            }
-        }
+/* Hover effect */
+.calendar-navigation button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
+}
 
-        @media (max-width: 480px) {
-            #calendar-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 days across for very small screens */
-            }
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    color: #999;
+}
 
-            .featured-flavor {
-                max-width: 90%; /* Reduce max-width for better fit on smaller screens */
-                font-size: 1.2rem; /* Adjust font size for readability */
-                padding: 5px; /* Reduce padding to prevent overflow */
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Custard Calendar</h1>
-        <div id="featured-flavor" class="featured-flavor"></div>
-        <div class="calendar-navigation">
-            <button id="prev-button">Previous</button>
-            <div id="month-display"></div>
-            <button id="next-button">Next</button>
-        </div>
-        <div id="calendar-container"></div>
-    </div>
+/* Month Display */
+#month-display {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #444;
+}
 
-    <script src="flavor-calendar.js"></script>
+/* Calendar Grid */
+#calendar-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    width: 100%;
+}
 
-    <!-- Send height to parent when content is loaded -->
-    <script>
-      window.addEventListener('load', function() {
-        // Calculate the height of the content and send it to the parent window
-        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-        
-        // Send the height of the content to the parent window
-        window.parent.postMessage({
-          type: 'setIframeHeight',
-          height: height
-        }, '*');
-      });
-    </script>
-</body>
-</html>
+/* Calendar Cell */
+.calendar-cell {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 60px;
+    min-height: 60px;
+}
+
+/* Highlight for Current Date */
+.current-date {
+    background: #ffeb3b;
+    border: 2px solid #fdd835;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #333;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
+}
+
+/* Day of the Week */
+.day-of-week {
+    font-size: 12px;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+/* Flavor Text */
+.flavor-text {
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+    background: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Ensuring the calendar shows 4 days across on mobile */
+    #calendar-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
+    }
+
+    .calendar-navigation {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Adjust font size for mobile */
+    }
+
+    .calendar-navigation button {
+        padding: 8px 15px; /* Adjust padding for buttons */
+        font-size: 14px;
+    }
+
+    .flavor-name {
+        font-size: 2.5rem; /* Reduce font size on mobile */
+    }
+
+    .featured-flavor {
+        width: 80%;
+        max-width: 300px; /* Ensure the flavor box fits better */
+    }
+}
