@@ -176,8 +176,11 @@ button:disabled {
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
     word-break: break-word; /* Break long words if necessary */
     white-space: normal; /* Allow text to wrap within the container */
-    font-size: clamp(10px, 2vw, 12px); /* Dynamic font size based on viewport */
+    font-size: 14px;
     overflow: hidden; /* Prevent overflow */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines and show ellipsis if text overflows */
+    -webkit-box-orient: vertical;
 }
 
 /* Mobile Responsiveness */
