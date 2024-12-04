@@ -37,8 +37,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    flex: 1; /* Allow container to grow and fill the space between header/footer if they exist */
-    margin-bottom: 150px; /* Ensure bottom margin is added for visible space */
+    margin-bottom: 100px; /* Ensure bottom margin is added for visible space */
 }
 
 /* Title */
@@ -248,6 +247,11 @@ button:disabled {
     .bottom-padding {
         height: 150px; /* Increase the padding height for mobile devices */
     }
+
+    /* Spacer Element for Flex Adjustment (Only for Mobile) */
+    .spacer {
+        flex-grow: 1; /* Pushes content upward and ensures there is space at the bottom */
+    }
 }
 
 @media (max-width: 576px) {
@@ -268,14 +272,14 @@ button:disabled {
     .bottom-padding {
         height: 150px; /* Increase the padding height for mobile devices */
     }
+
+    /* Spacer Element for Flex Adjustment (Only for Mobile) */
+    .spacer {
+        flex-grow: 1; /* Pushes content upward and ensures there is space at the bottom */
+    }
 }
 
 /* Bottom Padding for Duda */
 .bottom-padding {
     height: 100px; /* Adjust height as needed for more or less space */
-}
-
-/* Spacer Element for Flex Adjustment */
-.spacer {
-    flex-grow: 1; /* Pushes content upward and ensures there is space at the bottom */
 }
