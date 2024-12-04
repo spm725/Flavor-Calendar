@@ -56,13 +56,6 @@ const flavorData = [
 ];
 
 
-const flavorData = [
-    { text: 'Strawberry Cheesecake', start: '2024-12-02', end: '2024-12-15', image: 'https://www.dropbox.com/scl/fi/wxp71y5wu6h2zt5lpavoq/strawberry-cheesecake.jpg?rlkey=c9do4uoam73ltxktfbmmn8rco&st=r8lvmft8&raw=1' },
-    { text: 'Mint Oreo®', start: '2024-12-16', end: '2024-12-29', image: 'https://www.dropbox.com/scl/fi/sw6i1wiqy69snr3d27oee/mint-oreo.jpg?rlkey=vwy0fj3az2h1hd219cdnjcuv1&st=6hk84mud&raw=1' },
-    { text: 'Reese’s® Cheesecake', start: '2024-12-30', end: '2025-01-05', image: 'https://www.dropbox.com/s/txhwzez0o2f0k61l50jmf/reeses-cheesecake.jpg?raw=1' }
-    // Add more flavor data as needed
-];
-
 const calendarContainer = document.getElementById('calendar-container');
 const monthDisplay = document.getElementById('month-display');
 const prevButton = document.getElementById('prev-button');
