@@ -237,6 +237,10 @@ button:disabled {
         font-size: 1.2rem;
         padding: 5px;
     }
+
+    .bottom-padding {
+        height: 150px; /* Increase the padding height for mobile devices */
+    }
 }
 
 @media (max-width: 576px) {
@@ -252,6 +256,10 @@ button:disabled {
     .featured-flavor {
         max-width: 90%;
         font-size: 1rem;
+    }
+
+    .bottom-padding {
+        height: 150px; /* Increase the padding height for mobile devices */
     }
 }
 
