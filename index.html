@@ -28,6 +28,11 @@
             box-sizing: border-box;
             overflow-y: auto;
         }
+
+        /* Extra padding at the bottom of the page */
+        .bottom-padding {
+            height: 50px; /* Adjust the height as necessary for more or less space */
+        }
     </style>
 </head>
 <body>
@@ -40,6 +45,7 @@
             <button id="next-button">Next</button>
         </div>
         <div id="calendar-container"></div>
+        <div class="bottom-padding"></div> <!-- Added space at the bottom -->
     </div>
 
     <script src="flavor-calendar.js"></script>
