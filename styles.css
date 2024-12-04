@@ -134,7 +134,7 @@ button:disabled {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -148,9 +148,9 @@ button:disabled {
 .calendar-cell::before {
     content: attr(data-day);
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     font-size: 3rem; /* Make the day number large */
     color: rgba(255, 235, 59, 0.15); /* Use a more transparent yellow */
     z-index: 1; /* Ensure it stays behind other content */
@@ -187,6 +187,7 @@ button:disabled {
     font-size: 10px; /* Start with a smaller font size to better fit text */
     line-height: 1.2; /* Reduced line height to fit more text */
     max-height: 100%; /* Prevent overflow from exceeding the container height */
+    margin-top: auto; /* Push the flavor text to the bottom of the cell */
     z-index: 2; /* Ensure the flavor text is above the day number */
 }
 
