@@ -152,7 +152,7 @@ button:disabled {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem; /* Make the day number large */
-    color: #ffeb3b; /* Match the highlighted cell color */
+    color: rgba(255, 235, 59, 0.3); /* Use the same yellow as the highlighted cell but with more transparency */
     z-index: 1; /* Ensure it stays behind other content */
     pointer-events: none; /* Allow clicks to pass through */
 }
@@ -164,12 +164,6 @@ button:disabled {
     font-weight: bold;
     color: #333;
     box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
-}
-
-/* Add a black outline for the day number on the highlighted cell */
-.current-date::before {
-    color: #ffeb3b; /* Keep the yellow color */
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Light black outline */
 }
 
 /* Day of the Week */
