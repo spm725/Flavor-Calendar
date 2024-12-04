@@ -172,7 +172,7 @@ function adjustFontSizeForFlavorText() {
     flavorTexts.forEach(flavorText => {
         let parentWidth = flavorText.parentElement.clientWidth;
         let parentHeight = flavorText.parentElement.clientHeight;
-        let fontSize = 16; // Start with a larger default font size
+        let fontSize = 10; // Start with a smaller default font size for better fitting
         flavorText.style.fontSize = fontSize + 'px';
         flavorText.style.whiteSpace = 'normal'; // Allow text to wrap
 
