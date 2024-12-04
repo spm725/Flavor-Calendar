@@ -159,11 +159,12 @@ button:disabled {
 
 /* Highlight for Current Date */
 .current-date {
-    border: 2px solid #fdd835; /* Highlighted border instead of filling */
-    background: none; /* Remove the yellow fill */
+    border: 2px solid #fdd835; /* Highlighted border instead of a filled background */
+    background: none; /* Remove the yellow fill to match the shape of other cells */
+    border-radius: 8px; /* Match the shape of other cells */
     font-weight: bold;
     color: #333;
-    box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
+    box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4); /* Optional: keeps a shadow for emphasis */
 }
 
 /* Day of the Week */
