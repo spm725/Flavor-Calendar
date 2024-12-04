@@ -152,19 +152,19 @@ button:disabled {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem; /* Make the day number large */
-    color: rgba(255, 235, 59, 0.3); /* Use the same yellow as the highlighted cell but with more transparency */
+    color: rgba(255, 235, 59, 0.15); /* Use a more transparent yellow */
     z-index: 1; /* Ensure it stays behind other content */
     pointer-events: none; /* Allow clicks to pass through */
 }
 
 /* Highlight for Current Date */
 .current-date {
-    border: 2px solid #fdd835; /* Highlighted border instead of a filled background */
-    background: none; /* Remove the yellow fill to match the shape of other cells */
-    border-radius: 8px; /* Match the shape of other cells */
+    border: 2px solid #fdd835; /* Highlight the current date with a border */
+    background: transparent; /* Ensure there is no fill, only a border */
+    border-radius: 8px; /* Match the shape of the other calendar cells */
     font-weight: bold;
     color: #333;
-    box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4); /* Optional: keeps a shadow for emphasis */
+    box-shadow: none; /* Remove any shadow to keep it consistent with other cells */
 }
 
 /* Day of the Week */
