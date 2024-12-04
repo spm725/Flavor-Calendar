@@ -43,7 +43,7 @@ h1 {
 /* Featured Flavor Box Centered */
 .featured-flavor {
     width: 100%;
-    max-width: 400px; /* Reduced maximum width */
+    max-width: 350px; /* Reduced maximum width */
     margin: 0 auto;
     text-align: center;
     padding: 8px; /* Reduced padding */
@@ -51,7 +51,7 @@ h1 {
 
 /* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 1.5rem; /* Reduced font size */
+    font-size: 1.3rem; /* Further reduced font size */
     font-weight: bold;
     color: #333;
     margin-bottom: 8px; /* Reduced margin */
@@ -64,7 +64,7 @@ h1 {
 }
 
 .featured-flavor .flavor-image {
-    width: 80%; /* Make the image slightly smaller */
+    width: 70%; /* Further reduce the image size */
     height: auto; /* Maintains the aspect ratio */
     max-width: 100%; /* Ensures the image doesn't stretch beyond its container */
     object-fit: contain; /* Ensures the image fits within the container without distortion */
@@ -117,7 +117,7 @@ button:disabled {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
-    height: 100%; /* Make the grid take up available height */
+    height: 100%; /* Ensure the grid takes up available height */
 }
 
 /* Calendar Cell */
@@ -134,7 +134,8 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    height: calc(100% / 5); /* Ensure cells are equally distributed */
+    height: calc(100% / 5); /* Ensures the cells fit proportionally */
+    min-height: 60px; /* Sets a minimum height for the calendar cells */
 }
 
 .calendar-cell:hover {
@@ -207,4 +208,3 @@ button:disabled {
         width: 150px;
     }
 }
-
