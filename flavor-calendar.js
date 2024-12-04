@@ -115,6 +115,9 @@ function updateCurrentFlavor() {
 
 // Render the calendar
 function renderCalendar(year, month) {
+    // Save the current scroll position
+    const scrollPosition = window.scrollY;
+
     calendarContainer.innerHTML = '';
     const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
@@ -171,6 +174,9 @@ function renderCalendar(year, month) {
     checkPrevButton();
     checkNextButton();
     adjustFontSizeForFlavorText();
+
+    // Restore the scroll position after rendering
+    window.scrollTo(0, scrollPosition);
 }
 
 // Adjust the font size for the flavor text to fit within the cell
