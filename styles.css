@@ -130,8 +130,7 @@ button:disabled {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 2px; /* Further reduced padding to allow more space for content */
-    font-size: 14px;
+    padding: 4px; /* Small padding to give more room for text */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -139,8 +138,6 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 60px;
-    min-height: 60px;
     aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
     box-sizing: border-box; /* Prevent overflow of calendar cells */
     overflow: hidden; /* Prevent overflow */
@@ -170,16 +167,12 @@ button:disabled {
 .flavor-text {
     color: #333;
     font-weight: bold;
-    margin-top: 2px; /* Reduced margin to allow more space */
     text-align: center;
-    background: none;
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
     word-break: break-word; /* Break long words if necessary */
     white-space: normal; /* Allow text to wrap within the container */
-    font-size: clamp(10px, 1.2vw, 14px); /* Dynamic font size based on viewport */
-    overflow: hidden; /* Prevent overflow */
-    display: block;
-    line-height: 1.1; /* Reduce line height slightly to fit more text */
+    font-size: 14px; /* Initial font size, dynamically adjusted by JavaScript */
+    line-height: 1.2; /* Reduced line height to fit more text */
 }
 
 /* Mobile Responsiveness */
