@@ -77,9 +77,10 @@ h1 {
 /* Calendar Navigation */
 .calendar-navigation {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    gap: 20px; /* Add spacing between buttons and month display */
 }
 
 .calendar-navigation button {
@@ -111,8 +112,10 @@ button:disabled {
 #month-display {
     font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 0 20px; /* Add spacing on both sides of the month display */
     color: #444;
+    flex-grow: 1;
+    text-align: center; /* Keep month and year centered between buttons */
 }
 
 /* Calendar Grid */
@@ -203,8 +206,7 @@ button:disabled {
     }
 
     .calendar-navigation {
-        flex-direction: column;
-        margin-bottom: 15px;
+        gap: 10px; /* Reduce the gap slightly for smaller screens */
     }
 
     h1 {
@@ -219,7 +221,7 @@ button:disabled {
     }
 
     #month-display {
-        margin: 10px 0;
+        margin: 0 10px;
     }
 
     .flavor-name {
@@ -240,8 +242,8 @@ button:disabled {
         gap: 8px;
     }
 
-    .featured-flavor {
-        max-width: 90%;
-        font-size: 1rem;
+    .calendar-navigation {
+        gap: 5px;
     }
-}
+
+    .featured-flavor
