@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     currentYear -= 1;
                 }
                 renderCalendar(currentYear, currentMonth);
+                document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
             });
         } else {
             console.error('prevButton element not found.');
@@ -241,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     currentYear += 1;
                 }
                 renderCalendar(currentYear, currentMonth);
+                document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
             });
         } else {
             console.error('nextButton element not found.');
