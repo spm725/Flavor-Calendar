@@ -111,12 +111,10 @@ function updateCurrentFlavor() {
         return todayNormalized >= flavorStart && todayNormalized <= flavorEnd;
     });
 
-    const currentFlavorBox = document.getElementById('featured-flavor');
-
     if (currentFlavor) {
         currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
-            <img src="${currentFlavor.image}" alt="${currentFlavor.text}" class="flavor-image" />
+            <img src="${currentFlavor.image}" alt="${currentFlavor.text}" class="flavor-image" loading="lazy" />
         `;
     } else {
         currentFlavorBox.innerHTML = `
@@ -134,10 +132,10 @@ function renderCalendar(year, month) {
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
 
-    const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December',
-    ];
+    const monthNames = window.innerWidth < 768
+        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
     monthDisplay.textContent = `${monthNames[month]} ${year}`;
 
     for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
@@ -189,6 +187,7 @@ prevButton.addEventListener('click', () => {
         currentYear -= 1;
     }
     renderCalendar(currentYear, currentMonth);
+    scrollToCalendar();
 });
 
 nextButton.addEventListener('click', () => {
@@ -198,7 +197,27 @@ nextButton.addEventListener('click', () => {
         currentYear += 1;
     }
     renderCalendar(currentYear, currentMonth);
+    scrollToCalendar();
 });
+
+// Function to smoothly scroll to the calendar
+function scrollToCalendar() {
+    calendarContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Adjust button labels based on screen size
+function adjustButtonLabels() {
+    if (window.innerWidth < 768) {
+        prevButton.textContent = 'Prev';
+        nextButton.textContent = 'Next';
+    } else {
+        prevButton.textContent = 'Previous';
+        nextButton.textContent = 'Next';
+    }
+}
+
+window.addEventListener('resize', adjustButtonLabels);
+adjustButtonLabels(); // Initial call to set button labels
 
 // Initialize the calendar and "Current Flavor" box
 updateCurrentFlavor();
