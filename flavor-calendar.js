@@ -115,9 +115,6 @@ function updateCurrentFlavor() {
 
 // Render the calendar
 function renderCalendar(year, month) {
-    // Save the current scroll position
-    const scrollPosition = window.scrollY;
-
     calendarContainer.innerHTML = '';
     const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
@@ -175,8 +172,8 @@ function renderCalendar(year, month) {
     checkNextButton();
     adjustFontSizeForFlavorText();
 
-    // Restore the scroll position after rendering
-    window.scrollTo(0, scrollPosition);
+    // Adjust columns based on window width
+    adjustCalendarColumns();
 }
 
 // Adjust the font size for the flavor text to fit within the cell
@@ -197,6 +194,16 @@ function adjustFontSizeForFlavorText() {
     });
 }
 
+// Adjust calendar columns based on window width
+function adjustCalendarColumns() {
+    if (window.innerWidth <= 992) {
+        calendarContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    } else {
+        calendarContainer.style.gridTemplateColumns = 'repeat(7, 1fr)';
+    }
+}
+
+// Event listeners for buttons
 prevButton.addEventListener('click', (event) => {
     event.preventDefault(); // Prevent auto-scrolling
     currentMonth -= 1;
@@ -223,4 +230,7 @@ renderCalendar(currentYear, currentMonth);
 
 // Run the function when the content loads and when resizing the window
 window.addEventListener('load', adjustFontSizeForFlavorText);
-window.addEventListener('resize', adjustFontSizeForFlavorText);
+window.addEventListener('resize', () => {
+    adjustFontSizeForFlavorText();
+    adjustCalendarColumns();
+});
