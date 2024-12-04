@@ -128,7 +128,7 @@ button:disabled {
 /* Calendar Grid */
 #calendar-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Default to 7 days across for desktop */
+    grid-template-columns: repeat(7, 1fr) !important; /* Default to 7 days across for desktop */
     gap: 5px;
     width: 100%;
     padding: 10px;
@@ -206,7 +206,7 @@ button:disabled {
 @media (max-width: 992px) {
     /* Ensuring the calendar shows 4 days across on tablets and mobile */
     #calendar-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr) !important;
         gap: 8px;
         padding: 10px;
         box-sizing: border-box;
@@ -256,7 +256,7 @@ button:disabled {
 
 @media (max-width: 576px) {
     #calendar-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr) !important;
         gap: 8px;
     }
 
