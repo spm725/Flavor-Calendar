@@ -143,7 +143,6 @@ button:disabled {
     min-height: 60px;
     aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
     box-sizing: border-box; /* Prevent overflow of calendar cells */
-    overflow-wrap: break-word; /* Ensure text breaks to the next line */
     overflow: hidden; /* Prevent overflow */
 }
 
