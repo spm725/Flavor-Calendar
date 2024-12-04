@@ -179,7 +179,7 @@ function renderCalendar(year, month) {
     checkPrevButton(); // Ensure the "Previous" button is correctly enabled/disabled
     checkNextButton(); // Ensure the "Next" button is correctly enabled/disabled
 
-    adjustFontSizeForFlavorText(); // Adjust font size to fit the cell
+    adjustFontSizeForFlavorText(); // Adjust font size to fit the cell after rendering
 }
 
 // Adjust the font size for the flavor text to fit within the cell
@@ -190,9 +190,14 @@ function adjustFontSizeForFlavorText() {
         flavorText.style.fontSize = fontSize + 'px';
 
         // Reduce font size until the text fits within the parent container without overflow
-        while ((flavorText.scrollWidth > flavorText.parentElement.clientWidth || flavorText.scrollHeight > flavorText.parentElement.clientHeight) && fontSize > 8) {
-            fontSize -= 1; // Decrease font size
+        while ((flavorText.scrollWidth > flavorText.parentElement.clientWidth || flavorText.scrollHeight > flavorText.parentElement.clientHeight) && fontSize > 6) {
+            fontSize -= 0.5; // Decrease font size in smaller steps for better adjustment
             flavorText.style.fontSize = fontSize + 'px';
+        }
+
+        // If the text still doesn't fit, allow it to wrap and adjust container height if necessary
+        if (flavorText.scrollHeight > flavorText.parentElement.clientHeight) {
+            flavorText.parentElement.style.minHeight = flavorText.scrollHeight + 'px';
         }
     });
 }
