@@ -169,10 +169,11 @@ button:disabled {
     font-weight: bold;
     text-align: center;
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
-    word-break: break-word; /* Break long words if necessary */
+    word-break: keep-all; /* Prevent breaking individual letters */
     white-space: normal; /* Allow text to wrap within the container */
     font-size: 14px; /* Initial font size, dynamically adjusted by JavaScript */
     line-height: 1.2; /* Reduced line height to fit more text */
+    max-height: 100%; /* Prevent overflow from exceeding the container height */
 }
 
 /* Mobile Responsiveness */
