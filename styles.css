@@ -152,7 +152,8 @@ button:disabled {
     left: 50%;
     transform: translateX(-50%);
     font-size: 3rem; /* Make the day number large */
-    color: rgba(255, 235, 59, 0.15); /* Use a more transparent yellow */
+    color: rgba(255, 235, 59, 0.25); /* Increase opacity for better readability */
+    text-shadow: 1px 1px 2px #888; /* Add a slight gray border for better contrast */
     z-index: 1; /* Ensure it stays behind other content */
     pointer-events: none; /* Allow clicks to pass through */
 }
