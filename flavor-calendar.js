@@ -169,7 +169,6 @@ function renderCalendar(year, month) {
             const flavorText = document.createElement('div');
             flavorText.textContent = flavor.text;
             flavorText.className = 'flavor-text';
-            flavorText.style.whiteSpace = 'normal'; // Allow text to wrap
             cell.appendChild(flavorText);
         }
 
@@ -186,19 +185,22 @@ function renderCalendar(year, month) {
 function adjustFontSizeForFlavorText() {
     const flavorTexts = document.querySelectorAll('.flavor-text');
     flavorTexts.forEach(flavorText => {
-        let fontSize = 14; // Start with a default font size
+        let parentWidth = flavorText.parentElement.clientWidth;
+        let parentHeight = flavorText.parentElement.clientHeight;
+        let fontSize = 16; // Start with a larger default font size
         flavorText.style.fontSize = fontSize + 'px';
+        flavorText.style.whiteSpace = 'normal'; // Allow text to wrap
 
         // Reduce font size until the text fits within the parent container without overflow
-        while ((flavorText.scrollWidth > flavorText.parentElement.clientWidth || flavorText.scrollHeight > flavorText.parentElement.clientHeight) && fontSize > 6) {
+        while ((flavorText.scrollWidth > parentWidth || flavorText.scrollHeight > parentHeight) && fontSize > 6) {
             fontSize -= 0.5; // Decrease font size in smaller steps for better adjustment
             flavorText.style.fontSize = fontSize + 'px';
         }
 
-        // If the text still doesn't fit, allow it to wrap and adjust container height if necessary
-        if (flavorText.scrollHeight > flavorText.parentElement.clientHeight) {
-            flavorText.parentElement.style.minHeight = flavorText.scrollHeight + 'px';
-        }
+        // Ensure that the text wraps properly and fits within the box
+        flavorText.style.overflowWrap = 'break-word';
+        flavorText.style.wordBreak = 'break-word';
+        flavorText.style.whiteSpace = 'normal';
     });
 }
 
