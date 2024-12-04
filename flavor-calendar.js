@@ -186,11 +186,11 @@ function renderCalendar(year, month) {
 function adjustFontSizeForFlavorText() {
     const flavorTexts = document.querySelectorAll('.flavor-text');
     flavorTexts.forEach(flavorText => {
-        let fontSize = 12; // Start with a default font size (you can adjust this value)
+        let fontSize = 14; // Start with a default font size (you can adjust this value)
         flavorText.style.fontSize = fontSize + 'px';
 
         // Reduce font size until the text fits within the parent container without overflow
-        while (flavorText.scrollWidth > flavorText.parentElement.clientWidth && fontSize > 8) {
+        while ((flavorText.scrollWidth > flavorText.parentElement.clientWidth || flavorText.scrollHeight > flavorText.parentElement.clientHeight) && fontSize > 8) {
             fontSize -= 1; // Decrease font size
             flavorText.style.fontSize = fontSize + 'px';
         }
