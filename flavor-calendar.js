@@ -205,9 +205,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Adjust calendar columns based on window width
         function adjustCalendarColumns() {
-            if (window.innerWidth > 992) {
-                console.log('Setting grid to 7 columns for desktop view');
+            if (window.innerWidth > 1200) {
+                console.log('Setting grid to 7 columns for larger desktop view');
                 calendarContainer.style.gridTemplateColumns = 'repeat(7, 1fr)';
+            } else if (window.innerWidth > 768) {
+                console.log('Setting grid to 5 columns for medium desktop view');
+                calendarContainer.style.gridTemplateColumns = 'repeat(5, 1fr)';
             } else {
                 console.log('Setting grid to 4 columns for mobile view');
                 calendarContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
