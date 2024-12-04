@@ -74,13 +74,8 @@ function normalizeDate(dateString) {
 // Function to check and disable the "Previous" button for past months
 function checkPrevButton() {
     const today = new Date();
-    const displayedDate = new Date(currentYear, currentMonth, 1); // First day of the displayed month
-
-    if (displayedDate < today) {
-        prevButton.disabled = true; // Disable the button for past months of the current year
-    } else {
-        prevButton.disabled = false; // Allow navigation to past months of previous years
-    }
+    const displayedDate = new Date(currentYear, currentMonth, 1);
+    prevButton.disabled = displayedDate < today;
 }
 
 // Function to check and disable the "Next" button if there are no scheduled flavors in the future
@@ -88,16 +83,10 @@ function checkNextButton() {
     const lastFlavorEndDate = flavorData.reduce((latest, flavor) => {
         const flavorEnd = normalizeDate(flavor.end);
         return flavorEnd > latest ? flavorEnd : latest;
-    }, new Date(0)); // Start with a very early date
+    }, new Date(0));
 
-    const displayedDate = new Date(currentYear, currentMonth + 1, 0); // Last day of the current displayed month
-
-    // If the displayed month is beyond the last flavor's scheduled date, disable the "Next" button
-    if (displayedDate >= lastFlavorEndDate) {
-        nextButton.disabled = true;
-    } else {
-        nextButton.disabled = false;
-    }
+    const displayedDate = new Date(currentYear, currentMonth + 1, 0);
+    nextButton.disabled = displayedDate >= lastFlavorEndDate;
 }
 
 // Update the "Current Flavor" box with an image of the current flavor
@@ -126,7 +115,7 @@ function updateCurrentFlavor() {
 
 // Render the calendar
 function renderCalendar(year, month) {
-    calendarContainer.innerHTML = ''; // Reset calendar container
+    calendarContainer.innerHTML = '';
     const today = new Date();
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
@@ -175,10 +164,9 @@ function renderCalendar(year, month) {
         calendarContainer.appendChild(cell);
     }
 
-    checkPrevButton(); // Ensure the "Previous" button is correctly enabled/disabled
-    checkNextButton(); // Ensure the "Next" button is correctly enabled/disabled
-
-    adjustFontSizeForFlavorText(); // Adjust font size to fit the cell after rendering
+    checkPrevButton();
+    checkNextButton();
+    adjustFontSizeForFlavorText();
 }
 
 // Adjust the font size for the flavor text to fit within the cell
@@ -193,14 +181,9 @@ function adjustFontSizeForFlavorText() {
 
         // Reduce font size until the text fits within the parent container without overflow
         while ((flavorText.scrollWidth > parentWidth || flavorText.scrollHeight > parentHeight) && fontSize > 6) {
-            fontSize -= 0.5; // Decrease font size in smaller steps for better adjustment
+            fontSize -= 0.5;
             flavorText.style.fontSize = fontSize + 'px';
         }
-
-        // Ensure that the text wraps properly and fits within the box
-        flavorText.style.overflowWrap = 'break-word';
-        flavorText.style.wordBreak = 'break-word';
-        flavorText.style.whiteSpace = 'normal';
     });
 }
 
