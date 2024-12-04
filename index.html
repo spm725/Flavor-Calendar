@@ -60,22 +60,33 @@
             min-width: 80px; /* Ensure a minimum width for tap area */
         }
 
-        /* The calendar container should take full space and allow scrolling within it */
-        #calendar-container {
-            flex-grow: 1; /* Make calendar container fill available space */
-            width: 100%;
-            overflow-y: auto; /* Enable scrolling only if needed */
-            display: grid;
-            grid-template-columns: repeat(7, 1fr); /* Default 7 columns for larger screens */
-            gap: 5px; /* Add spacing between the days */
-            padding: 10px;
+        /* Hover effect */
+        .calendar-navigation button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
         }
 
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            color: #999;
+        }
+
+        /* Month Display */
+        #month-display {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #444;
+        }
+
+        /* Calendar Grid */
+        #calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
             width: 100%;
-            margin-bottom: 20px;
+            padding: 10px;
         }
 
         /* Calendar Cell */
@@ -127,18 +138,24 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem; /* Adjust font size for mobile */
+            /* Ensuring the calendar shows 4 days across on mobile */
+            #calendar-container {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
             }
 
             .calendar-navigation {
-                flex-direction: column; /* Stack the buttons and month-display vertically */
+                flex-direction: column; /* Stack buttons vertically for better space on mobile */
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem; /* Adjust font size for mobile */
             }
 
             .calendar-navigation button {
                 padding: 8px 15px; /* Adjust padding for buttons */
                 font-size: 14px;
-                margin: 5px 0; /* Add some space between buttons vertically */
+                margin: 5px 0; /* Add margin between buttons for easier interaction */
                 min-width: 100px; /* Increase button size for better tap accuracy */
             }
 
@@ -146,12 +163,13 @@
                 margin: 10px 0;
             }
 
-            #calendar-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 days across for better fit on mobile */
+            .flavor-name {
+                font-size: 2.5rem; /* Reduce font size on mobile */
             }
 
             .featured-flavor {
-                max-width: 300px; /* Reduce max-width for better fit on smaller screens */
+                width: 90%;
+                max-width: 300px; /* Ensure the flavor box fits better */
                 font-size: 1.2rem; /* Adjust font size for readability */
                 padding: 5px; /* Reduce padding to prevent overflow */
             }
@@ -164,6 +182,7 @@
 
             .featured-flavor {
                 max-width: 90%; /* Reduce max-width for better fit on smaller screens */
+                font-size: 1rem;
             }
         }
     </style>
@@ -194,6 +213,33 @@
           height: height
         }, '*');
       });
+
+      // Function to smoothly scroll to the calendar
+      function scrollToCalendar() {
+          document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Adjust button labels based on screen size
+      function adjustButtonLabels() {
+          const prevButton = document.getElementById('prev-button');
+          const nextButton = document.getElementById('next-button');
+
+          if (window.innerWidth < 768) {
+              prevButton.textContent = 'Prev';
+              nextButton.textContent = 'Next';
+          } else {
+              prevButton.textContent = 'Previous';
+              nextButton.textContent = 'Next';
+          }
+      }
+
+      // Listen for window resize events to adjust button labels
+      window.addEventListener('resize', adjustButtonLabels);
+      adjustButtonLabels(); // Initial call to set button labels
+
+      // Scroll to calendar on navigation
+      document.getElementById('prev-button').addEventListener('click', scrollToCalendar);
+      document.getElementById('next-button').addEventListener('click', scrollToCalendar);
     </script>
 </body>
 </html>
