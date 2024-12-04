@@ -191,7 +191,8 @@ function adjustFontSizeForFlavorText() {
     });
 }
 
-prevButton.addEventListener('click', () => {
+prevButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent auto-scrolling
     currentMonth -= 1;
     if (currentMonth < 0) {
         currentMonth = 11;
@@ -200,7 +201,8 @@ prevButton.addEventListener('click', () => {
     renderCalendar(currentYear, currentMonth);
 });
 
-nextButton.addEventListener('click', () => {
+nextButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent auto-scrolling
     currentMonth += 1;
     if (currentMonth > 11) {
         currentMonth = 0;
