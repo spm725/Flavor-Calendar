@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    overflow: hidden;
+    overflow: auto; /* Allow scrolling for smaller devices */
 }
 
 /* Container */
@@ -92,6 +92,7 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-width: 80px; /* Ensure a minimum width for tap area */
 }
 
 /* Hover effect */
@@ -120,6 +121,7 @@ button:disabled {
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     width: 100%;
+    padding: 10px;
 }
 
 /* Calendar Cell */
@@ -177,9 +179,8 @@ button:disabled {
     }
 
     .calendar-navigation {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column; /* Stack buttons vertically for better space on mobile */
+        margin-bottom: 15px;
     }
 
     h1 {
@@ -189,6 +190,12 @@ button:disabled {
     .calendar-navigation button {
         padding: 8px 15px; /* Adjust padding for buttons */
         font-size: 14px;
+        margin: 5px 0; /* Add margin between buttons for easier interaction */
+        min-width: 100px; /* Increase button size for better tap accuracy */
+    }
+
+    #month-display {
+        margin: 10px 0;
     }
 
     .flavor-name {
@@ -196,7 +203,20 @@ button:disabled {
     }
 
     .featured-flavor {
-        width: 80%;
+        width: 90%;
         max-width: 300px; /* Ensure the flavor box fits better */
+        font-size: 1.2rem; /* Adjust font size for readability */
+        padding: 5px; /* Reduce padding to prevent overflow */
+    }
+}
+
+@media (max-width: 480px) {
+    #calendar-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 days across for very small screens */
+    }
+
+    .featured-flavor {
+        max-width: 90%; /* Reduce max-width for better fit on smaller screens */
+        font-size: 1rem;
     }
 }
