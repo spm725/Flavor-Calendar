@@ -32,7 +32,6 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding-bottom: 50px; /* Added padding at the bottom */
 }
 
 /* Title */
@@ -87,7 +86,7 @@ h1 {
 .calendar-navigation button {
     padding: 10px 20px;
     font-size: 14px;
-    border: 1px solid #000; /* Added thin black outline */
+    border: none;
     border-radius: 5px;
     background: linear-gradient(45deg, #fdd835, #ffeb3b);
     color: #333;
@@ -95,7 +94,8 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     min-width: 80px; /* Ensure a minimum width for tap area */
-    font-family: 'Permanent Marker', cursive; /* Changed font to match flavor names */
+    font-family: 'Poppins', Arial, sans-serif; /* Reverted font to original */
+    border: 1px solid #000; /* Added thin black outline */
 }
 
 /* Hover effect */
@@ -128,6 +128,7 @@ button:disabled {
     width: 100%;
     padding: 10px;
     box-sizing: border-box; /* Ensure the container does not overflow the page */
+    padding-bottom: 30px; /* Added padding at the bottom of the calendar */
 }
 
 /* Calendar Cell */
@@ -158,6 +159,7 @@ button:disabled {
     font-weight: bold;
     color: #555;
     z-index: 2;
+    line-height: 1; /* Adjusted line height for better alignment with day abbreviation */
 }
 
 /* Day of the Week Top Left */
@@ -169,6 +171,7 @@ button:disabled {
     font-weight: bold;
     color: #888;
     z-index: 2;
+    line-height: 1; /* Adjusted line height for better alignment with day number */
 }
 
 /* Flavor Text Centered */
@@ -179,7 +182,7 @@ button:disabled {
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
     word-break: keep-all; /* Prevent breaking individual letters */
     white-space: normal; /* Allow text to wrap within the container */
-    font-size: 1.2rem; /* Increased size slightly */
+    font-size: 1.1rem; /* Increased font size slightly */
     line-height: 1.2;
     max-height: 100%;
     margin-top: auto;
@@ -208,8 +211,8 @@ button:disabled {
     }
 
     .calendar-navigation {
-        flex-direction: row; /* Keep buttons to the sides of the month display */
         gap: 10px; /* Reduce the gap slightly for smaller screens */
+        flex-direction: row; /* Keep buttons on the left and right of the month display */
     }
 
     h1 {
@@ -247,6 +250,7 @@ button:disabled {
 
     .calendar-navigation {
         gap: 5px;
+        flex-direction: row; /* Keep buttons on the left and right of the month display */
     }
 
     .featured-flavor {
