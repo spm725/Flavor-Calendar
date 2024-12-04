@@ -15,7 +15,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Prevent scrolling only on the body */
+            overflow: auto; /* Allow scrolling for smaller devices */
         }
 
         /* Full container height and centered content */
@@ -27,7 +27,7 @@
             height: 100%;
             padding: 0;
             box-sizing: border-box;
-            overflow: hidden; /* Prevent scrolling inside the container */
+            overflow-y: auto; /* Allow scrolling within the container if content is longer */
         }
 
         /* Featured Flavor Box Centered */
@@ -49,9 +49,10 @@
         }
 
         .calendar-navigation button {
-            padding: 10px;
+            padding: 15px;
             margin: 0 10px;
             font-size: 16px;
+            min-width: 80px; /* Ensure a minimum width for tap area */
         }
 
         /* The calendar container should take full space and allow scrolling within it */
@@ -59,6 +60,10 @@
             flex-grow: 1; /* Make calendar container fill available space */
             width: 100%;
             overflow-y: auto; /* Enable scrolling only if needed */
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* Default 7 columns for larger screens */
+            gap: 5px; /* Add spacing between the days */
+            padding: 10px;
         }
 
         h1 {
@@ -74,8 +79,34 @@
                 font-size: 1.5rem;
             }
 
+            .calendar-navigation {
+                flex-direction: column; /* Stack the buttons and month-display vertically */
+            }
+
             .calendar-navigation button {
                 font-size: 14px;
+                margin: 5px 0; /* Add some space between buttons vertically */
+                min-width: 100px; /* Increase button size for better tap accuracy */
+            }
+
+            #month-display {
+                margin: 10px 0;
+            }
+
+            #calendar-container {
+                grid-template-columns: repeat(4, 1fr); /* 4 days across for better fit on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #calendar-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 days across for very small screens */
+            }
+
+            .featured-flavor {
+                max-width: 90%; /* Reduce max-width for better fit on smaller screens */
+                font-size: 1.2rem; /* Adjust font size for readability */
+                padding: 5px; /* Reduce padding to prevent overflow */
             }
         }
     </style>
