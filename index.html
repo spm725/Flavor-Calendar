@@ -82,8 +82,14 @@
             window.addEventListener('resize', adjustButtonLabels);
             adjustButtonLabels();
 
-            document.getElementById('prev-button').addEventListener('click', scrollToCalendar);
-            document.getElementById('next-button').addEventListener('click', scrollToCalendar);
+            document.getElementById('prev-button').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default action to stop scrolling to the top
+                scrollToCalendar();
+            });
+            document.getElementById('next-button').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default action to stop scrolling to the top
+                scrollToCalendar();
+            });
         });
     </script>
 </body>
