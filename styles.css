@@ -143,6 +143,7 @@ button:disabled {
     min-height: 60px;
     aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
     box-sizing: border-box; /* Prevent overflow of calendar cells */
+    overflow-wrap: break-word; /* Ensure text breaks to the next line */
 }
 
 /* Highlight for Current Date */
@@ -165,15 +166,16 @@ button:disabled {
     margin-bottom: 5px;
 }
 
-/* Flavor Text */
+/* Flavor Text within Calendar Cell */
 .flavor-text {
     color: #333;
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px); /* Dynamic font size based on viewport */
     font-weight: bold;
     margin-top: 5px;
     text-align: center;
     background: none;
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
+    word-break: break-word; /* Break long words if necessary */
 }
 
 /* Mobile Responsiveness */
