@@ -87,6 +87,7 @@
             gap: 5px;
             width: 100%;
             padding: 10px;
+            box-sizing: border-box; /* Ensure the container does not overflow the page */
         }
 
         /* Calendar Cell */
@@ -106,7 +107,8 @@
             min-width: 60px;
             min-height: 60px;
             aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
-        }
+            box-sizing: border-box; /* Prevent overflow of calendar cells */
+}
 
         /* Highlight for Current Date */
         .current-date {
@@ -141,14 +143,16 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            /* Ensuring the calendar shows 3 days across on mobile */
+            /* Ensuring the calendar shows 4 days across on mobile */
             #calendar-container {
-                grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+                grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
                 gap: 8px; /* Increase gap slightly for better spacing */
+                padding: 10px;
+                box-sizing: border-box; /* Prevent overflow of the container */
             }
 
             .calendar-navigation {
-                flex-direction: column; /* Stack buttons vertically for better space on mobile */
+                flex-direction: column; /* Stack buttons vertically for better space on smaller devices */
                 margin-bottom: 15px;
             }
 
@@ -181,7 +185,8 @@
 
         @media (max-width: 480px) {
             #calendar-container {
-                grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns for very small screens */
+                grid-template-columns: repeat(4, 1fr); /* Maintain 4 columns for very small screens */
+                gap: 8px; /* Maintain consistent gap */
             }
 
             .featured-flavor {
