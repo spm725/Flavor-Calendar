@@ -40,9 +40,10 @@
         <h1>Custard Calendar</h1>
         <div id="featured-flavor" class="featured-flavor"></div>
         <div class="calendar-navigation">
-            <button id="prev-button">Previous</button>
+            <!-- Updated button types to prevent unintended form behavior -->
+            <button id="prev-button" type="button">Previous</button>
             <div id="month-display"></div>
-            <button id="next-button">Next</button>
+            <button id="next-button" type="button">Next</button>
         </div>
         <div id="calendar-container"></div>
         <div class="bottom-padding"></div> <!-- Added space at the bottom -->
@@ -62,10 +63,6 @@
                 }, '*');
             });
 
-            function scrollToCalendar() {
-                document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
-            }
-
             function adjustButtonLabels() {
                 const prevButton = document.getElementById('prev-button');
                 const nextButton = document.getElementById('next-button');
@@ -82,13 +79,13 @@
             window.addEventListener('resize', adjustButtonLabels);
             adjustButtonLabels();
 
+            // Event listeners for buttons, updated to ensure no scrolling occurs
             document.getElementById('prev-button').addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default action to stop scrolling to the top
-                scrollToCalendar();
+                event.preventDefault(); // Prevent default action to stop any kind of scrolling
             });
+
             document.getElementById('next-button').addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default action to stop scrolling to the top
-                scrollToCalendar();
+                event.preventDefault(); // Prevent default action to stop any kind of scrolling
             });
         });
     </script>
