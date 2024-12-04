@@ -105,6 +105,7 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             min-width: 60px;
             min-height: 60px;
+            aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
         }
 
         /* Highlight for Current Date */
@@ -116,6 +117,7 @@
             color: #333;
             padding: 5px;
             box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
+            aspect-ratio: 1 / 1; /* Ensure the highlighted circle remains a circle */
         }
 
         /* Day of the Week */
@@ -134,13 +136,15 @@
             margin-top: 5px;
             text-align: center;
             background: none;
+            overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            /* Ensuring the calendar shows 4 days across on mobile */
+            /* Ensuring the calendar shows 3 days across on mobile */
             #calendar-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
+                grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+                gap: 8px; /* Increase gap slightly for better spacing */
             }
 
             .calendar-navigation {
@@ -177,7 +181,7 @@
 
         @media (max-width: 480px) {
             #calendar-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 days across for very small screens */
+                grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns for very small screens */
             }
 
             .featured-flavor {
