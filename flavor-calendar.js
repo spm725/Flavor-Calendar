@@ -130,16 +130,18 @@ function renderCalendar(year, month) {
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
 
+        // Add the day number to the top right
+        const dayNumber = document.createElement('div');
+        dayNumber.className = 'day-number';
+        dayNumber.textContent = d.getDate();
+        cell.appendChild(dayNumber);
+
+        // Add the day of the week to the top left
         const dayOfWeek = d.toLocaleString('en-US', { weekday: 'short' });
         const dayLabel = document.createElement('div');
         dayLabel.textContent = dayOfWeek;
         dayLabel.className = 'day-of-week';
         cell.appendChild(dayLabel);
-
-        const dayNumber = document.createElement('div');
-        dayNumber.textContent = d.getDate();
-        dayNumber.className = 'day-number';
-        cell.appendChild(dayNumber);
 
         if (
             today.getFullYear() === d.getFullYear() &&
@@ -149,6 +151,7 @@ function renderCalendar(year, month) {
             cell.classList.add('current-date');
         }
 
+        // Add flavor text if the day falls within a flavor period
         const flavor = flavorData.find((flavor) => {
             const flavorStart = normalizeDate(flavor.start);
             const flavorEnd = normalizeDate(flavor.end);
