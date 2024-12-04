@@ -169,6 +169,7 @@ function renderCalendar(year, month) {
             const flavorText = document.createElement('div');
             flavorText.textContent = flavor.text;
             flavorText.className = 'flavor-text';
+            flavorText.style.whiteSpace = 'normal'; // Allow text to wrap
             cell.appendChild(flavorText);
         }
 
