@@ -114,7 +114,7 @@ function updateCurrentFlavor() {
     if (currentFlavor) {
         currentFlavorBox.innerHTML = `
             <div class="title">Current Flavor</div>
-            <img src="${currentFlavor.image}" alt="${currentFlavor.text}" class="flavor-image" loading="lazy" />
+            <img src="${currentFlavor.image}" alt="${currentFlavor.text}" class="flavor-image" />
         `;
     } else {
         currentFlavorBox.innerHTML = `
@@ -124,7 +124,6 @@ function updateCurrentFlavor() {
     }
 }
 
-
 // Render the calendar
 function renderCalendar(year, month) {
     calendarContainer.innerHTML = ''; // Reset calendar container
@@ -132,10 +131,10 @@ function renderCalendar(year, month) {
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
 
-    const monthNames = window.innerWidth < 768
-        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
+    ];
     monthDisplay.textContent = `${monthNames[month]} ${year}`;
 
     for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
@@ -178,6 +177,23 @@ function renderCalendar(year, month) {
 
     checkPrevButton(); // Ensure the "Previous" button is correctly enabled/disabled
     checkNextButton(); // Ensure the "Next" button is correctly enabled/disabled
+
+    adjustFontSizeForFlavorText(); // Adjust font size to fit the cell
+}
+
+// Adjust the font size for the flavor text to fit within the cell
+function adjustFontSizeForFlavorText() {
+    const flavorTexts = document.querySelectorAll('.flavor-text');
+    flavorTexts.forEach(flavorText => {
+        let fontSize = 12; // Start with a default font size (you can adjust this value)
+        flavorText.style.fontSize = fontSize + 'px';
+
+        // Reduce font size until the text fits within the parent container without overflow
+        while (flavorText.scrollWidth > flavorText.parentElement.clientWidth && fontSize > 8) {
+            fontSize -= 1; // Decrease font size
+            flavorText.style.fontSize = fontSize + 'px';
+        }
+    });
 }
 
 prevButton.addEventListener('click', () => {
@@ -187,7 +203,6 @@ prevButton.addEventListener('click', () => {
         currentYear -= 1;
     }
     renderCalendar(currentYear, currentMonth);
-    scrollToCalendar();
 });
 
 nextButton.addEventListener('click', () => {
@@ -197,27 +212,7 @@ nextButton.addEventListener('click', () => {
         currentYear += 1;
     }
     renderCalendar(currentYear, currentMonth);
-    scrollToCalendar();
 });
-
-// Function to smoothly scroll to the calendar
-function scrollToCalendar() {
-    calendarContainer.scrollIntoView({ behavior: 'smooth' });
-}
-
-// Adjust button labels based on screen size
-function adjustButtonLabels() {
-    if (window.innerWidth < 768) {
-        prevButton.textContent = 'Prev';
-        nextButton.textContent = 'Next';
-    } else {
-        prevButton.textContent = 'Previous';
-        nextButton.textContent = 'Next';
-    }
-}
-
-window.addEventListener('resize', adjustButtonLabels);
-adjustButtonLabels(); // Initial call to set button labels
 
 // Initialize the calendar and "Current Flavor" box
 updateCurrentFlavor();
