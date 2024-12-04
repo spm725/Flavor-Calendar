@@ -117,7 +117,7 @@ button:disabled {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
-    height: 100%; /* Ensure the grid takes up available height */
+    width: 100%; /* Ensure the container takes up available width */
 }
 
 /* Calendar Cell */
@@ -134,8 +134,8 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    height: calc(100% / 5); /* Ensures the cells fit proportionally */
-    min-height: 60px; /* Sets a minimum height for the calendar cells */
+    min-width: 60px; /* Set minimum width to prevent squishing */
+    min-height: 60px; /* Set minimum height to prevent squishing */
 }
 
 .calendar-cell:hover {
