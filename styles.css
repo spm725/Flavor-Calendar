@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'Permanent Marker', cursive;
-    src: url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap'); /* Correct path to the Google font */
+    src: url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 }
 
 body {
@@ -130,7 +130,7 @@ button:disabled {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 4px; /* Small padding to give more room for text */
+    padding: 4px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -138,10 +138,10 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
-    box-sizing: border-box; /* Prevent overflow of calendar cells */
-    overflow: hidden; /* Prevent overflow */
-    position: relative; /* Allow positioning of the day number */
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative; /* Allow positioning of the day number as a background */
 }
 
 /* Day Number as Background */
@@ -152,7 +152,7 @@ button:disabled {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem; /* Make the day number large */
-    color: rgba(200, 200, 200, 0.2); /* Light gray with transparency */
+    color: #fdd835; /* Use the same yellow as the highlighted cell */
     z-index: 1; /* Ensure it stays behind other content */
     pointer-events: none; /* Allow clicks to pass through */
 }
@@ -166,7 +166,13 @@ button:disabled {
     color: #333;
     padding: 5px;
     box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
-    aspect-ratio: 1 / 1; /* Ensure the highlighted circle remains a circle */
+    aspect-ratio: 1 / 1;
+}
+
+/* Add a black outline for the day number on the highlighted cell */
+.current-date::before {
+    color: #fdd835; /* Keep the yellow color */
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Light black outline */
 }
 
 /* Day of the Week */
@@ -175,6 +181,7 @@ button:disabled {
     font-weight: bold;
     color: #888;
     margin-bottom: 5px;
+    z-index: 2; /* Ensure day of week text is above the background number */
 }
 
 /* Flavor Text within Calendar Cell */
@@ -185,7 +192,7 @@ button:disabled {
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
     word-break: keep-all; /* Prevent breaking individual letters */
     white-space: normal; /* Allow text to wrap within the container */
-    font-size: 14px; /* Initial font size, dynamically adjusted by JavaScript */
+    font-size: 10px; /* Start with a smaller font size to better fit text */
     line-height: 1.2; /* Reduced line height to fit more text */
     max-height: 100%; /* Prevent overflow from exceeding the container height */
     z-index: 2; /* Ensure the flavor text is above the day number */
@@ -195,26 +202,26 @@ button:disabled {
 @media (max-width: 992px) {
     /* Ensuring the calendar shows 4 days across on tablets and mobile */
     #calendar-container {
-        grid-template-columns: repeat(4, 1fr); /* 4 columns for tablets and mobile */
-        gap: 8px; /* Increase gap slightly for better spacing */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
         padding: 10px;
-        box-sizing: border-box; /* Prevent overflow of the container */
+        box-sizing: border-box;
     }
 
     .calendar-navigation {
-        flex-direction: column; /* Stack buttons vertically for better space on smaller devices */
+        flex-direction: column;
         margin-bottom: 15px;
     }
 
     h1 {
-        font-size: 1.8rem; /* Adjust font size for tablets and mobile */
+        font-size: 1.8rem;
     }
 
     .calendar-navigation button {
-        padding: 8px 15px; /* Adjust padding for buttons */
+        padding: 8px 15px;
         font-size: 14px;
-        margin: 5px 0; /* Add margin between buttons for easier interaction */
-        min-width: 100px; /* Increase button size for better tap accuracy */
+        margin: 5px 0;
+        min-width: 100px;
     }
 
     #month-display {
@@ -222,25 +229,25 @@ button:disabled {
     }
 
     .flavor-name {
-        font-size: 2.5rem; /* Reduce font size on tablets and mobile */
+        font-size: 2.5rem;
     }
 
     .featured-flavor {
         width: 90%;
-        max-width: 300px; /* Ensure the flavor box fits better */
-        font-size: 1.2rem; /* Adjust font size for readability */
-        padding: 5px; /* Reduce padding to prevent overflow */
+        max-width: 300px;
+        font-size: 1.2rem;
+        padding: 5px;
     }
 }
 
 @media (max-width: 576px) {
     #calendar-container {
-        grid-template-columns: repeat(4, 1fr); /* Maintain 4 columns for very small screens */
-        gap: 8px; /* Maintain consistent gap */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
     }
 
     .featured-flavor {
-        max-width: 90%; /* Reduce max-width for better fit on smaller screens */
+        max-width: 90%;
         font-size: 1rem;
     }
 }
