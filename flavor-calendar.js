@@ -129,13 +129,17 @@ function renderCalendar(year, month) {
     for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
-        cell.setAttribute('data-day', d.getDate()); // Set day as data attribute for background
 
         const dayOfWeek = d.toLocaleString('en-US', { weekday: 'short' });
         const dayLabel = document.createElement('div');
         dayLabel.textContent = dayOfWeek;
         dayLabel.className = 'day-of-week';
         cell.appendChild(dayLabel);
+
+        const dayNumber = document.createElement('div');
+        dayNumber.textContent = d.getDate();
+        dayNumber.className = 'day-number';
+        cell.appendChild(dayNumber);
 
         if (
             today.getFullYear() === d.getFullYear() &&
