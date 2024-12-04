@@ -152,26 +152,23 @@ button:disabled {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem; /* Make the day number large */
-    color: #fdd835; /* Use the same yellow as the highlighted cell */
+    color: #ffeb3b; /* Match the highlighted cell color */
     z-index: 1; /* Ensure it stays behind other content */
     pointer-events: none; /* Allow clicks to pass through */
 }
 
 /* Highlight for Current Date */
 .current-date {
-    background: #ffeb3b;
-    border: 2px solid #fdd835;
-    border-radius: 50%;
+    border: 2px solid #fdd835; /* Highlighted border instead of filling */
+    background: none; /* Remove the yellow fill */
     font-weight: bold;
     color: #333;
-    padding: 5px;
     box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
-    aspect-ratio: 1 / 1;
 }
 
 /* Add a black outline for the day number on the highlighted cell */
 .current-date::before {
-    color: #fdd835; /* Keep the yellow color */
+    color: #ffeb3b; /* Keep the yellow color */
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Light black outline */
 }
 
