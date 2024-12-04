@@ -130,7 +130,7 @@ button:disabled {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
+    padding: 5px; /* Reduced padding to allow more space for content */
     font-size: 14px;
     text-align: center;
     display: flex;
@@ -170,7 +170,7 @@ button:disabled {
 .flavor-text {
     color: #333;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 3px; /* Reduced margin to allow more space */
     text-align: center;
     background: none;
     overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
