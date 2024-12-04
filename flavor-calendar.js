@@ -56,19 +56,13 @@ const flavorData = [
 ];
 
 
-document.addEventListener('DOMContentLoaded', function () {
+// DOMContentLoaded Event Listener
+window.addEventListener('DOMContentLoaded', function () {
     const calendarContainer = document.getElementById('calendar-container');
     const monthDisplay = document.getElementById('month-display');
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
     const currentFlavorBox = document.getElementById('featured-flavor');
-
-    // Add logging to identify if any elements are null
-    console.log('calendarContainer:', calendarContainer);
-    console.log('monthDisplay:', monthDisplay);
-    console.log('prevButton:', prevButton);
-    console.log('nextButton:', nextButton);
-    console.log('currentFlavorBox:', currentFlavorBox);
 
     if (calendarContainer && monthDisplay && prevButton && nextButton && currentFlavorBox) {
         let currentMonth = new Date().getMonth();
@@ -206,47 +200,34 @@ document.addEventListener('DOMContentLoaded', function () {
         // Adjust calendar columns based on window width
         function adjustCalendarColumns() {
             if (window.innerWidth > 1200) {
-                console.log('Setting grid to 7 columns for larger desktop view');
                 calendarContainer.style.gridTemplateColumns = 'repeat(7, 1fr)';
             } else if (window.innerWidth > 768) {
-                console.log('Setting grid to 5 columns for medium desktop view');
                 calendarContainer.style.gridTemplateColumns = 'repeat(5, 1fr)';
             } else {
-                console.log('Setting grid to 4 columns for mobile view');
                 calendarContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
             }
         }
 
         // Event listeners for buttons
-        if (prevButton) {
-            prevButton.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent auto-scrolling
-                currentMonth -= 1;
-                if (currentMonth < 0) {
-                    currentMonth = 11;
-                    currentYear -= 1;
-                }
-                renderCalendar(currentYear, currentMonth);
-                document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
-            });
-        } else {
-            console.error('prevButton element not found.');
-        }
+        prevButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent auto-scrolling
+            currentMonth -= 1;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear -= 1;
+            }
+            renderCalendar(currentYear, currentMonth);
+        });
 
-        if (nextButton) {
-            nextButton.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent auto-scrolling
-                currentMonth += 1;
-                if (currentMonth > 11) {
-                    currentMonth = 0;
-                    currentYear += 1;
-                }
-                renderCalendar(currentYear, currentMonth);
-                document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
-            });
-        } else {
-            console.error('nextButton element not found.');
-        }
+        nextButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent auto-scrolling
+            currentMonth += 1;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear += 1;
+            }
+            renderCalendar(currentYear, currentMonth);
+        });
 
         // Initialize the calendar and "Current Flavor" box
         updateCurrentFlavor();
