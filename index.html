@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added the viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custard Calendar</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Ensure the body and html take up full height without overflow */
+        /* General Layout Adjustments */
         html, body {
             height: 100%;
             margin: 0;
@@ -18,181 +18,15 @@
             overflow: auto; /* Allow scrolling for smaller devices */
         }
 
-        /* Full container height and centered content */
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribute content evenly */
+            justify-content: space-between;
             width: 100%;
             height: 100%;
             padding: 0;
             box-sizing: border-box;
-            overflow-y: auto; /* Allow scrolling within the container if content is longer */
-        }
-
-        /* Featured Flavor Box Centered */
-        .featured-flavor {
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 8px;
-        }
-
-        /* Navigation section styling */
-        .calendar-navigation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .calendar-navigation button {
-            padding: 10px 20px;
-            font-size: 14px;
-            border: none;
-            border-radius: 5px;
-            background: linear-gradient(45deg, #fdd835, #ffeb3b);
-            color: #333;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            min-width: 80px; /* Ensure a minimum width for tap area */
-        }
-
-        /* Hover effect */
-        .calendar-navigation button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
-        }
-
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            color: #999;
-        }
-
-        /* Month Display */
-        #month-display {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #444;
-        }
-
-        /* Calendar Grid */
-        #calendar-container {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box; /* Ensure the container does not overflow the page */
-        }
-
-        /* Calendar Cell */
-        .calendar-cell {
-            background: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 14px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            min-width: 60px;
-            min-height: 60px;
-            aspect-ratio: 1 / 1; /* Ensure the cells remain squares */
-            box-sizing: border-box; /* Prevent overflow of calendar cells */
-}
-
-        /* Highlight for Current Date */
-        .current-date {
-            background: #ffeb3b;
-            border: 2px solid #fdd835;
-            border-radius: 50%;
-            font-weight: bold;
-            color: #333;
-            padding: 5px;
-            box-shadow: 0 4px 8px rgba(255, 235, 59, 0.4);
-            aspect-ratio: 1 / 1; /* Ensure the highlighted circle remains a circle */
-        }
-
-        /* Day of the Week */
-        .day-of-week {
-            font-size: 12px;
-            font-weight: bold;
-            color: #888;
-            margin-bottom: 5px;
-        }
-
-        /* Flavor Text */
-        .flavor-text {
-            color: #333;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 5px;
-            text-align: center;
-            background: none;
-            overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            /* Ensuring the calendar shows 4 days across on mobile */
-            #calendar-container {
-                grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
-                gap: 8px; /* Increase gap slightly for better spacing */
-                padding: 10px;
-                box-sizing: border-box; /* Prevent overflow of the container */
-            }
-
-            .calendar-navigation {
-                flex-direction: column; /* Stack buttons vertically for better space on smaller devices */
-                margin-bottom: 15px;
-            }
-
-            h1 {
-                font-size: 1.8rem; /* Adjust font size for mobile */
-            }
-
-            .calendar-navigation button {
-                padding: 8px 15px; /* Adjust padding for buttons */
-                font-size: 14px;
-                margin: 5px 0; /* Add margin between buttons for easier interaction */
-                min-width: 100px; /* Increase button size for better tap accuracy */
-            }
-
-            #month-display {
-                margin: 10px 0;
-            }
-
-            .flavor-name {
-                font-size: 2.5rem; /* Reduce font size on mobile */
-            }
-
-            .featured-flavor {
-                width: 90%;
-                max-width: 300px; /* Ensure the flavor box fits better */
-                font-size: 1.2rem; /* Adjust font size for readability */
-                padding: 5px; /* Reduce padding to prevent overflow */
-            }
-        }
-
-        @media (max-width: 480px) {
-            #calendar-container {
-                grid-template-columns: repeat(4, 1fr); /* Maintain 4 columns for very small screens */
-                gap: 8px; /* Maintain consistent gap */
-            }
-
-            .featured-flavor {
-                max-width: 90%; /* Reduce max-width for better fit on smaller screens */
-                font-size: 1rem;
-            }
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -212,43 +46,36 @@
 
     <!-- Send height to parent when content is loaded -->
     <script>
-      window.addEventListener('load', function() {
-        // Calculate the height of the content and send it to the parent window
-        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-        
-        // Send the height of the content to the parent window
-        window.parent.postMessage({
-          type: 'setIframeHeight',
-          height: height
-        }, '*');
-      });
+        window.addEventListener('load', function() {
+            const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+            window.parent.postMessage({
+                type: 'setIframeHeight',
+                height: height
+            }, '*');
+        });
 
-      // Function to smoothly scroll to the calendar
-      function scrollToCalendar() {
-          document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
-      }
+        function scrollToCalendar() {
+            document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
+        }
 
-      // Adjust button labels based on screen size
-      function adjustButtonLabels() {
-          const prevButton = document.getElementById('prev-button');
-          const nextButton = document.getElementById('next-button');
+        function adjustButtonLabels() {
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
 
-          if (window.innerWidth < 768) {
-              prevButton.textContent = 'Prev';
-              nextButton.textContent = 'Next';
-          } else {
-              prevButton.textContent = 'Previous';
-              nextButton.textContent = 'Next';
-          }
-      }
+            if (window.innerWidth < 768) {
+                prevButton.textContent = 'Prev';
+                nextButton.textContent = 'Next';
+            } else {
+                prevButton.textContent = 'Previous';
+                nextButton.textContent = 'Next';
+            }
+        }
 
-      // Listen for window resize events to adjust button labels
-      window.addEventListener('resize', adjustButtonLabels);
-      adjustButtonLabels(); // Initial call to set button labels
+        window.addEventListener('resize', adjustButtonLabels);
+        adjustButtonLabels();
 
-      // Scroll to calendar on navigation
-      document.getElementById('prev-button').addEventListener('click', scrollToCalendar);
-      document.getElementById('next-button').addEventListener('click', scrollToCalendar);
+        document.getElementById('prev-button').addEventListener('click', scrollToCalendar);
+        document.getElementById('next-button').addEventListener('click', scrollToCalendar);
     </script>
 </body>
 </html>
