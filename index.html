@@ -48,40 +48,43 @@
         <div class="bottom-padding"></div> <!-- Added space at the bottom -->
     </div>
 
+    <!-- Move the script to the end of the body -->
     <script src="flavor-calendar.js"></script>
 
     <!-- Send height to parent when content is loaded -->
     <script>
-        window.addEventListener('load', function() {
-            const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-            window.parent.postMessage({
-                type: 'setIframeHeight',
-                height: height
-            }, '*');
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addEventListener('load', function() {
+                const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+                window.parent.postMessage({
+                    type: 'setIframeHeight',
+                    height: height
+                }, '*');
+            });
 
-        function scrollToCalendar() {
-            document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function adjustButtonLabels() {
-            const prevButton = document.getElementById('prev-button');
-            const nextButton = document.getElementById('next-button');
-
-            if (window.innerWidth < 768) {
-                prevButton.textContent = 'Prev';
-                nextButton.textContent = 'Next';
-            } else {
-                prevButton.textContent = 'Previous';
-                nextButton.textContent = 'Next';
+            function scrollToCalendar() {
+                document.getElementById('calendar-container').scrollIntoView({ behavior: 'smooth' });
             }
-        }
 
-        window.addEventListener('resize', adjustButtonLabels);
-        adjustButtonLabels();
+            function adjustButtonLabels() {
+                const prevButton = document.getElementById('prev-button');
+                const nextButton = document.getElementById('next-button');
 
-        document.getElementById('prev-button').addEventListener('click', scrollToCalendar);
-        document.getElementById('next-button').addEventListener('click', scrollToCalendar);
+                if (window.innerWidth < 768) {
+                    prevButton.textContent = 'Prev';
+                    nextButton.textContent = 'Next';
+                } else {
+                    prevButton.textContent = 'Previous';
+                    nextButton.textContent = 'Next';
+                }
+            }
+
+            window.addEventListener('resize', adjustButtonLabels);
+            adjustButtonLabels();
+
+            document.getElementById('prev-button').addEventListener('click', scrollToCalendar);
+            document.getElementById('next-button').addEventListener('click', scrollToCalendar);
+        });
     </script>
 </body>
 </html>
