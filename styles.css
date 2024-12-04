@@ -40,27 +40,21 @@ h1 {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Featured Flavor Section */
+/* Featured Flavor Box Centered */
 .featured-flavor {
+    width: 100%;
+    max-width: 400px; /* Reduced maximum width */
+    margin: 0 auto;
     text-align: center;
-    margin-bottom: 20px;
-    background: #ffffff;
-    padding: 30px; /* Keep the box size consistent */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
-    display: inline-block;
-    width: auto; /* Let the box width adjust dynamically */
-    min-width: 200px; /* Minimum width for smaller text */
-    max-width: 70%; /* Ensure it doesn't become too wide */
+    padding: 8px; /* Reduced padding */
 }
 
 /* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 2rem; /* Adjusted title font size */
+    font-size: 1.5rem; /* Reduced font size */
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px; /* Reduced margin for better spacing */
+    margin-bottom: 8px; /* Reduced margin */
 }
 
 /* Current Flavor Box to Display Image */
@@ -70,7 +64,7 @@ h1 {
 }
 
 .featured-flavor .flavor-image {
-    width: 100%; /* Makes the image span the full width of the box */
+    width: 80%; /* Make the image slightly smaller */
     height: auto; /* Maintains the aspect ratio */
     max-width: 100%; /* Ensures the image doesn't stretch beyond its container */
     object-fit: contain; /* Ensures the image fits within the container without distortion */
@@ -80,7 +74,7 @@ h1 {
 /* Calendar Navigation */
 .calendar-navigation {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 10px;
 }
@@ -123,6 +117,7 @@ button:disabled {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
     gap: 5px;
+    height: 100%; /* Make the grid take up available height */
 }
 
 /* Calendar Cell */
@@ -139,6 +134,7 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
+    height: calc(100% / 5); /* Ensure cells are equally distributed */
 }
 
 .calendar-cell:hover {
@@ -211,3 +207,4 @@ button:disabled {
         width: 150px;
     }
 }
+
