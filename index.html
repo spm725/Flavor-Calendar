@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,45 +23,19 @@
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
-            max-width: 1200px; /* Added max-width for better desktop view */
             height: 100%;
             padding: 0;
             box-sizing: border-box;
             overflow-y: auto;
-            margin: 0 auto; /* Center container horizontally */
         }
 
         /* Extra padding at the bottom of the page */
         .bottom-padding {
-            height: 100px; /* Increased the height for better space at the bottom */
+            height: 50px; /* Adjust the height as necessary for more or less space */
         }
     </style>
 </head>
 <body>
-    <!-- Responsive Wrapper for iframe with Full Height and Bottom Padding -->
-    <div id="iframe-wrapper" style="position: relative; width: 100%; height: calc(100vh - 100px); padding-bottom: 50px; overflow: hidden;">
-        <iframe id="custard-calendar-iframe" src="https://spm725.github.io/Flavor-Calendar/" width="100%" height="100%" style="border: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></iframe>
-    </div>
-    <!-- External CSS Link -->
-    <link rel="stylesheet" href="https://spm725.github.io/Flavor-Calendar/styles.css">
-    <!-- External JS Link -->
-    <script src="https://spm725.github.io/Flavor-Calendar/flavor-calendar.js"></script>
-
-    <script>
-        // Adjust iframe height based on the actual viewport height
-        function adjustIframeHeight() {
-            const iframeWrapper = document.getElementById('iframe-wrapper');
-            const iframe = document.getElementById('custard-calendar-iframe');
-            // Set height based on available viewport height, accounting for padding
-            const viewportHeight = window.innerHeight - 50; // Adjust for bottom padding of 50px
-            iframeWrapper.style.height = viewportHeight + 'px';
-            iframe.style.height = viewportHeight + 'px';
-        }
-        // Run function on load and window resize
-        window.addEventListener('load', adjustIframeHeight);
-        window.addEventListener('resize', adjustIframeHeight);
-    </script>
-
     <div class="container">
         <h1>Custard Calendar</h1>
         <div id="featured-flavor" class="featured-flavor"></div>
