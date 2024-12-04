@@ -129,7 +129,7 @@ button:disabled {
 }
 
 /* Calendar Cell */
-.calendar-cell {
+.calendar-cell {.calendar-cell {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -144,7 +144,8 @@ button:disabled {
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
     overflow: hidden;
-    position: relative; /* Allow positioning of the day number */
+    position: relative;
+    padding-top: 20px; /* Allow positioning of the day number */
 }
 
 /* Day Number Top Right */
@@ -156,6 +157,7 @@ button:disabled {
     font-weight: bold;
     color: #555;
     z-index: 2;
+    text-align: right;
 }
 
 /* Day of the Week Top Left */
