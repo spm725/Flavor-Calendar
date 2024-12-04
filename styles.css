@@ -11,30 +11,33 @@
 
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    background-color: #ffffff; /* Set the background color to white */
+    background-color: #ffffff;
     margin: 0;
-    padding: 0; /* Removed padding */
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow: hidden;
 }
 
 /* Container */
 .container {
-    background: #ffffff; /* Ensure the container background is white */
+    background: #ffffff;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
     max-width: 800px;
     width: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Title */
 h1 {
-    font-family: 'GothamSSm-Black', sans-serif; /* Custom Font */
-    font-size: 4rem;
+    font-family: 'GothamSSm-Black', sans-serif;
+    font-size: 2.5rem; /* Adjusted size for better mobile readability */
     color: #333;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -43,32 +46,32 @@ h1 {
 /* Featured Flavor Box Centered */
 .featured-flavor {
     width: 100%;
-    max-width: 350px; /* Reduced maximum width */
+    max-width: 350px;
     margin: 0 auto;
     text-align: center;
-    padding: 8px; /* Reduced padding */
+    padding: 8px;
 }
 
 /* Current Flavor Title */
 .featured-flavor .title {
-    font-size: 1.3rem; /* Further reduced font size */
+    font-size: 1.3rem;
     font-weight: bold;
     color: #333;
-    margin-bottom: 8px; /* Reduced margin */
+    margin-bottom: 8px;
 }
 
 /* Current Flavor Box to Display Image */
 .featured-flavor .flavor-name {
-    font-size: 0; /* Hide the text */
-    padding: 0; /* Remove any unnecessary padding */
+    font-size: 0;
+    padding: 0;
 }
 
 .featured-flavor .flavor-image {
-    width: 70%; /* Further reduce the image size */
-    height: auto; /* Maintains the aspect ratio */
-    max-width: 100%; /* Ensures the image doesn't stretch beyond its container */
-    object-fit: contain; /* Ensures the image fits within the container without distortion */
-    border-radius: 10px; /* Optional: rounds the corners of the image */
+    width: 70%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
 }
 
 /* Calendar Navigation */
@@ -79,7 +82,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-/* Make sure buttons stay aligned */
 .calendar-navigation button {
     padding: 10px 20px;
     font-size: 14px;
@@ -115,9 +117,9 @@ button:disabled {
 /* Calendar Grid */
 #calendar-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
+    grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-    width: 100%; /* Ensure the container takes up available width */
+    width: 100%;
 }
 
 /* Calendar Cell */
@@ -134,13 +136,8 @@ button:disabled {
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 60px; /* Set minimum width to prevent squishing */
-    min-height: 60px; /* Set minimum height to prevent squishing */
-}
-
-.calendar-cell:hover {
-    background: #f7f7f7;
-    transform: translateY(-5px);
+    min-width: 60px;
+    min-height: 60px;
 }
 
 /* Highlight for Current Date */
@@ -172,39 +169,34 @@ button:disabled {
     background: none;
 }
 
-/* Responsive Styles */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     /* Ensuring the calendar shows 4 days across on mobile */
     #calendar-container {
         grid-template-columns: repeat(4, 1fr); /* 4 columns for mobile */
     }
 
-    /* Align buttons next to each other */
     .calendar-navigation {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
-    /* Making sure the font loads properly on mobile */
-    body, h1, .title, .flavor-name {
-        font-family: 'Poppins', Arial, sans-serif; /* Ensure font-family is correctly applied */
+    h1 {
+        font-size: 1.8rem; /* Adjust font size for mobile */
     }
 
-    /* Adjust button padding and layout */
     .calendar-navigation button {
-        padding: 10px 15px;
-        font-size: 16px;
+        padding: 8px 15px; /* Adjust padding for buttons */
+        font-size: 14px;
     }
 
-    /* Allow the flavor name to wrap on mobile */
     .flavor-name {
-        font-size: 3rem;
-        white-space: normal; /* Allow wrapping on mobile */
+        font-size: 2.5rem; /* Reduce font size on mobile */
     }
 
-    /* Adjust for small screens */
-    .featured-image {
-        width: 150px;
+    .featured-flavor {
+        width: 80%;
+        max-width: 300px; /* Ensure the flavor box fits better */
     }
 }
