@@ -128,7 +128,7 @@ button:disabled {
 /* Calendar Grid */
 #calendar-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr); /* Default to 7 days across for desktop */
     gap: 5px;
     width: 100%;
     padding: 10px;
