@@ -19,7 +19,6 @@ body {
     align-items: center;
     text-align: center;
     overflow: auto; /* Allow scrolling for smaller devices */
-    padding-bottom: 40px; /* Added padding at the bottom of the document */
 }
 
 /* Container */
@@ -33,6 +32,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px; /* Added padding at the bottom */
 }
 
 /* Title */
@@ -78,15 +78,16 @@ h1 {
 /* Calendar Navigation */
 .calendar-navigation {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    gap: 20px; /* Add spacing between buttons and month display */
 }
 
 .calendar-navigation button {
     padding: 10px 20px;
     font-size: 14px;
-    border: none;
+    border: 1px solid #000; /* Added thin black outline */
     border-radius: 5px;
     background: linear-gradient(45deg, #fdd835, #ffeb3b);
     color: #333;
@@ -94,6 +95,7 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     min-width: 80px; /* Ensure a minimum width for tap area */
+    font-family: 'Permanent Marker', cursive; /* Changed font to match flavor names */
 }
 
 /* Hover effect */
@@ -112,8 +114,10 @@ button:disabled {
 #month-display {
     font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 0 20px; /* Add spacing on both sides of the month display */
     color: #444;
+    flex-grow: 1;
+    text-align: center; /* Keep month and year centered between buttons */
 }
 
 /* Calendar Grid */
@@ -135,28 +139,52 @@ button:disabled {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
     overflow: hidden;
-    position: relative; /* Allow positioning of the day number as a background */
+    position: relative; /* Allow positioning of the day number */
 }
 
-/* Day Number as Background */
-.calendar-cell::before {
-    content: attr(data-day);
+/* Day Number Top Right */
+.day-number {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem; /* Make the day number large */
-    color: rgba(255, 235, 59, 0.2); /* Use a more transparent yellow */
-    text-shadow: 1px 1px 2px #888; /* Slight gray border for better readability */
-    z-index: 1; /* Ensure it stays behind other content */
-    pointer-events: none; /* Allow clicks to pass through */
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    z-index: 2;
+}
+
+/* Day of the Week Top Left */
+.day-of-week {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #888;
+    z-index: 2;
+}
+
+/* Flavor Text Centered */
+.flavor-text {
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
+    word-break: keep-all; /* Prevent breaking individual letters */
+    white-space: normal; /* Allow text to wrap within the container */
+    font-size: 1.2rem; /* Increased size slightly */
+    line-height: 1.2;
+    max-height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    z-index: 2; /* Ensure the flavor text is above the background */
 }
 
 /* Highlight for Current Date */
@@ -167,29 +195,6 @@ button:disabled {
     font-weight: bold;
     color: #333;
     box-shadow: none; /* Remove any shadow to keep it consistent with other cells */
-}
-
-/* Day of the Week */
-.day-of-week {
-    font-size: 12px;
-    font-weight: bold;
-    color: #888;
-    margin-bottom: 5px;
-    z-index: 2; /* Ensure day of week text is above the background number */
-}
-
-/* Flavor Text within Calendar Cell */
-.flavor-text {
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-    overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
-    word-break: keep-all; /* Prevent breaking individual letters */
-    white-space: normal; /* Allow text to wrap within the container */
-    font-size: 1.2rem; /* Increased font size slightly for better readability */
-    line-height: 1.2; /* Reduced line height to fit more text */
-    max-height: 100%; /* Prevent overflow from exceeding the container height */
-    z-index: 2; /* Ensure the flavor text is above the day number */
 }
 
 /* Mobile Responsiveness */
@@ -203,8 +208,8 @@ button:disabled {
     }
 
     .calendar-navigation {
-        flex-direction: column;
-        margin-bottom: 15px;
+        flex-direction: row; /* Keep buttons to the sides of the month display */
+        gap: 10px; /* Reduce the gap slightly for smaller screens */
     }
 
     h1 {
@@ -219,7 +224,7 @@ button:disabled {
     }
 
     #month-display {
-        margin: 10px 0;
+        margin: 0 10px;
     }
 
     .flavor-name {
@@ -238,6 +243,10 @@ button:disabled {
     #calendar-container {
         grid-template-columns: repeat(4, 1fr);
         gap: 8px;
+    }
+
+    .calendar-navigation {
+        gap: 5px;
     }
 
     .featured-flavor {
