@@ -144,6 +144,19 @@ button:disabled {
     position: relative;
 }
 
+/* Styling for past days */
+.past-day {
+    background-color: #f5f5f5; /* Light gray background */
+    color: #999; /* Muted text color */
+    pointer-events: none; /* Disable interactions */
+}
+
+/* Strikethrough for flavor text on past days */
+.past-day .flavor-text {
+    text-decoration: line-through;
+    color: #999; /* Muted text color */
+}
+
 /* Day Number Top Right */
 .day-number {
     position: absolute;
