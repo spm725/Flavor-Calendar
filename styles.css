@@ -37,16 +37,16 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    margin-bottom: 100px; /* Ensure bottom margin is added for visible space */
+    margin-bottom: 50px; /* Adjusted bottom margin */
 }
 
 /* Title */
 h1 {
     font-family: 'GothamSSm-Black', sans-serif;
     font-size: 2.5rem; /* Adjusted size for better mobile readability */
-    color: #000000; /* Set color to black */
+    color: #000000;
     margin-bottom: 20px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Reduced shadow effect for subtler look */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Featured Flavor Box Centered */
@@ -86,11 +86,11 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    gap: 20px; /* Add spacing between buttons and month display */
+    gap: 15px; /* Adjusted gap */
 }
 
 .calendar-navigation button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     font-size: 14px;
     border: none;
     border-radius: 5px;
@@ -99,14 +99,8 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-width: 80px; /* Ensure a minimum width for tap area */
-    border: 1px solid #000000; /* Add thin black outline */
-}
-
-/* Hover effect */
-.calendar-navigation button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(255, 235, 59, 0.4);
+    min-width: 80px;
+    border: 1px solid #000000;
 }
 
 button:disabled {
@@ -115,24 +109,22 @@ button:disabled {
     color: #999;
 }
 
-/* Month Display */
 #month-display {
     font-size: 20px;
     font-weight: bold;
-    margin: 0 20px; /* Add spacing on both sides of the month display */
+    margin: 0 10px; /* Adjusted spacing */
     color: #444;
-    flex-grow: 1;
-    text-align: center; /* Keep month and year centered between buttons */
+    text-align: center;
 }
 
 /* Calendar Grid */
 #calendar-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr) !important; /* Default to 7 days across for desktop */
+    grid-template-columns: repeat(7, 1fr) !important;
     gap: 5px;
     width: 100%;
     padding: 10px;
-    box-sizing: border-box; /* Ensure the container does not overflow the page */
+    box-sizing: border-box;
 }
 
 /* Calendar Cell */
@@ -149,9 +141,7 @@ button:disabled {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, transform 0.2s ease;
     aspect-ratio: 1 / 1;
-    box-sizing: border-box;
-    overflow: hidden;
-    position: relative; /* Allow positioning of the day number */
+    position: relative;
 }
 
 /* Day Number Top Right */
@@ -162,7 +152,6 @@ button:disabled {
     font-size: 1.2rem;
     font-weight: bold;
     color: #555;
-    z-index: 2;
 }
 
 /* Day of the Week Top Left */
@@ -173,7 +162,6 @@ button:disabled {
     font-size: 1rem;
     font-weight: bold;
     color: #888;
-    z-index: 2;
 }
 
 /* Flavor Text Centered */
@@ -181,41 +169,30 @@ button:disabled {
     color: #333;
     font-weight: bold;
     text-align: center;
-    overflow-wrap: break-word; /* Allow text to wrap and prevent overflow */
-    word-break: keep-all; /* Prevent breaking individual letters */
-    white-space: normal; /* Allow text to wrap within the container */
-    font-size: 1.1rem; /* Increased size slightly for better visibility */
+    font-size: 1.1rem;
     line-height: 1.2;
-    max-height: 100%;
-    margin-top: auto;
-    margin-bottom: auto;
-    z-index: 2; /* Ensure the flavor text is above the background */
+    margin: auto;
 }
 
 /* Highlight for Current Date */
 .current-date {
-    border: 2px solid #fdd835; /* Highlight the current date with a border */
-    background: transparent; /* Ensure there is no fill, only a border */
-    border-radius: 8px; /* Match the shape of the other calendar cells */
+    border: 2px solid #fdd835;
+    background: transparent;
+    border-radius: 8px;
     font-weight: bold;
     color: #333;
-    box-shadow: none; /* Remove any shadow to keep it consistent with other cells */
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 992px) {
-    /* Ensuring the calendar shows 4 days across on tablets and mobile */
     #calendar-container {
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: 8px;
-        padding: 10px;
-        box-sizing: border-box;
+        gap: 5px;
+        padding: 5px;
     }
 
     .calendar-navigation {
-        gap: 10px; /* Reduce the gap slightly for smaller screens */
-        flex-direction: row; /* Ensure Previous and Next buttons are on the sides of the month */
-        justify-content: space-between;
+        gap: 5px;
     }
 
     h1 {
@@ -223,63 +200,47 @@ button:disabled {
     }
 
     .calendar-navigation button {
-        padding: 8px 15px;
-        font-size: 14px;
-        margin: 5px 0;
-        min-width: 100px;
+        padding: 8px 12px;
+        font-size: 12px;
     }
 
     #month-display {
-        margin: 0 10px;
-    }
-
-    .flavor-name {
-        font-size: 2.5rem;
+        margin: 0 5px;
     }
 
     .featured-flavor {
-        width: 90%;
         max-width: 300px;
-        font-size: 1.2rem;
-        padding: 5px;
+        font-size: 1rem;
     }
 
     .bottom-padding {
-        height: 150px; /* Increase the padding height for mobile devices */
+        height: 0; /* Removed extra padding */
     }
 
-    /* Spacer Element for Flex Adjustment (Only for Mobile) */
     .spacer {
-        flex-grow: 1; /* Pushes content upward and ensures there is space at the bottom */
+        flex-grow: 0;
     }
 }
 
 @media (max-width: 576px) {
     #calendar-container {
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: 8px;
+        gap: 5px;
     }
 
     .calendar-navigation {
-        gap: 5px;
+        gap: 3px;
     }
 
     .featured-flavor {
         max-width: 90%;
-        font-size: 1rem;
     }
 
     .bottom-padding {
-        height: 150px; /* Increase the padding height for mobile devices */
+        height: 0; /* Removed extra padding */
     }
 
-    /* Spacer Element for Flex Adjustment (Only for Mobile) */
     .spacer {
-        flex-grow: 1; /* Pushes content upward and ensures there is space at the bottom */
+        flex-grow: 0;
     }
-}
-
-/* Bottom Padding for Duda */
-.bottom-padding {
-    height: 100px; /* Adjust height as needed for more or less space */
 }
