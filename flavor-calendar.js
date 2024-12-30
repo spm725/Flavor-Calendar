@@ -146,6 +146,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 dayLabel.className = 'day-of-week';
                 cell.appendChild(dayLabel);
 
+                // Highlight current date
                 if (
                     today.getFullYear() === d.getFullYear() &&
                     today.getMonth() === d.getMonth() &&
@@ -154,18 +155,20 @@ window.addEventListener('DOMContentLoaded', function () {
                     cell.classList.add('current-date');
                 }
 
-                // Add flavor text if the day falls within a flavor period
-                const flavor = flavorData.find((flavor) => {
-                    const flavorStart = normalizeDate(flavor.start);
-                    const flavorEnd = normalizeDate(flavor.end);
-                    return d >= flavorStart && d <= flavorEnd;
-                });
+                // Add flavor text only if the day is today or in the future
+                if (d >= today) {
+                    const flavor = flavorData.find((flavor) => {
+                        const flavorStart = normalizeDate(flavor.start);
+                        const flavorEnd = normalizeDate(flavor.end);
+                        return d >= flavorStart && d <= flavorEnd;
+                    });
 
-                if (flavor) {
-                    const flavorText = document.createElement('div');
-                    flavorText.textContent = flavor.text;
-                    flavorText.className = 'flavor-text';
-                    cell.appendChild(flavorText);
+                    if (flavor) {
+                        const flavorText = document.createElement('div');
+                        flavorText.textContent = flavor.text;
+                        flavorText.className = 'flavor-text';
+                        cell.appendChild(flavorText);
+                    }
                 }
 
                 calendarContainer.appendChild(cell);
