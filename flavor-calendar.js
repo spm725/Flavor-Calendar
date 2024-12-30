@@ -148,4 +148,131 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        // Render the calendar and other functionality remains the same...
+              // Render the calendar
+        function renderCalendar(year, month) {
+            calendarContainer.innerHTML = '';
+            const today = new Date();
+            const firstDayOfMonth = new Date(year, month, 1);
+            const lastDayOfMonth = new Date(year, month + 1, 0);
+
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December',
+            ];
+            monthDisplay.textContent = `${monthNames[month]} ${year}`;
+
+            for (let d = new Date(firstDayOfMonth); d <= lastDayOfMonth; d.setDate(d.getDate() + 1)) {
+                const cell = document.createElement('div');
+                cell.className = 'calendar-cell';
+
+                // Add the day number to the top right
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = d.getDate();
+                cell.appendChild(dayNumber);
+
+                // Add the day of the week to the top left
+                const dayOfWeek = d.toLocaleString('en-US', { weekday: 'short' });
+                const dayLabel = document.createElement('div');
+                dayLabel.textContent = dayOfWeek;
+                dayLabel.className = 'day-of-week';
+                cell.appendChild(dayLabel);
+
+                // Highlight current date
+                if (
+                    today.getFullYear() === d.getFullYear() &&
+                    today.getMonth() === d.getMonth() &&
+                    today.getDate() === d.getDate()
+                ) {
+                    cell.classList.add('current-date');
+                }
+
+                // Add flavor text only if the day is today or in the future
+                const flavor = flavorData.find((flavor) => {
+                    const flavorStart = normalizeDate(flavor.start);
+                    const flavorEnd = normalizeDate(flavor.end);
+                    return d >= flavorStart && d <= flavorEnd;
+                });
+
+                if (flavor && (d >= today || (today.getFullYear() === d.getFullYear() && today.getMonth() === d.getMonth() && today.getDate() === d.getDate()))) {
+                    const flavorText = document.createElement('div');
+                    flavorText.textContent = flavor.text;
+                    flavorText.className = 'flavor-text';
+                    cell.appendChild(flavorText);
+                }
+
+                calendarContainer.appendChild(cell);
+            }
+
+            checkPrevButton();
+            checkNextButton();
+            adjustFontSizeForFlavorText();
+
+            // Adjust columns based on window width
+            adjustCalendarColumns();
+        }
+
+        // Adjust the font size for the flavor text to fit within the cell
+        function adjustFontSizeForFlavorText() {
+            const flavorTexts = document.querySelectorAll('.flavor-text');
+            flavorTexts.forEach(flavorText => {
+                let parentWidth = flavorText.parentElement.clientWidth;
+                let parentHeight = flavorText.parentElement.clientHeight;
+                let fontSize = 10; // Start with a smaller default font size for better fitting
+                flavorText.style.fontSize = fontSize + 'px';
+                flavorText.style.whiteSpace = 'normal'; // Allow text to wrap
+
+                // Reduce font size until the text fits within the parent container without overflow
+                while ((flavorText.scrollWidth > parentWidth || flavorText.scrollHeight > parentHeight) && fontSize > 6) {
+                    fontSize -= 0.5;
+                    flavorText.style.fontSize = fontSize + 'px';
+                }
+            });
+        }
+
+        // Adjust calendar columns based on window width
+        function adjustCalendarColumns() {
+            if (window.innerWidth > 1200) {
+                calendarContainer.style.gridTemplateColumns = 'repeat(7, 1fr)';
+            } else if (window.innerWidth > 768) {
+                calendarContainer.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            } else {
+                calendarContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
+            }
+        }
+
+        // Event listeners for buttons
+        prevButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent auto-scrolling
+            currentMonth -= 1;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear -= 1;
+            }
+            renderCalendar(currentYear, currentMonth);
+        });
+
+        nextButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent auto-scrolling
+            currentMonth += 1;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear += 1;
+            }
+            renderCalendar(currentYear, currentMonth);
+        });
+
+        // Initialize the calendar and "Current Flavor" box
+        updateCurrentFlavor();
+        renderCalendar(currentYear, currentMonth);
+
+        // Run the function when the content loads and when resizing the window
+        window.addEventListener('load', adjustFontSizeForFlavorText);
+        window.addEventListener('resize', () => {
+            adjustFontSizeForFlavorText();
+            adjustCalendarColumns();
+        });
+    } else {
+        console.error("One or more elements were not found in the DOM.");
+    }
+});
