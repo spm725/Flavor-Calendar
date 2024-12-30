@@ -156,19 +156,17 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
 
                 // Add flavor text only if the day is today or in the future
-                if (d >= today) {
-                    const flavor = flavorData.find((flavor) => {
-                        const flavorStart = normalizeDate(flavor.start);
-                        const flavorEnd = normalizeDate(flavor.end);
-                        return d >= flavorStart && d <= flavorEnd;
-                    });
+                const flavor = flavorData.find((flavor) => {
+                    const flavorStart = normalizeDate(flavor.start);
+                    const flavorEnd = normalizeDate(flavor.end);
+                    return d >= flavorStart && d <= flavorEnd;
+                });
 
-                    if (flavor) {
-                        const flavorText = document.createElement('div');
-                        flavorText.textContent = flavor.text;
-                        flavorText.className = 'flavor-text';
-                        cell.appendChild(flavorText);
-                    }
+                if (flavor && (d >= today || (today.getFullYear() === d.getFullYear() && today.getMonth() === d.getMonth() && today.getDate() === d.getDate()))) {
+                    const flavorText = document.createElement('div');
+                    flavorText.textContent = flavor.text;
+                    flavorText.className = 'flavor-text';
+                    cell.appendChild(flavorText);
                 }
 
                 calendarContainer.appendChild(cell);
